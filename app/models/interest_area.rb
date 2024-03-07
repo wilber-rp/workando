@@ -1,0 +1,2 @@
+class InterestArea < ApplicationRecord
+end
