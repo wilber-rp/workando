@@ -1,0 +1,7 @@
+<div class="container">
+  <%= simple_form_for @company do |f| %>
+    <%= f.input  :cnpj %>
+    <%= f.input  :company_name %>
+    <%= f.submit  "Criar empresa", class: 'btn btn-primary' %>
+  <% end %>
+</div>

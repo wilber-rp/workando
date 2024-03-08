@@ -14,7 +14,7 @@ class CandidatesController < ApplicationController
     @candidate = current_user.build_candidate(cadidate_params)
 
     if @candidate.save
-      redirect_to candidate_path, notice: "Candidato criado com sucesso"
+      redirect_to candidate_path(@candidate), notice: "Candidato criado com sucesso"
     else
       render :new, status: :unprocessable_entity
     end
