@@ -27,8 +27,8 @@ class CompaniesController < ApplicationController
     if @company.nil?
       redirect_to new_company_path, notice: "You need to create a company first."
     end
-  end  
-
+  end
+  
   def update
     @company = current_user.company.find(params[:id])
     if @company.update(company_params)
