@@ -1,4 +1,11 @@
 class JobsController < ApplicationController
+  def index
+    @jobs = Job.all
+  end
+
+  def show
+    @job = Job.find(params[:id])
+  end
 
   def new
     @job = Job.new
@@ -15,6 +22,26 @@ class JobsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def edit
+    @job = Job.find(params[:id])
+    @interest_areas = InterestArea.all
+  end
+
+  def update
+    @job = Job.find(params[:id])
+    if @job.update(job_params)
+      redirect_to job_path(@job)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @job = Job.find(params[:id])
+    @job.destroy
+    redirect_to jobs_path
   end
 
   private
