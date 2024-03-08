@@ -14,7 +14,7 @@ class CandidatesController < ApplicationController
     @candidate = Candidate.new(cadidate_params)
     @candidate.user = current_user
 
-    if @candidate.save
+    if @candidate.save!
       redirect_to candidate_path(@candidate), notice: "Candidato criado com sucesso"
     else
       render :new, status: :unprocessable_entity
@@ -41,7 +41,7 @@ class CandidatesController < ApplicationController
 
 
   def cadidate_params
-    params.require(:candidate).permit(:first_name, :last_name, :cpf, :phone, :address)
+    params.require(:candidate).permit(:first_name, :last_name, :cpf, :phone, :address, :experience)
   end
 
 
