@@ -1,0 +1,9 @@
+<h1>Perfil da Empresa</h1>
+
+<p><Strong>Nome :</Strong> <%= @company.company_name %></p>
+<p><Strong>CNPJ :</Strong> <%= @company.cnpj %></p>
+<p><Strong>Email :</Strong> <%= @company.user.email %></p> 
+
+<%= link_to  "Editar Empresa", edit_company_path(@company) %>
+<%= link_to "Excluir Empresa", company_path(@company), method: :delete, data: { confirm: "Você tem certeza que quer excluir o perfil da empresa?" } %>
+<%# <%= link_to "Voltar para as vagas", jobs_path %>

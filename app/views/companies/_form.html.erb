@@ -1,0 +1,11 @@
+<div class="container">
+  <%= simple_form_for @company do |f| %>
+    <%= f.input  :company_name %>
+    <%= f.input  :cnpj %>
+    <%# <%= f.input  :cpf %>
+    <%# <%= f.input  :phone %>
+    <%# <%= f.input  :address %>
+    <%= f.submit  "Atuaizar empresa", class: 'btn btn-primary' %>
+
+  <% end %>
+</div>
