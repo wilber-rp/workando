@@ -7,11 +7,15 @@ class ApplicationController < ActionController::Base
     return unless current_user && request.get?
 
     path = new_candidate_path if current_user.role_candidate? && current_user.candidate.blank?
-    # path = new_company_path if current_user.role_company? && current_user.company.blank?  fazer depois 
+    # path = new_company_path if current_user.role_company? && current_user.company.blank?  fazer depois
 
     redirect_to path unless path.nil? || path == request.path
   end
 
+  # def after_sign_path_for(resource)
+  #   stored_location_for(resource) || welcome_path
+  # end
+# metodo para sobrescrever o caminho depois do login, queremos jogar o candidato para os jobs.
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:role])
