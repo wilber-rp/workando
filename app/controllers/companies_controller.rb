@@ -16,7 +16,7 @@ class CompaniesController < ApplicationController
     @company = current_user.build_company(company_params)
 
     if @company.save
-      redirect_to company_path, notice: "Company created successfully"
+      redirect_to company_path(@company), notice: "Company created successfully"
     else
       render :new, status: :unprocessable_entity
     end
@@ -28,7 +28,7 @@ class CompaniesController < ApplicationController
       redirect_to new_company_path, notice: "You need to create a company first."
     end
   end
-  
+
   def update
     @company = current_user.company.find(params[:id])
     if @company.update(company_params)
@@ -38,10 +38,10 @@ class CompaniesController < ApplicationController
     end
   end
 
-  def destroy!
-    @company = current_user.company.find(params[:id])
+  def destroy
+    @company = Company.find(params[:id])
     @company.destroy
-    redirect_to company_path
+    redirect_to root_path, notice: "Perfil deletado com sucesso!"
   end
 
   private
