@@ -1,0 +1,23 @@
+<h1>Perfil do Candidato</h1>
+
+<p><Strong>Nome :</Strong> <%= @candidate.first_name %></p>
+<p><Strong>Sobrenome :</Strong> <%= @candidate.last_name %></p>
+<p><Strong>cpf :</Strong> <%= @candidate.cpf %></p>
+<p><strong>phone</strong><%= @candidate.cpf %></p>
+<p><strong> address :</strong><%=@candidate.address %></p>
+
+<%= link_to  "Editar Perfil", edit_candidate_path(@candidate) %>
+<%= link_to "Excluir Conta", candidate_path  %>
+<% = link_to "Voltar para as vagas", jobs_path %>
+
+
+
+
+
+
+
+
+
+
+
+

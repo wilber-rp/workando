@@ -7,3 +7,23 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+# 1.times do
+#   interest = InterestArea.create!(name: "Garçom") do
+#     Job.create!(interest_area_id: interest, description: '22 hora', address: "Rua joão", salary: 22)
+# end
+
+# 1.times do
+#   interest = InterestArea.create!(name: "Pedreiro") do
+#     Job.create!(interest_area_id: interest, description: '22 hora', address: "Rua joão", salary: 22)
+# end
+
+InterestArea.create!(name: "Garçom")
+InterestArea.create!(name: "Pedreiro")
+InterestArea.create!(name: "Jardineiro")
+InterestArea.create!(name: "Diarista")
+InterestArea.create!(name: "BarMan")
+InterestArea.create!(name: "Pintor")
+InterestArea.create!(name: "capinteiro")
+InterestArea.create!(name: "Segurança")
+InterestArea.create!(name: "Recepcionista")
+InterestArea.create!(name: "Motorista")
