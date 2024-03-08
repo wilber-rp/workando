@@ -1,0 +1,13 @@
+<div class="container">
+  <%= simple_form_for @candidate do |f| %>
+    <%= f.input  :first_name %>
+    <%= f.input  :last_name %>
+    <%= f.input  :cpf %>
+    <%= f.input  :phone %>
+    <%= f.input  :address %>
+    <%= f.submit  "Atuaizar candidato", class: 'btn btn-primary' %>
+
+  <% end %>
+</div>
+
+  <!-- Adicione outros campos conforme necessário -->
