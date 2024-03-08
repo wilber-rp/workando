@@ -1,0 +1,10 @@
+<div class="container">
+  <%= simple_form_for @job do |f| %>
+    <%= f.input  :description %>
+    <%= f.input  :address %>
+    <%= f.input  :salary %>
+    <%= f.collection_select :interest_area_id, @interest_areas, :id, :name, { include_blank: 'Selecione uma categoria' } %>
+
+    <%= f.submit  "Criar job", class: 'btn btn-primary' %>
+  <% end %>
+</div>
