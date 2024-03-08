@@ -1,0 +1,14 @@
+<div class="container">
+
+  <h1>Editar informações do Job</h1>
+
+  <%= simple_form_for @job do |f| %>
+    <%= f.input  :description %>
+    <%= f.input  :address %>
+    <%= f.input  :salary %>
+    <%= f.collection_select :interest_area_id, @interest_areas, :id, :name, { include_blank: 'Selecione uma categoria' }, { selected: @job.interest_area_id } %>
+
+
+    <%= f.submit  "Editar job", class: 'btn btn-primary' %>
+  <% end %>
+</div>

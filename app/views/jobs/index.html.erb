@@ -1,0 +1,9 @@
+<h1>Lista dos jobs</h1>
+
+<% @jobs.each do |job| %>
+  <ul>
+    <li>
+      <%= job.company.company_name %> - <%= job.description %> - <%= job.salary %>
+    </li>
+  </ul>
+<% end %>
