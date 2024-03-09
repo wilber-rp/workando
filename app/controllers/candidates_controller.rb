@@ -4,6 +4,8 @@ class CandidatesController < ApplicationController
 
   def show
     @candidate = current_user.candidate
+    
+
   end
 
   def new
@@ -34,6 +36,7 @@ class CandidatesController < ApplicationController
       render :edit
     end
   end
+
 
 
   private

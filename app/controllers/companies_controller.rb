@@ -5,7 +5,7 @@ class CompaniesController < ApplicationController
       @company = current_user.company
     else
       @company = Company.find(params[:id])
-    end  
+    end
   end
 
   def new
