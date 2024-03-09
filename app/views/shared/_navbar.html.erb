@@ -11,7 +11,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
-          <% if current_user.role == "role_candidate" %>
+          <% if current_user.role == "role_candidate" && current_user.candidate != nil %>
             <li class="nav-item active">
               <%= link_to "Home", root_path, class: "nav-link" %>
             </li>
@@ -29,7 +29,7 @@
               </div>
             </li>
           <% end %>
-              <% if current_user.role == "role_company" %>
+              <% if current_user.role == "role_company" && current_user.company != nil %>
             <li class="nav-item active">
               <%= link_to "Home", root_path, class: "nav-link" %>
             </li>
