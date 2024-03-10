@@ -1,10 +1,12 @@
-<div class="container">
+<div class="container" data-controller="cep">
   <%= simple_form_for @candidate do |f| %>
     <%= f.input  :first_name %>
     <%= f.input  :last_name %>
     <%= f.input  :cpf %>
     <%= f.input  :phone %>
-    <%= f.input  :address %>
+    <%= f.input  :cep, input_html: { id: 'cepSelect', data: { action: 'change->cep#updateAddress' }}%>
+    <%= f.input  :address, input_html: { id: 'addressSelect' } %>
+    <%= f.input  :city, input_html: { id: 'citySelect' } %>
     <%= f.input  :experience %>
     <%= f.submit  "Atuaizar candidato", class: 'btn btn-primary' %>
 
