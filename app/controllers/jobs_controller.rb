@@ -13,11 +13,16 @@ class JobsController < ApplicationController
   end
 
   def create
-    # @job = current_user.company.job.new(job_params)
     @job = Job.new(job_params)
-    @job.company_id = 1
+    @job.company = current_user.company
 
-    if @job.save
+    base_url = "https://cep.awesomeapi.com.br/json/#{@job.cep}"
+    cep_data = URI.open(base_url).read
+    cep = JSON.parse(cep_data)
+    @job.long = cep["lng"]
+    @job.lat = cep["lat"]
+
+    if @job.save!
       redirect_to job_path, notice: "Job criado com sucesso"
     else
       render :new, status: :unprocessable_entity
@@ -47,6 +52,6 @@ class JobsController < ApplicationController
   private
 
   def job_params
-    params.require(:job).permit(:description, :address, :salary, :interest_area_id)
+    params.require(:job).permit(:description, :cep, :address, :city, :salary, :interest_area_id)
   end
 end
