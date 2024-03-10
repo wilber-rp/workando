@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_09_214906) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_10_153311) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -35,6 +35,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_09_214906) do
     t.string "experience"
     t.string "cep"
     t.string "city"
+    t.string "long"
+    t.string "lat"
     t.index ["user_id"], name: "index_candidates_on_user_id"
   end
 
@@ -63,6 +65,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_09_214906) do
     t.integer "interest_area_id"
     t.string "cep"
     t.string "city"
+    t.string "lat"
+    t.string "long"
     t.index ["company_id"], name: "index_jobs_on_company_id"
   end
 
@@ -72,6 +76,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_09_214906) do
     t.bigint "job_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.float "distance"
     t.index ["candidate_id"], name: "index_matches_on_candidate_id"
     t.index ["job_id"], name: "index_matches_on_job_id"
   end

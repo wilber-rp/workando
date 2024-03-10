@@ -1,11 +1,7 @@
 class CandidatesController < ApplicationController
 
-
-
   def show
     @candidate = current_user.candidate
-    
-
   end
 
   def new
