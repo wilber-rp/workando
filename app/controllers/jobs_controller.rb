@@ -1,9 +1,11 @@
 class JobsController < ApplicationController
   def index
     if current_user.role == "role_company"
+
       @jobs = Job.where(company_id: current_user.company.id)
+
+      # Esta realizando uma comparação trazer job where o atributo company_id seja igual ao current_user company.id vai trazer todos jobs relazionado com os ids
     else
-      # @jobs = Job.where(interest_area_id: current_user.candidate.interest_areas.first)
       @jobs = Job.all
     end
   end
