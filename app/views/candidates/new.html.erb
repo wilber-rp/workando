@@ -8,6 +8,10 @@
     <%= f.input  :address, input_html: { id: 'addressSelect' } %>
     <%= f.input  :city, input_html: { id: 'citySelect' } %>
     <%= f.input  :experience %>
+    <%= f.collection_select :candidate_interest_areas, @interest_areas, :id, :name, {}, { multiple: true, include_hidden: false  } %>
+
+
+
     <%= f.submit  "Criar candidato", class: 'btn btn-primary' %>
 
   <% end %>
