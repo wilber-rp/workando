@@ -19,11 +19,11 @@ class JobsController < ApplicationController
     base_url = "https://cep.awesomeapi.com.br/json/#{@job.cep}"
     cep_data = URI.open(base_url).read
     cep = JSON.parse(cep_data)
-    @job.long = cep["lng"]
-    @job.lat = cep["lat"]
+    @job.long = cep['lng']
+    @job.lat = cep['lat']
 
     if @job.save!
-      redirect_to job_path, notice: "Job criado com sucesso"
+      redirect_to job_path(@job), notice: 'Job criado com sucesso'
     else
       render :new, status: :unprocessable_entity
     end
@@ -49,6 +49,14 @@ class JobsController < ApplicationController
     redirect_to jobs_path
   end
 
+<<<<<<< HEAD
+=======
+  def like
+    @job = Job.find(params[:job_id])
+    # logica para lidar com os likes precisa ser implementada
+  end
+
+>>>>>>> b4b416a30c910ef95688f9687bf9c6bc64bf1a48
   private
 
   def job_params
