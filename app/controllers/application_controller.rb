@@ -10,7 +10,8 @@ class ApplicationController < ActionController::Base
     path = new_company_path if current_user.role_company? && current_user.company.blank?
 
 
-
+    puts 'BATATAAAAAA'
+    puts path
 
     redirect_to path unless path.nil? || path == request.path
   end

@@ -6,12 +6,12 @@ Rails
 
     # get '/user' => "welcome#index", :as => :user_root
 
-    root to: 'pages#home'
+    root to: 'jobs#index'
 
     # aqui estarão todas os possíveis matches(o index dos jobs cujo interest_area_id são os mesmos que do candidato)
 
     resources :companies, only: %i[show new create edit update destroy]
-    resources :jobs, only: %i[new create show index edit update destroy] do
+    resources :jobs, only: %i[new create show edit update destroy] do
       post 'like', to: 'jobs#like', as: 'like'
       delete 'dislike', to: 'jobs#dislike', as: 'dislike'
     end
