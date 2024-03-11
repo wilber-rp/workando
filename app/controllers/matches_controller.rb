@@ -1,13 +1,23 @@
 class MatchesController < ApplicationController
+  def index
+    @match = Match.all
+  end
+
   def create
     @match = Match.new(match_params)
     @match.candidate = current_user.candidate
 
     if @match.save
-      puts "Successo"
+      puts 'Successo'
     else
-      puts "Erro"
+      puts 'Erro'
     end
+  end
+
+  def destroy
+    @match = Match.find(params[:id])
+    @match.destroy
+    redirect_to job_path(@match.job)
   end
 
   private
