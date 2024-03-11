@@ -1,7 +1,12 @@
-<div class="container">
+
+
+<div class="container mt-5 ">
+<h3 class="title-form" > Cadastre sua empresa </h3>
+<div class =  "vh-100 mt-5 align-items-center justify-content-center">
   <%= simple_form_for @company do |f| %>
-    <%= f.input  :cnpj %>
-    <%= f.input  :company_name %>
-    <%= f.submit  "Criar empresa", class: 'btn btn-primary' %>
+    <%= f.input  :cnpj, placeholder: "CNPJ", label: false %>
+    <%= f.input  :company_name, placeholder: "Nome Fantasia", label: false  %>
+    <%= f.submit  "Criar empresa", class: 'btn btn-primary full-width-btn' %>
   <% end %>
+</div>
 </div>

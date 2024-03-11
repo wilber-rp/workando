@@ -10,4 +10,9 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
-@import "components/show_candidate";
+@import "components/_form_candidate_company";
+
+
+body {
+  background: linear-gradient(139deg, #B6025F 0%, #1E2764 99%);
+}

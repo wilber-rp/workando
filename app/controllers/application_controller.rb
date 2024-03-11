@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_action :redirect_based_on_user_type
+  before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :dispatch_user
 
@@ -10,8 +10,7 @@ class ApplicationController < ActionController::Base
     path = new_company_path if current_user.role_company? && current_user.company.blank?
 
 
-    puts 'BATATAAAAAA'
-    puts path
+
 
     redirect_to path unless path.nil? || path == request.path
   end
@@ -36,4 +35,6 @@ class ApplicationController < ActionController::Base
   #   flash[:alert] = "You are not authorized to perform this action."
   #   redirect_to(root_path)
   # end
+
+
 end
