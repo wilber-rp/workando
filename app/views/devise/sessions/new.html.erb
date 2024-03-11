@@ -1,20 +1,39 @@
-<h2>Log in</h2>
+<div class="container w-80">
+
+<h2 style="margin-top: 64px;">CADASTRE-SE GRATUITAMENTE <br>
+OU FAÇA LOGIN EM SUA CONTA</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="form-inputs">
     <%= f.input :email,
+                label: "e-mail",
+                placeholder: "e-mail",
                 required: false,
                 autofocus: true,
                 input_html: { autocomplete: "email" } %>
     <%= f.input :password,
+                label: "Senha",
+                placeholder: "Senha",
                 required: false,
                 input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+
+    <div class="row justify-content-between">
+      <div class="col-6">
+      <%= f.input :remember_me,
+                  label: "Mantenha-me logado",
+                  as: :boolean if devise_mapping.rememberable? %>
+      </div>
+      <div class="col-6 text-end">
+      <%= link_to "esqueci a senha", new_password_path(resource_name) %><br />
+      </div>
+    </div>
+
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Log in"  %>
+    <%= f.button :submit, "LOGIN", class: "button button-transparent"  %>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<%= link_to "CADASTRAR", new_registration_path(resource_name), class: "button button-blue button-no-border" %><br />
+</div>
