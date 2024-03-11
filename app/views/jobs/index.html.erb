@@ -17,11 +17,14 @@
         <h2><%= job.description %></h2>
         <p><%= job.salary %></p>
         <p><strong>Company:</strong> <%= job.company.company_name %></p>
-        <%= link_to 'Like', job_like_path(job_id: job.id), method: :post %>
+        <%= button_to 'Like', job_matches_path(job_id: job.id), method: :post %>
         <%= link_to 'Dislike', job_dislike_path(job_id: job.id), method: :delete %>
       </div>
     <% end %>
 <% end %>
   </div>
 </div>
-<%# Aqui seria onde vão ser exibidos para o user candidate os cards com as vagas de trabalho que estão num raio próximo se o usuário não for o current_user. Se for o current_user, vai ser exibida a lista de vagas que o proprio anunciou. Onde seria possivel dar like ou deslike %>
+<%# Aqui seria onde vão ser exibidos para o user candidate os cards com as vagas de trabalho
+que estão num raio próximo se o usuário não for o current_user.
+Se for o current_user, vai ser exibida a lista de vagas que o proprio anunciou.
+Onde seria possivel dar like ou deslike %>
