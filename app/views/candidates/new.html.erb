@@ -1,14 +1,14 @@
 <div class="container" data-controller="cep">
   <%= simple_form_for @candidate do |f| %>
-    <%= f.input  :first_name %>
-    <%= f.input  :last_name %>
-    <%= f.input  :cpf %>
-    <%= f.input  :phone %>
-    <%= f.input  :cep, input_html: { id: 'cepSelect', data: { action: 'change->cep#updateAddress' }}%>
-    <%= f.input  :address, input_html: { id: 'addressSelect' } %>
-    <%= f.input  :city, input_html: { id: 'citySelect' } %>
-    <%= f.input  :experience %>
-    <%= f.submit  "Criar candidato", class: 'btn btn-primary' %>
+   <%= f.input :first_name, label: "Nome" %>
+    <%= f.input :last_name, label: "Sobrenome" %>
+    <%= f.input :cpf, label: "CPF" %>
+    <%= f.input :phone, label: "Telefone" %>
+    <%= f.input :cep, label: "CEP", input_html: { id: 'cepSelect', data: { action: 'change->cep#updateAddress' }} %>
+    <%= f.input :address, label: "Endereço", input_html: { id: 'addressSelect' } %>
+    <%= f.input :city, label: "Cidade", input_html: { id: 'citySelect' } %>
+    <%= f.input :experience, label: "Experiência" %>
+    <%= f.submit "Atualizar candidato", class: 'btn btn-primary' %>
 
   <% end %>
 </div>
