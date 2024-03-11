@@ -1,5 +1,4 @@
 class CompaniesController < ApplicationController
-
   def show
     if current_user.company.present?
       @company = current_user.company
@@ -16,7 +15,7 @@ class CompaniesController < ApplicationController
     @company = current_user.build_company(company_params)
 
     if @company.save
-      redirect_to company_path(@company), notice: "Company created successfully"
+      redirect_to company_path(@company), notice: 'Company created successfully'
     else
       render :new, status: :unprocessable_entity
     end
@@ -24,24 +23,29 @@ class CompaniesController < ApplicationController
 
   def edit
     @company = current_user.company
-    if @company.nil?
-      redirect_to new_company_path, notice: "You need to create a company first."
-    end
+    redirect_to new_company_path, notice: 'You need to create a company first.' if @company.nil?
   end
 
   def update
-    @company = current_user.company.find(params[:id])
-    if @company.update(company_params)
-      redirect_to company_path(@company)
-    else
-      render :edit
+    @company = Company.find(params[:id])
+    if @company.user == current_user
+      if @company.update(company_params)
+        redirect_to company_path(@company)
+      else
+        render :edit
+      end
     end
   end
 
   def destroy
     @company = Company.find(params[:id])
-    @company.destroy
-    redirect_to root_path, notice: "Perfil deletado com sucesso!"
+
+    if @company.user == current_user
+      @company.user.destroy
+      redirect_to root_path, notice: 'Perfil deletado com sucesso!'
+    else
+      redirect_to root_path, alert: 'Você não tem permissão para excluir esta empresa.'
+    end
   end
 
   private

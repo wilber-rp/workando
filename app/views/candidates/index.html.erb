@@ -1,0 +1,12 @@
+<%# Aqui seria onde vão ser exibidos para o user company os cards com candidatos que estão num raio próximo. Onde seria possivel dar like ou deslike %>
+
+<div class="container">
+  <h1>Candidatos na região</h1>
+
+  <% @candidates.each do |candidate| %>
+    <div>
+      <p><strong>Nome:</strong> <%= candidate.first_name %></p>
+      <p><strong>Experiêcnia:</strong> <%= candidate.experience %></p>
+    </div>
+  <% end %>
+</div>

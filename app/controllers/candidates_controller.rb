@@ -1,4 +1,7 @@
 class CandidatesController < ApplicationController
+  def index
+    @candidates = Candidate.all
+  end
 
   def show
     @candidate = current_user.candidate
@@ -15,11 +18,11 @@ class CandidatesController < ApplicationController
     base_url = "https://cep.awesomeapi.com.br/json/#{@candidate.cep}"
     cep_data = URI.open(base_url).read
     cep = JSON.parse(cep_data)
-    @candidate.long = cep["lng"]
-    @candidate.lat = cep["lat"]
+    @candidate.long = cep['lng']
+    @candidate.lat = cep['lat']
 
-    if @candidate.save!
-      redirect_to candidate_path(@candidate), notice: "Candidato criado com sucesso"
+    if @candidate.save
+      redirect_to candidate_path(@candidate), notice: 'Candidato criado com sucesso'
     else
       render :new, status: :unprocessable_entity
     end
@@ -30,12 +33,14 @@ class CandidatesController < ApplicationController
   end
 
   def update
-    @candidate = current_user.candidate
+    @candidate = Candidate.find(params[:id])
 
-    if @candidate.update(candidate_params)
-      redirect_to @candidate, notice: 'Perfil do candidato atualizado com sucesso.'
-    else
-      render :edit
+    if @candidate.user == current_user
+      if @candidate.update(cadidate_params)
+        redirect_to candidate_path(@candidate)
+      else
+        render :edit
+      end
     end
   end
 
