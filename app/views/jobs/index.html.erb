@@ -1,9 +1,28 @@
-<h1>Lista dos jobs</h1>
+<div class="container">
+  
 
-<% @jobs.each do |job| %>
-  <ul>
-    <li>
-      <%= job.company.company_name %> - <%= job.description %> - <%= job.salary %>
-    </li>
-  </ul>
+<% if current_user.company.present? && current_user.company.jobs.any? %>
+<h1>Minhas vagas anunciadas</h1>
+  <% @jobs.each do |job| %>
+    <ul>
+      <li><%= job.company.company_name %> - <%= job.description %> - <%= job.salary %></li>
+    </ul>
+    <%= link_to 'Ver mais', job_path(job) %>
+  <% end %>
+<% else %>
+<h1>Lista dos jobs na região</h1>
+  <div class="card">
+    <% @jobs.each do |job| %>
+      <div>
+        <h2><%= job.description %></h2>
+        <p><%= job.salary %></p>
+        <p><strong>Company:</strong> <%= job.company.company_name %></p>
+        <%= link_to 'Like', job_like_path(job_id: job.id), method: :post %>
+        <%= link_to 'Dislike', job_dislike_path(job_id: job.id), method: :delete %>
+      </div>
+    <% end %>
 <% end %>
+  </div>
+</div>
+
+<%# Aqui seria onde vão ser exibidos para o user candidate os cards com as vagas de trabalho que estão num raio próximo se o usuário não for o current_user. Se for o current_user, vai ser exibida a lista de vagas que o proprio anunciou. Onde seria possivel dar like ou deslike %>

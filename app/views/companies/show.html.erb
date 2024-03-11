@@ -1,0 +1,13 @@
+<div class="container">
+  <h1>Perfil da Empresa</h1>
+
+  <p><strong>Nome :</strong> <%= @company.company_name %></p>
+  <p><strong>CNPJ :</strong> <%= @company.cnpj %></p>
+  <p><strong>Email :</strong> <%= @company.user.email %></p>
+
+  <%= link_to 'Anunciar uma vaga', new_job_path, class: 'btn btn-primary mb-3' %> <br />
+  <%= link_to 'Minhas vagas', jobs_path, class: 'btn btn-primary mb-3' %><br />
+  <%= link_to 'Editar Empresa', edit_company_path(@company), class: 'btn btn-primary mb-3' %><br />
+  <%= link_to 'Excluir Empresa', company_path(@company), data: { turbo_method: :delete }, class: 'btn btn-danger' %>
+  <%# <%= link_to "Voltar para as vagas", jobs_path %>
+</div>

@@ -1,11 +1,17 @@
-<h1>Perfil do Candidato</h1>
+<div class="container mt-3  ">
+  <h1>Perfil do Candidato</h1>
 
-<p><Strong>Nome :</Strong> <%= @candidate.first_name %></p>
-<p><Strong>Sobrenome :</Strong> <%= @candidate.last_name %></p>
-<p><Strong>cpf :</Strong> <%= @candidate.cpf %></p>
-<p><strong>phone</strong><%= @candidate.cpf %></p>
-<p><strong> address :</strong><%= @candidate.address %></p>
+  <div style="padding: 10px;">
+    <%= image_tag 'https://via.placeholder.com/400x200', width: 400, height: 200, alt: 'Imagem de Teste' %>
+  </div>
 
-<%= link_to  "Editar Perfil", edit_candidate_path(@candidate) %>
-<%# <%= link_to "Excluir Conta", candidate_path  %> 
-<%# <% = link_to "Voltar para as vagas", jobs_path %>
+  <p><strong>Nome :</strong> <%= @candidate.first_name %></p>
+  <p><strong>Sobrenome :</strong> <%= @candidate.last_name %></p>
+  <p><strong>cpf :</strong> <%= @candidate.cpf %></p>
+  <p><strong>phone</strong><%= @candidate.phone %></p>
+  <p><strong> address :</strong><%= @candidate.address %></p>
+  <p><strong> experiences :</strong><%= @candidate.experience %></p>
+
+  <%= link_to 'Editar Perfil', edit_candidate_path(@candidate) %>
+</div>
+<%# link_to "Voltar para as vagas", jobs_path %>
