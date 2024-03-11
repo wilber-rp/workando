@@ -1,6 +1,6 @@
 <div class="container" data-controller="cep">
   <%= simple_form_for @candidate do |f| %>
-   <%= f.input :first_name, label: "Nome" %>
+    <%= f.input :first_name, label: "Nome" %>
     <%= f.input :last_name, label: "Sobrenome" %>
     <%= f.input :cpf, label: "CPF" %>
     <%= f.input :phone, label: "Telefone" %>
@@ -8,6 +8,7 @@
     <%= f.input :address, label: "Endereço", input_html: { id: 'addressSelect' } %>
     <%= f.input :city, label: "Cidade", input_html: { id: 'citySelect' } %>
     <%= f.input :experience, label: "Experiência" %>
+    <%= f.collection_select :candidate_interest_areas, @interest_areas, :id, :name, {}, { multiple: true, include_hidden: false  } %>
     <%= f.submit "Atualizar candidato", class: 'btn btn-primary' %>
 
   <% end %>
