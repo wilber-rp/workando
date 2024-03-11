@@ -1,11 +1,14 @@
-<h1>Vagas</h1>
+<h1>Perfil da job</h1>
 
-<p><strong>Descrição :</strong> <%= @job.description %></p>
-<p><strong>Endereço :</strong> <%= @job.address %></p>
-<p><strong>Pagamento :</strong> <%= @job.salary %></p>
-<p><strong>Nome da empresa :</strong> <%= @job.company.company_name %></p>
-<p><strong>Função:</strong> <%= @job.interest_area.name %></p>
+<p><Strong>Descrição :</Strong> <%= @job.description %></p>
+<p><Strong>Endereço :</Strong> <%= @job.address %></p>
+<p><Strong>Pagamento :</Strong> <%= @job.salary %></p>
+<p><Strong>Nome da empresa :</Strong> <%= @job.company.company_name %></p>
+<p><Strong>Função:</Strong> <%= @job.interest_area.name %></p>
 
-<%= link_to 'Editar Vaga', edit_job_path(@job) %>
-<%= link_to 'Deletar vaga', job_path(@job), data: { turbo_method: :delete } %>
-<%= link_to 'Voltar para as vagas', jobs_path %>
+
+<%= link_to "Editar Perfil", edit_job_path(@job) %>
+<%= link_to "Deletar vaga", job_path(@job), data: {turbo_method: :delete} %>
+<%= link_to "Voltar para as vagas", jobs_path %>
+
+<%# mostrar os likes os cadidatos que gostaram desse job %>
