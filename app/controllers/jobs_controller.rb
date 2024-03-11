@@ -1,8 +1,9 @@
 class JobsController < ApplicationController
   def index
-    if current_user == current_user.role_company?
-      @jobs = current_user.job
+    if current_user.role == "role_company"
+      @jobs = Job.where(company_id: current_user.company.id)
     else
+      # @jobs = Job.where(interest_area_id: current_user.candidate.interest_areas.first)
       @jobs = Job.all
     end
   end
