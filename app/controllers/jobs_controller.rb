@@ -49,14 +49,11 @@ class JobsController < ApplicationController
     redirect_to jobs_path
   end
 
-<<<<<<< HEAD
-=======
   def like
     @job = Job.find(params[:job_id])
     # logica para lidar com os likes precisa ser implementada
   end
 
->>>>>>> b4b416a30c910ef95688f9687bf9c6bc64bf1a48
   private
 
   def job_params
