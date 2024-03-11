@@ -6,6 +6,11 @@
   <% @jobs.each do |job| %>
     <ul>
       <li><%= job.company.company_name %> - <%= job.description %> - <%= job.salary %></li>
+      <% if job.matches.any? %>
+        <p>Likes: <%= job.matches.count %></p>
+      <% else %>
+        <p>Ainda nenhum like.</p>
+      <% end %>
     </ul>
     <%= link_to 'Ver mais', job_path(job) %>
   <% end %>
@@ -22,9 +27,6 @@
       </div>
     <% end %>
 <% end %>
-  </div>
 </div>
-<%# Aqui seria onde vão ser exibidos para o user candidate os cards com as vagas de trabalho
-que estão num raio próximo se o usuário não for o current_user.
-Se for o current_user, vai ser exibida a lista de vagas que o proprio anunciou.
-Onde seria possivel dar like ou deslike %>
+</div>
+
