@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
-  before_action :redirect_based_on_user_type
+
+  before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :dispatch_user
 
