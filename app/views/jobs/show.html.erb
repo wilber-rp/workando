@@ -17,7 +17,7 @@
     <ul>
       <% @job.matches.each do |match| %>
         <li><%= match.candidate.first_name %></li>
-        <%= button_to 'Dislike', job_match_path(@job, match), data: { turbo_method: :delete } %>
+        <%= link_to 'Dislike', job_match_path(@job, match), data: { turbo_method: :delete } %>
       <% end %>
     </ul>
   <% else %>
