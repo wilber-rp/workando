@@ -1,14 +1,18 @@
-<div class="container" data-controller="cep">
+<div class="container mt-5 ">
+<h2 class="title-form" > Prencha seus dados e encontre sua vaga agora </h2>
+<div class="container mt-3" data-controller="cep">
   <%= simple_form_for @candidate do |f| %>
-   <%= f.input :first_name, label: "Nome" %>
-    <%= f.input :last_name, label: "Sobrenome" %>
-    <%= f.input :cpf, label: "CPF" %>
-    <%= f.input :phone, label: "Telefone" %>
-    <%= f.input :cep, label: "CEP", input_html: { id: 'cepSelect', data: { action: 'change->cep#updateAddress' }} %>
-    <%= f.input :address, label: "Endereço", input_html: { id: 'addressSelect' } %>
-    <%= f.input :city, label: "Cidade", input_html: { id: 'citySelect' } %>
-    <%= f.input :experience, label: "Experiência" %>
-    <%= f.submit "Atualizar candidato", class: 'btn btn-primary' %>
+    <%= f.input :first_name, placeholder: "Nome", label: false %>
+    <%= f.input :last_name, placeholder: "Sobrenome", label: false %>
+    <%= f.input :cpf, placeholder: "CPF", label: false %>
+    <%= f.input :phone, placeholder: "Telefone", label: false %>
+    <%= f.input :cep, placeholder: "CEP", input_html: { id: 'cepSelect', data: { action: 'change->cep#updateAddress' }}, label: false %>
+    <%= f.input :address, placeholder: "Endereço", input_html: { id: 'addressSelect' } , label: false%>
+    <%= f.input :city, placeholder: "Cidade", input_html: { id: 'citySelect' }, label: false %>
+    <%= f.input :experience, placeholder: "Experiência" , label: false%>
+    <%= f.collection_select :candidate_interest_areas, @interest_areas, :id, :name, {}, { multiple: true, include_hidden: false  } %>
+    <%= f.submit "Confirmar Cadastro", class: "button button-blue button-no-border"%>
 
   <% end %>
+</div>
 </div>

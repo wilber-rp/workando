@@ -1,5 +1,18 @@
 <h1>Editar Perfil do Candidato</h1>
 
-<%= render 'form' %>
+<div class="container" data-controller="cep">
+  <%= simple_form_for @candidate, url: candidate_path(@candidate), method: :patch do |f| %>
+    <%= f.input  :first_name %>
+    <%= f.input  :last_name %>
+    <%= f.input  :cpf %>
+    <%= f.input  :phone %>
+    <%= f.input  :cep, input_html: { id: 'cepSelect', data: { action: 'change->cep#updateAddress' }}%>
+    <%= f.input  :address, input_html: { id: 'addressSelect' } %>
+    <%= f.input  :city, input_html: { id: 'citySelect' } %>
+    <%= f.input  :experience %>
+    <%= f.collection_select :candidate_interest_areas, @interest_areas, :id, :name, {}, { multiple: true, include_hidden: false  } %>
+    <%= f.submit  "Atualizar candidato", class: 'btn btn-primary' %>
 
+  <% end %>
+</div>
 <%= link_to 'Voltar para Perfil', candidate_path(@candidate) %>

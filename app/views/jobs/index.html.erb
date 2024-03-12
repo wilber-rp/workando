@@ -2,29 +2,47 @@
 
 
 <% if current_user.company.present? && current_user.company.jobs.any? %>
-<h1>Minhas vagas anunciadas</h1>
+<h1 class="text-center text-white my-3" >Minhas vagas anunciadas</h1>
   <% @jobs.each do |job| %>
-    <ul>
-      <li><%= job.company.company_name %> - <%= job.description %> - <%= job.salary %></li>
-    </ul>
+    <div>
+        <ul class="list-group list-group-flush ">
+          <li class="list-group-item bg-transparent text-white"><i class="fa-solid fa-quote-left"></i> <strong>Description:</strong> <%= job.description %></li>
+          <li class="list-group-item bg-transparent text-white"><i class="fa-solid fa-dollar-sign"></i> <strong>Salary:</strong> <%= job.salary %></li>
+          <li class="list-group-item bg-transparent text-white"><i class="fa-solid fa-briefcase"></i> <strong>Company:</strong> <%= job.company.company_name %></li>
+          <li class="list-group-item bg-transparent text-white">
+            <% if job.matches.any? %>
+              <i class="fa-regular fa-thumbs-up"></i> <strong>Likes:</strong> <%= job.matches.count %>
+            <% else %>
+              Ainda nenhum like.
+            <% end %>
+          </li>
+          <li class="list-group-item bg-transparent text-white">And a fifth one</li>
+        </ul>
+      </div>
     <%= link_to 'Ver mais', job_path(job) %>
   <% end %>
 <% else %>
-<h1>Lista dos jobs na região</h1>
-  <div class="card">
+<h1 class="text-center text-white my-3">Lista dos jobs na região</h1>
+  <div class="card bg-card-job">
     <% @jobs.each do |job| %>
       <div>
-        <h2><%= job.description %></h2>
-        <p><%= job.salary %></p>
-        <p><strong>Company:</strong> <%= job.company.company_name %></p>
-        <%= button_to 'Like', job_matches_path(job_id: job.id), method: :post %>
-        <%= link_to 'Dislike', job_dislike_path(job_id: job.id), method: :delete %>
+        <ul class="list-group list-group-flush ">
+          <li class="list-group-item bg-transparent text-white"><i class="fa-solid fa-quote-left"></i> <strong>Description:</strong> <%= job.description %></li>
+          <li class="list-group-item bg-transparent text-white"><i class="fa-solid fa-dollar-sign"></i> <strong>Salary:</strong> <%= job.salary %></li>
+          <li class="list-group-item bg-transparent text-white"><i class="fa-solid fa-briefcase"></i> <strong>Company:</strong> <%= job.company.company_name %></li>
+          <li class="list-group-item bg-transparent text-white">A fourth item</li>
+          <li class="list-group-item bg-transparent text-white">And a fifth one</li>
+        </ul>
+        <div class="d-flex justify-content-between">
+          <%= button_to job_matches_path(job_id: job.id), method: :post, class: "btn-match btn-like" do %>
+            <i class="fa-regular fa-thumbs-up"></i>
+          <% end %>
+          <%= link_to job_dislike_path(job_id: job.id), method: :delete, class:"btn-match btn-dislike" do  %>
+            <i class="fa-regular fa-thumbs-down"></i>
+          <% end %>
+        </div>
       </div>
     <% end %>
 <% end %>
-  </div>
 </div>
-<%# Aqui seria onde vão ser exibidos para o user candidate os cards com as vagas de trabalho
-que estão num raio próximo se o usuário não for o current_user.
-Se for o current_user, vai ser exibida a lista de vagas que o proprio anunciou.
-Onde seria possivel dar like ou deslike %>
+</div>
