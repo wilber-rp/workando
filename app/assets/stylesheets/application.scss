@@ -12,21 +12,28 @@
 @import "pages/index";
 @import "pages/show_candidate";
 
-
+// Abaixo: body feito por Stefano.
 body{
   background-image: linear-gradient(rgba(183, 78, 138, 1), rgba(11, 54, 107, 1));
-  // background-repeat: no-repeat;
-  // height: 100vh;
+  background-repeat: no-repeat;
+  height: 100vh;
 }
 
-
-body {
-  background: linear-gradient(139deg, #B6025F 0%, #1E2764 99%);
+input.form-control {
+  color:rgb(0, 0, 0) !important;
 }
-// input::placeholder {
-//   color:black;
-// }
+
+// Abaixo: body feito pelo Felipe.
+// body {
+//   background: linear-gradient(139deg, #B6025F 0%, #1E2764 99%);
+//   background-repeat: no-repeat;
+
 a{
+  color: white;
+}
+
+h1 {
+  font-size: 32px;
   color: white;
 }
 
