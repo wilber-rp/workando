@@ -42,9 +42,18 @@ class CandidatesController < ApplicationController
   end
 
   def update
-    @candidate = Candidate.find(params[:id])
+    @candidate = current_user.candidate
+    @interest_areas = InterestArea.all
+
+    interest_areas = params[:candidate][:candidate_interest_areas]
+    interest_areas.shift
+    interest_areas.each do |area_id|
+      area = InterestArea.find(area_id.to_i)
+      CandidateInterestArea.create(candidate: @candidate, interest_area: area)
+    end
 
     if @candidate.user == current_user
+      raise
       if @candidate.update(cadidate_params)
         redirect_to candidate_path(@candidate)
       else

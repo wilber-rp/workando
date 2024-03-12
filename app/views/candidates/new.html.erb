@@ -9,7 +9,7 @@
     <%= f.input :city, label: "Cidade", input_html: { id: 'citySelect' } %>
     <%= f.input :experience, label: "Experiência" %>
     <%= f.collection_select :candidate_interest_areas, @interest_areas, :id, :name, {}, { multiple: true, include_hidden: false  } %>
-    <%= f.submit "Atualizar candidato", class: 'btn btn-primary' %>
+    <%= f.submit "Criar candidato", class: 'btn btn-primary' %>
 
   <% end %>
 </div>

@@ -3,8 +3,7 @@ class JobsController < ApplicationController
     if current_user.role == "role_company"
       @jobs = Job.where(company_id: current_user.company.id)
     else
-      # @jobs = Job.where(interest_area_id: current_user.candidate.interest_areas.first)
-      @jobs = Job.all
+      @jobs = Job.where(interest_area_id: current_user.candidate.interest_areas)
     end
   end
 
