@@ -17,11 +17,16 @@ body{
   height: 100vh;
 }
 
-input::placeholder {
-  color:black;
+input.form-control {
+  color:rgb(0, 0, 0) !important;
 }
+
 a{
   color: white;
+}
+
+h1 {
+  font-size: 32px;
 }
 
 h2 {
