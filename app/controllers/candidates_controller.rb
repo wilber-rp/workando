@@ -23,11 +23,11 @@ class CandidatesController < ApplicationController
       CandidateInterestArea.create(candidate: @candidate, interest_area: area)
     end
 
-    base_url = "https://cep.awesomeapi.com.br/json/#{@candidate.cep}"
-    cep_data = URI.open(base_url).read
-    cep = JSON.parse(cep_data)
-    @candidate.long = cep['lng']
-    @candidate.lat = cep['lat']
+    # base_url = "https://cep.awesomeapi.com.br/json/#{@candidate.cep}"
+    # cep_data = URI.open(base_url).read
+    # cep = JSON.parse(cep_data)
+    # @candidate.long = cep['lng']
+    # @candidate.lat = cep['lat']
 
     if @candidate.save
       redirect_to candidate_path(@candidate), notice: 'Candidato criado com sucesso'

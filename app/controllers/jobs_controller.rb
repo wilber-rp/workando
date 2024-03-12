@@ -23,11 +23,11 @@ class JobsController < ApplicationController
     @job = Job.new(job_params)
     @job.company = current_user.company
 
-    base_url = "https://cep.awesomeapi.com.br/json/#{@job.cep}"
-    cep_data = URI.open(base_url).read
-    cep = JSON.parse(cep_data)
-    @job.long = cep['lng']
-    @job.lat = cep['lat']
+    # base_url = "https://cep.awesomeapi.com.br/json/#{@job.cep}"
+    # cep_data = if URI.open(base_url).read
+    # cep = JSON.parse(cep_data)
+    # @job.long = cep['lng']
+    # @job.lat = cep['lat']
 
     if @job.save!
       redirect_to job_path(@job), notice: 'Job criado com sucesso'
