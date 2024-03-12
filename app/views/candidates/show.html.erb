@@ -1,28 +1,30 @@
-<div class="container mt-5  ">
-  <h2>Perfil do Candidato</h2>
+<div class="container mt-4">
+  <h2>MEU PERFIL</h2>
+
+  <%= image_tag("Imagem perfil candidato.png", alt:"Avatar do usuário", class:"profile-picture") %>
 
 
-  <div class="profile-info mt-5">
-    <p><strong>Nome : </strong> <%= @candidate.first_name %></p>
+  <div class="profile-info mt-3"style="background-color: white; color: #65656B">
+    <p><strong>Nome: </strong> <%= @candidate.first_name %></p>
   </div>
-  <div class="profile-info">
-    <p><strong>Sobrenome :</strong> <%= @candidate.last_name %></p>
+  <div class="profile-info" style="background-color: white; color: #65656B">
+    <p><strong>Sobrenome:</strong> <%= @candidate.last_name %></p>
   </div>
-  <div class="profile-info">
-    <p><strong>CPF :</strong> <%= @candidate.cpf %></p>
+  <div class="profile-info" style="background-color: white; color: #65656B">
+    <p><strong>CPF:</strong> <%= @candidate.cpf %></p>
   </div>
-  <div class="profile-info">
-    <p><strong>Telefone :</strong> <%= @candidate.phone %></p>
+  <div class="profile-info" style="background-color: white; color: #65656B">
+    <p><strong>Telefone:</strong> <%= @candidate.phone %></p>
   </div>
-  <div class="profile-info">
-    <p><strong> Endereço :</strong> <%= @candidate.address %></p>
+  <div class="profile-info" style="background-color: white; color: #65656B">
+    <p><strong> Endereço:</strong> <%= @candidate.address %></p>
   </div>
-  <div class="profile-info">
-    <p><strong> Experiências profissionais :</strong> <%= @candidate.experience %></p>
+  <div class="profile-info" style="background-color: white; color: #65656B">
+    <p><strong> Experiências profissionais:</strong> <%= @candidate.experience %></p>
   </div>
 
 
 
-  <%= link_to 'Editar Perfil', edit_candidate_path(@candidate), class: "button" %>
-  <%= link_to "Voltar para as vagas", root_path, class: 'button' %>
+  <%= link_to 'EDITAR PERFIL', edit_candidate_path(@candidate), class: "button button-transparent"  %>
+  <%= link_to "PROCURAR VAGAS", root_path, class: "button button-blue button-no-border" %>
 </div>
