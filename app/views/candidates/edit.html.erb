@@ -11,8 +11,9 @@
     <%= f.input  :city, input_html: { id: 'citySelect' } %>
     <%= f.input  :experience %>
     <%= f.collection_select :candidate_interest_areas, @interest_areas, :id, :name, {}, { multiple: true, include_hidden: false  } %>
-    <%= f.submit  "Atualizar candidato", class: 'btn btn-primary' %>
+    <%= f.button :submit, "Atualizar candidato", class: 'btn btn-primary' %>
 
   <% end %>
 </div>
+
 <%= link_to 'Voltar para Perfil', candidate_path(@candidate) %>

@@ -42,19 +42,20 @@ class CandidatesController < ApplicationController
   end
 
   def update
+
     @candidate = current_user.candidate
     @interest_areas = InterestArea.all
 
     interest_areas = params[:candidate][:candidate_interest_areas]
     interest_areas.shift
     interest_areas.each do |area_id|
+      @candidate.candidate_interest_areas.destroy_all
       area = InterestArea.find(area_id.to_i)
       CandidateInterestArea.create(candidate: @candidate, interest_area: area)
     end
 
     if @candidate.user == current_user
-      raise
-      if @candidate.update(cadidate_params)
+      if @candidate.update(cadidate_params.except(:interest_area_ids))
         redirect_to candidate_path(@candidate)
       else
         render :edit
@@ -67,4 +68,9 @@ class CandidatesController < ApplicationController
   def cadidate_params
     params.require(:candidate).permit(:first_name, :last_name, :cpf, :phone, :cep, :address, :city, :experience, interest_area_ids: [])
   end
+
+  def update_params
+    params.require(:candidate).permit(:first_name, :last_name, :cpf, :phone, :cep, :address, :city, :experience)
+  end
+
 end
