@@ -18,10 +18,9 @@ Rails
       delete 'dislike', to: 'jobs#dislike', as: 'dislike'
     end
 
-    get 'candidate', to: 'candidates#show', as: :candidate
+    # get 'candidate', to: 'candidates#show', as: :candidate
 
-    resources :candidates, only: %i[index new create edit update] do
-      patch '/', to: 'candidates#update'
+    resources :candidates, only: %i[show index new create edit update] do
       post 'like', to: 'candidates#like', as: 'like'
       delete 'dislike', to: 'candidates#dislike', as: 'dislike'
     end
