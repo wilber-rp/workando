@@ -8,3 +8,14 @@
 legend ~ div.form-check:first-of-type {
   clear: left;
 }
+.form-control{
+  color:#000;
+}
+
+.form-control:focus{
+  color: #000;
+}
+
+input::-webkit-input-placeholder {
+  color: rgb(156, 156, 156) !important;
+  }
