@@ -1,0 +1,45 @@
+/* Adicione essas regras no seu arquivo de estilo CSS */
+
+.container {
+  text-align: center;
+}
+
+.profile-info {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 20px;
+  text-align: left;
+  border-radius: 20px;
+}
+
+.profile-info p {
+  margin: 1px 0;
+}
+
+h1 {
+  color: #333;
+}
+
+/* Adicione um estilo para o link "Editar Perfil" */
+.profile-info a {
+  color: #007bff;
+  text-decoration: none;
+  border-bottom: 1px dashed #007bff;
+}
+
+.profile-info a:hover {
+  color: #0056b3;
+  border-bottom: 1px dashed #0056b3;
+}
+
+/* Estilo para o link "Voltar para as vagas" */
+.back-to-jobs {
+  display: block;
+  margin-top: 20px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.back-to-jobs:hover {
+  color: #0056b3;
+}

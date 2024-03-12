@@ -9,17 +9,25 @@ class CandidatesController < ApplicationController
 
   def new
     @candidate = Candidate.new
+    @interest_areas = InterestArea.all
   end
 
   def create
     @candidate = Candidate.new(cadidate_params)
     @candidate.user = current_user
 
-    base_url = "https://cep.awesomeapi.com.br/json/#{@candidate.cep}"
-    cep_data = URI.open(base_url).read
-    cep = JSON.parse(cep_data)
-    @candidate.long = cep['lng']
-    @candidate.lat = cep['lat']
+    interest_areas = params[:candidate][:candidate_interest_areas]
+    interest_areas.shift
+    interest_areas.each do |area_id|
+      area = InterestArea.find(area_id.to_i)
+      CandidateInterestArea.create(candidate: @candidate, interest_area: area)
+    end
+
+    # base_url = "https://cep.awesomeapi.com.br/json/#{@candidate.cep}"
+    # cep_data = URI.open(base_url).read
+    # cep = JSON.parse(cep_data)
+    # @candidate.long = cep['lng']
+    # @candidate.lat = cep['lat']
 
     if @candidate.save
       redirect_to candidate_path(@candidate), notice: 'Candidato criado com sucesso'
@@ -30,13 +38,24 @@ class CandidatesController < ApplicationController
 
   def edit
     @candidate = current_user.candidate
+    @interest_areas = InterestArea.all
   end
 
   def update
-    @candidate = Candidate.find(params[:id])
+
+    @candidate = current_user.candidate
+    @interest_areas = InterestArea.all
+
+    interest_areas = params[:candidate][:candidate_interest_areas]
+    interest_areas.shift
+    interest_areas.each do |area_id|
+      @candidate.candidate_interest_areas.destroy_all
+      area = InterestArea.find(area_id.to_i)
+      CandidateInterestArea.create(candidate: @candidate, interest_area: area)
+    end
 
     if @candidate.user == current_user
-      if @candidate.update(cadidate_params)
+      if @candidate.update(cadidate_params.except(:interest_area_ids))
         redirect_to candidate_path(@candidate)
       else
         render :edit
@@ -47,6 +66,11 @@ class CandidatesController < ApplicationController
   private
 
   def cadidate_params
+    params.require(:candidate).permit(:first_name, :last_name, :cpf, :phone, :cep, :address, :city, :experience, interest_area_ids: [])
+  end
+
+  def update_params
     params.require(:candidate).permit(:first_name, :last_name, :cpf, :phone, :cep, :address, :city, :experience)
   end
+
 end

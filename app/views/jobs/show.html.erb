@@ -1,11 +1,30 @@
-<h1>Vagas</h1>
+<div class="container">
+  <h1>Vaga de <%= @job.interest_area.name.downcase %></h1>
 
-<p><strong>Descrição :</strong> <%= @job.description %></p>
-<p><strong>Endereço :</strong> <%= @job.address %></p>
-<p><strong>Pagamento :</strong> <%= @job.salary %></p>
-<p><strong>Nome da empresa :</strong> <%= @job.company.company_name %></p>
-<p><strong>Função:</strong> <%= @job.interest_area.name %></p>
+  <div class="card bg-card-job">
 
-<%= link_to 'Editar Vaga', edit_job_path(@job) %>
-<%= link_to 'Deletar vaga', job_path(@job), data: { turbo_method: :delete } %>
-<%= link_to 'Voltar para as vagas', jobs_path %>
+  <ul class="list-group list-group-flush ">
+    <li class="list-group-item bg-transparent text-white"> <strong>Descrição :</strong> <%= @job.description %></li>
+    <li class="list-group-item bg-transparent text-white"> <strong>Endereço :</strong> <%= @job.address %></li>
+    <li class="list-group-item bg-transparent text-white"> <strong>Salario :</strong> <%= @job.salary %></li>
+    <li class="list-group-item bg-transparent text-white"> <strong>Função :</strong> <%= @job.interest_area.name %></li>
+  </ul>
+  </div>
+
+  <%= link_to 'Editar Vaga', edit_job_path(@job), class: "button" %>
+  <%= link_to 'Deletar vaga', job_path(@job), data: { turbo_method: :delete }, class: "button"  %>
+  <%= link_to 'Ver meus anuncios ', root_path, class: "button"  %>
+
+  <h2>Quem curtiu</h2>
+
+  <% if @job.matches.any? %>
+    <ul>
+      <% @job.matches.each do |match| %>
+        <li><%= match.candidate.first_name %></li>
+        <%= link_to 'Dislike', job_match_path(@job, match), data: { turbo_method: :delete } %>
+      <% end %>
+    </ul>
+  <% else %>
+  <p>Ainda nenhum like.</p>
+  <% end %>
+</div>

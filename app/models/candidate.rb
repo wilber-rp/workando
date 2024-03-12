@@ -6,5 +6,7 @@ class Candidate < ApplicationRecord
   has_many :interest_areas, through: :candidate_interest_areas
   has_many :matches, dependent: :destroy
 
+  accepts_nested_attributes_for :candidate_interest_areas
+
   validates :first_name, :last_name, :cpf, :phone, presence: true
 end

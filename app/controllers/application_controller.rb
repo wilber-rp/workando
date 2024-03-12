@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :dispatch_user
@@ -10,7 +11,8 @@ class ApplicationController < ActionController::Base
     path = new_company_path if current_user.role_company? && current_user.company.blank?
 
 
-
+    puts 'BATATAAAAAA'
+    puts path
 
     redirect_to path unless path.nil? || path == request.path
   end
@@ -34,11 +36,5 @@ class ApplicationController < ActionController::Base
   # def user_not_authorized
   #   flash[:alert] = "You are not authorized to perform this action."
   #   redirect_to(root_path)
-  # end
-
-  # private
-
-  # def skip_pundit?
-  #   devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
   # end
 end
