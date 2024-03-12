@@ -10,11 +10,12 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "pages/show_candidate";
 
 body{
   background-image: linear-gradient(rgba(183, 78, 138, 1), rgba(11, 54, 107, 1));
-  background-repeat: no-repeat;
-  height: 100vh;
+  // background-repeat: no-repeat;
+  // height: 100vh;
 }
 
 input::placeholder {

@@ -1,17 +1,30 @@
-<div class="container mt-3  ">
-  <h1>Perfil do Candidato</h1>
+<div class="container mt-5  ">
+  <h2>Perfil do Candidato</h2>
 
-  <div style="padding: 10px;">
-    <%= image_tag 'https://via.placeholder.com/400x200', width: 400, height: 200, alt: 'Imagem de Teste' %>
+
+  <div class="profile-info mt-5">
+
+    <p><strong>Nome:</strong> <%= @candidate.first_name %></p>
+  </div>
+  <div class="profile-info">
+    <p><strong>Sobrenome :</strong> <%= @candidate.last_name %></p>
+  </div>
+  <div class="profile-info">
+    <p><strong>CPF :</strong> <%= @candidate.cpf %></p>
+  </div>
+  <div class="profile-info">
+    <p><strong>Telefone :</strong> <%= @candidate.phone %></p>
+  </div>
+  <div class="profile-info">
+    <p><strong> Endereço :</strong> <%= @candidate.address %></p>
   </div>
 
-  <p><strong>Nome :</strong> <%= @candidate.first_name %></p>
-  <p><strong>Sobrenome :</strong> <%= @candidate.last_name %></p>
-  <p><strong>CPF :</strong> <%= @candidate.cpf %></p>
-  <p><strong>Telefone</strong><%= @candidate.phone %></p>
-  <p><strong> Endereço  :</strong><%= @candidate.address %></p>
-  <p><strong> Experiências profissionais :</strong><%= @candidate.experience %></p>
+  <div class="profile-info">
+    <p><strong> Experiências profissionais :</strong> <%= @candidate.experience %></p>
+  </div>
 
-  <%= link_to 'Editar Perfil', edit_candidate_path(@candidate) %>
+
+
+  <%= link_to 'Editar Perfil', edit_candidate_path(@candidate), class: "button" %>
+  <%= link_to "Voltar para as vagas", root_path, class: 'btn btn-secudary' %>
 </div>
-<%# link_to "Voltar para as vagas", jobs_path %>
