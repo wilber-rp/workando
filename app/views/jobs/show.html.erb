@@ -18,12 +18,12 @@
   <h2>Quem curtiu</h2>
 
   <% if @job.matches.any? %>
-  <ul>
-    <% @job.matches.each do |match| %>
-    <li><%= match.candidate.first_name %></li>
-    <%= button_to 'Dislike', job_match_path(@job, match), data: { turbo_method: :delete } %>
-    <% end %>
-  </ul>
+    <ul>
+      <% @job.matches.each do |match| %>
+        <li><%= match.candidate.first_name %></li>
+        <%= link_to 'Dislike', job_match_path(@job, match), data: { turbo_method: :delete } %>
+      <% end %>
+    </ul>
   <% else %>
   <p>Ainda nenhum like.</p>
   <% end %>
