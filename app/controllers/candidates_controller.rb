@@ -56,7 +56,6 @@ class CandidatesController < ApplicationController
 
     if @candidate.user == current_user
       if @candidate.update(cadidate_params.except(:interest_area_ids))
-        raise
         redirect_to candidate_path(@candidate)
       else
         render :edit
