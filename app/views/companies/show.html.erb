@@ -1,23 +1,27 @@
-<div class="container mt-5">
-  <h2>Perfil da Empresa</h2>
+<div class="container my-3 mb-5">
+  <h2>MEU PERFIL</h2>
 
-  <div class="profile-info mt-5">
-    <p><strong>Nome :</strong> <%= @company.company_name %></p>
-  </div>
-  
-  <div class="profile-info mt-5">
-    <p><strong>CNPJ :</strong> <%= @company.cnpj %></p>
-  </div>
+  <%= image_tag("imagem_contratante.png", alt:"Avatar do usuário", class:"profile-picture") %>
 
-  <div class="profile-info mt-5">
-    <p><strong>Email :</strong> <%= @company.user.email %></p>
+  <div class="profile-info mt-3"style="background-color: white; color: #65656B">
+    <p><strong>Nome:</strong> <%= @company.company_name %></p>
+<hr>
+ <p><strong>CNPJ:</strong> <%= @company.cnpj %></p>
+<hr>
+ <p><strong>e-mail:</strong> <%= @company.user.email %></p>
+<hr>
+    <p><strong>Breve descrição da empresa:</strong> <%= @company.company_description %></p>
   </div>
 
   <div class="btn-group-vertical w-100 mt-3">
-    <%= link_to 'Anunciar uma vaga', new_job_path, class: ' mb-3 button' %>
-    <%= link_to 'Minhas vagas', root_path, class: ' mb-3 button' %>
-    <%= link_to 'Editar Empresa', edit_company_path(@company), class: ' mb-3 button' %>
-    <%= link_to 'Excluir Empresa', company_path(@company), data: { turbo_method: :delete }, class: ' mb-3 button' %>
-    <%= link_to "Voltar para as vagas", jobs_path, class: ' button' %>
+    <%= link_to 'ANUNCIAR UMA VAGA', new_job_path, class: 'button button-blue button-no-border' %>
+
+    <div class="flex-edit-delete w-100">
+      <%= link_to 'MINHAS VAGAS', root_path, class: 'button button-transparent' %>
+      <%= link_to 'EDITAR PERFIL', edit_company_path(@company), class: 'button button-transparent' %>
+    </div>
+
+    <%= link_to 'DELETAR PERFIL', company_path(@company), data: { turbo_method: :delete }, class: 'button button-red button-no-border' %>
+    <%= link_to "VOLTAR PARA VAGAS", jobs_path, class: ' button button-transparent' %>
   </div>
 </div>

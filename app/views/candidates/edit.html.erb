@@ -1,19 +1,26 @@
-<h1>Editar Perfil do Candidato</h1>
+<div class="container mt-4">
+  <h2>EDITAR PERFIL</h2>
 
-<div class="container" data-controller="cep">
-  <%= simple_form_for @candidate, url: candidate_path(@candidate), method: :patch do |f| %>
-    <%= f.input  :first_name %>
-    <%= f.input  :last_name %>
-    <%= f.input  :cpf %>
-    <%= f.input  :phone %>
-    <%= f.input  :cep, input_html: { id: 'cepSelect', data: { action: 'change->cep#updateAddress' }}%>
-    <%= f.input  :address, input_html: { id: 'addressSelect' } %>
-    <%= f.input  :city, input_html: { id: 'citySelect' } %>
-    <%= f.input  :experience %>
-    <%= f.collection_select :candidate_interest_areas, @interest_areas, :id, :name, {}, { multiple: true, include_hidden: false  } %>
-    <%= f.button :submit, "Atualizar candidato", class: 'btn btn-primary' %>
+  <%= image_tag("Imagem perfil candidato.png", alt:"Avatar do usuário", class:"profile-picture") %>
 
-  <% end %>
+
+
+  <div class="container text-start" data-controller="cep">
+    <%= simple_form_for @candidate, url: candidate_path(@candidate), method: :patch do |f| %>
+
+      <%= f.input  :first_name, label: "Nome", input_html: { class: "profile-info"} %>
+      <%= f.input  :last_name, label: "Sobrenome", input_html: { class: "profile-info"}%>
+      <%= f.input  :cpf, label: "CPF", input_html: { class: "profile-info"}%>
+      <%= f.input  :phone, label: "Telefone", input_html: { class: "profile-info"} %>
+      <%= f.input  :cep, input_html: { id: 'cepSelect', data: { action: 'change->cep#updateAddress' }},label: "CEP", input_html: { class: "profile-info"}%>
+      <%= f.input  :city, input_html: { id: 'citySelect' },label: "Cidade", input_html: { class: "profile-info"} %>
+      <%= f.input  :address, input_html: { id: 'addressSelect' },label: "Endereço", input_html: { class: "profile-info"} %>
+      <%= f.input  :experience, label: "Experiências profissionais", input_html: { class: "profile-info"} %>
+      <%= f.collection_select :candidate_interest_areas, @interest_areas, :id, :name, {}, { multiple: true, include_hidden: false  } %>
+      <%= f.button :submit, "ATUALIZAR PERFIL", class: 'button button-blue button-no-border' %>
+
+  <%= link_to 'VOLTAR PARA PERFIL', candidate_path(@candidate), class: 'button button-transparent' %>
+    <% end %>
+  </div>
+
 </div>
-
-<%= link_to 'Voltar para Perfil', candidate_path(@candidate) %>

@@ -1,21 +1,23 @@
-<div class="container">
-  <h1>Vaga de <%= @job.interest_area.name.downcase %></h1>
+<div class="container my-3 mb-5">
+  <h2>VAGA DE <%= @job.interest_area.name.upcase %></h2>
 
   <div class="card bg-card-job">
 
   <ul class="list-group list-group-flush ">
-    <li class="list-group-item bg-transparent text-white"> <strong>Descrição :</strong> <%= @job.description %></li>
-    <li class="list-group-item bg-transparent text-white"> <strong>Endereço :</strong> <%= @job.address %></li>
-    <li class="list-group-item bg-transparent text-white"> <strong>Salario :</strong> <%= @job.salary %></li>
-    <li class="list-group-item bg-transparent text-white"> <strong>Função :</strong> <%= @job.interest_area.name %></li>
+    <li class="list-group-item bg-transparent text-black text-start"> <strong>Descrição :</strong> <%= @job.description %></li>
+    <li class="list-group-item bg-transparent text-black text-start"> <strong>Endereço :</strong> <%= @job.address %></li>
+    <li class="list-group-item bg-transparent text-black text-start"> <strong>Salario :</strong> <%= @job.salary %></li>
+    <li class="list-group-item bg-transparent text-black text-start"> <strong>Função :</strong> <%= @job.interest_area.name %></li>
   </ul>
   </div>
+  <div class="flex-edit-delete">
+    <%= link_to 'Editar Vaga', edit_job_path(@job), class: "button button-transparent" %>
+    <%= link_to 'Deletar vaga', job_path(@job), data: { turbo_method: :delete }, class: "button button-transparent"  %>
+  </div>
+  <%= link_to 'Ver meus anuncios ', root_path, class: "button button-blue button-no-border"  %>
 
-  <%= link_to 'Editar Vaga', edit_job_path(@job), class: "button" %>
-  <%= link_to 'Deletar vaga', job_path(@job), data: { turbo_method: :delete }, class: "button"  %>
-  <%= link_to 'Ver meus anuncios ', root_path, class: "button"  %>
 
-  <h2>Quem curtiu</h2>
+  <h2>Quem curtiu minha vaga:</h2>
 
   <% if @job.matches.any? %>
     <ul>
