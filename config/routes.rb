@@ -8,6 +8,10 @@ Rails
 
     root to: 'jobs#index'
 
+    resources :chatrooms, only: :show do
+      resources :messages, only: :create
+    end
+
     # aqui estarão todas os possíveis matches(o index dos jobs cujo interest_area_id são os mesmos que do candidato)
 
     get 'company', to: 'companies#show', as: :company
