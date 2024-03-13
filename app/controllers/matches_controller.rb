@@ -25,6 +25,14 @@ class MatchesController < ApplicationController
     end
   end
 
+  def show
+    @match = Match.find(params[:id])
+    if @match.chatroom
+      @chatroom_match = @match.chatroom
+    else
+      @chatroom = Chatroom.new
+    end
+  end
 
   def destroy
     @match = Match.find(params[:id])
