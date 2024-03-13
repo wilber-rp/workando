@@ -15,6 +15,8 @@ class CompaniesController < ApplicationController
     @company = current_user.build_company(company_params)
 
     if @company.save
+      current_user.nickname = @company.company_name
+      current_user.save
       redirect_to company_path(@company), notice: 'Company created successfully'
     else
       render :new, status: :unprocessable_entity
