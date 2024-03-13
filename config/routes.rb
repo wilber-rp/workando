@@ -22,6 +22,10 @@ Rails
       post 'dislike', to: 'jobs#dislike', as: 'dislike'
     end
 
+    resources :matches, except: %i[index create destroy] do
+      resources :chatrooms, only: :create
+    end
+
     # get 'candidate', to: 'candidates#show', as: :candidate
 
     resources :candidates, only: %i[show index new create edit update] do
