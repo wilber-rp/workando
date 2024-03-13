@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_13_025241) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_13_145908) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,6 +52,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_13_025241) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "company_description"
     t.index ["user_id"], name: "index_companies_on_user_id"
   end
 
@@ -77,7 +78,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_13_025241) do
   end
 
   create_table "matches", force: :cascade do |t|
-    t.boolean "matched"
+    t.boolean "matched", default: false
     t.bigint "candidate_id", null: false
     t.bigint "job_id", null: false
     t.datetime "created_at", null: false

@@ -17,6 +17,7 @@ class JobsController < ApplicationController
   def new
     @job = Job.new
     @interest_areas = InterestArea.all
+    @company = current_user.company
   end
 
   def create

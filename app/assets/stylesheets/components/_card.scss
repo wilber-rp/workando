@@ -1,9 +1,17 @@
 .bg-card-job {
-  background-color: #14B8BC;
-  color: #fff;
+  background-color: #f1f1f1;
+  color: #000;
   padding: 32px;
+  border-radius: 5%;
+  border: 2px solid #14B8BC;
 
-  h2 {
-    margin:0;
-  }
+
+  // h2 {
+  //   margin:0;
+  // }
+}
+
+.flex-edit-delete{
+  display: flex;
+  gap: 12px;
 }
