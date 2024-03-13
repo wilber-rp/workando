@@ -1,0 +1,19 @@
+<h1>Candidate Name: <%= @match.candidate.first_name %></h1>
+
+<% if @match.matched? %>
+  <% if @chatroom_match  %>
+    <%= link_to 'conversar com candidato', chatroom_path(@chatroom_match) %>
+  <% else %>
+    <%= simple_form_for [@match, @chatroom] do |f| %>
+      <%= f.submit 'Iniciar conversa com candidato' %>
+    <% end %>
+  <% end %>
+
+<% else %>
+  <%= button_to job_matches_path(job_id: @match.job.id, dislike: false), method: :post, class: "btn-match btn-like" do %>
+    <i class="fa-regular fa-thumbs-up"></i>
+  <% end %>
+  <%= button_to job_matches_path(job_id: @match.job.id, dislike: true), method: :post, class:"btn-match btn-dislike" do  %>
+    <i class="fa-regular fa-thumbs-down"></i>
+  <% end %>
+<% end %>

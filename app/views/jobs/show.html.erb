@@ -22,7 +22,7 @@
   <% if @job.matches.any? %>
     <ul>
       <% @job.matches.where(dislike: false).each do |match| %>
-        <li><%= match.candidate.first_name %></li>
+        <li><%= link_to match.candidate.first_name, match_path(match) %></li>
         <%= button_to job_dislike_path(@job, match.id), method: :post, class:"btn-match btn-dislike" do  %>
         <i class="fa-regular fa-thumbs-down"></i>
         <% end %>
