@@ -15,7 +15,7 @@ Rails
     resources :jobs, only: %i[new create show edit update destroy] do
       resources :matches, only: %i[index create destroy]
       post 'like', to: 'jobs#like', as: 'like'
-      delete 'dislike', to: 'jobs#dislike', as: 'dislike'
+      post 'dislike', to: 'jobs#dislike', as: 'dislike'
     end
 
     # get 'candidate', to: 'candidates#show', as: :candidate

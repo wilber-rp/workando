@@ -8,8 +8,8 @@
           <li class="list-group-item bg-transparent text-white"><i class="fa-solid fa-dollar-sign"></i> <strong>Salary:</strong> <%= job.salary %></li>
           <li class="list-group-item bg-transparent text-white"><i class="fa-solid fa-briefcase"></i> <strong>Company:</strong> <%= job.company.company_name %></li>
           <li class="list-group-item bg-transparent text-white">
-            <% if job.matches.any? %>
-              <i class="fa-regular fa-thumbs-up"></i> <strong>Likes:</strong> <%= job.matches.count %>
+            <% if job.matches.where(dislike: false).count > 0%>
+              <i class="fa-regular fa-thumbs-up"></i> <strong>Likes:</strong> <%= job.matches.where(dislike: false).count %>
             <% else %>
               Ainda nenhum like.
             <% end %>
@@ -23,23 +23,25 @@
 <h1 class="text-center text-white my-3">Lista dos jobs na região</h1>
   <div class="card bg-card-job">
     <% @jobs.each do |job| %>
-      <div>
-        <ul class="list-group list-group-flush ">
-          <li class="list-group-item bg-transparent text-white"><i class="fa-solid fa-quote-left"></i> <strong>Description:</strong> <%= job.description %></li>
-          <li class="list-group-item bg-transparent text-white"><i class="fa-solid fa-dollar-sign"></i> <strong>Salary:</strong> <%= job.salary %></li>
-          <li class="list-group-item bg-transparent text-white"><i class="fa-solid fa-briefcase"></i> <strong>Company:</strong> <%= job.company.company_name %></li>
-          <li class="list-group-item bg-transparent text-white">A fourth item</li>
-          <li class="list-group-item bg-transparent text-white">And a fifth one</li>
-        </ul>
-        <div class="d-flex justify-content-between">
-          <%= button_to job_matches_path(job_id: job.id), method: :post, class: "btn-match btn-like" do %>
-            <i class="fa-regular fa-thumbs-up"></i>
-          <% end %>
-          <%= link_to job_dislike_path(job_id: job.id), method: :delete, class:"btn-match btn-dislike" do  %>
-            <i class="fa-regular fa-thumbs-down"></i>
-          <% end %>
+      <% if job.matches.none?{ |match| match.candidate_id == current_user.candidate.id } %>
+        <div>
+          <ul class="list-group list-group-flush ">
+            <li class="list-group-item bg-transparent text-white"><i class="fa-solid fa-quote-left"></i> <strong>Description:</strong> <%= job.description %></li>
+            <li class="list-group-item bg-transparent text-white"><i class="fa-solid fa-dollar-sign"></i> <strong>Salary:</strong> <%= job.salary %></li>
+            <li class="list-group-item bg-transparent text-white"><i class="fa-solid fa-briefcase"></i> <strong>Company:</strong> <%= job.company.company_name %></li>
+            <li class="list-group-item bg-transparent text-white">A fourth item</li>
+            <li class="list-group-item bg-transparent text-white">And a fifth one</li>
+          </ul>
+          <div class="d-flex justify-content-between">
+            <%= button_to job_matches_path(job_id: job.id, dislike: false), method: :post, class: "btn-match btn-like" do %>
+              <i class="fa-regular fa-thumbs-up"></i>
+            <% end %>
+            <%= button_to job_matches_path(job_id: job.id, dislike: true), method: :post, class:"btn-match btn-dislike" do  %>
+              <i class="fa-regular fa-thumbs-down"></i>
+            <% end %>
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
 <% end %>
 </div>

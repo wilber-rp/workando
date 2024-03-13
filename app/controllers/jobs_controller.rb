@@ -61,6 +61,18 @@ class JobsController < ApplicationController
     # logica para lidar com os likes precisa ser implementada
   end
 
+  def dislike
+    @job = Job.find(params[:job_id])
+    match = Match.find(params[:format].to_i)
+    if match.update(dislike: true)
+      redirect_to job_path(@job), notice: 'Match atualizado com dislike.'
+    else
+      redirect_to job_path(@job), alert: 'Não foi possível atualizar o match com dislike.'
+    end
+  end
+
+
+
   private
 
   def job_params
