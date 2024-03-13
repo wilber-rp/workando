@@ -15,7 +15,7 @@ class MatchesController < ApplicationController
         end
       else
         if @match.save
-          redirect_to root_path, notice: 'Desinterece cadastrado'
+          redirect_to root_path, notice: 'Desinteresse cadastrado'
         else
           puts 'Erro'
         end
