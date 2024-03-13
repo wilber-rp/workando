@@ -1,6 +1,6 @@
 class MatchesController < ApplicationController
   def index
-    @match = Match.all
+    @matches = Match.where(candidate: current_user.candidate, matched: true)
   end
 
   def create

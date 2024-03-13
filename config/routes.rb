@@ -17,12 +17,12 @@ Rails
     get 'company', to: 'companies#show', as: :company
     resources :companies, only: %i[new create edit update destroy]
     resources :jobs, only: %i[new create show edit update destroy] do
-      resources :matches, only: %i[index create destroy]
+      resources :matches, only: %i[create destroy]
       post 'like', to: 'jobs#like', as: 'like'
       post 'dislike', to: 'jobs#dislike', as: 'dislike'
     end
 
-    resources :matches, except: %i[index create destroy] do
+    resources :matches, except: %i[create destroy] do
       resources :chatrooms, only: :create
     end
 

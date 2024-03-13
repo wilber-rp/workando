@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_13_150004) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_13_191456) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -44,7 +44,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_13_150004) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "match_id"
+    t.bigint "sender_id"
+    t.bigint "receiver_id"
     t.index ["match_id"], name: "index_chatrooms_on_match_id"
+    t.index ["receiver_id"], name: "index_chatrooms_on_receiver_id"
+    t.index ["sender_id"], name: "index_chatrooms_on_sender_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -78,7 +82,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_13_150004) do
   end
 
   create_table "matches", force: :cascade do |t|
-    t.boolean "matched", default: false
+    t.boolean "matched"
     t.bigint "candidate_id", null: false
     t.bigint "job_id", null: false
     t.datetime "created_at", null: false
@@ -118,6 +122,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_13_150004) do
   add_foreign_key "candidate_interest_areas", "interest_areas"
   add_foreign_key "candidates", "users"
   add_foreign_key "chatrooms", "matches"
+  add_foreign_key "chatrooms", "users", column: "receiver_id"
+  add_foreign_key "chatrooms", "users", column: "sender_id"
   add_foreign_key "companies", "users"
   add_foreign_key "jobs", "companies"
   add_foreign_key "matches", "candidates"
