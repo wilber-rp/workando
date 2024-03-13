@@ -4,11 +4,11 @@ class JobsController < ApplicationController
 
       @jobs = Job.where(company_id: current_user.company.id)
 
-      @alljobs = Job.all
+
       # Esta realizando uma comparação trazer job where o atributo company_id seja igual ao current_user company.id vai trazer todos jobs relazionado com os ids
     else
       @jobs = Job.where(interest_area_id: current_user.candidate.interest_areas)
-      @alljobs = Job.all
+
     end
   end
 
@@ -33,7 +33,7 @@ class JobsController < ApplicationController
     # @job.lat = cep['lat']
 
     if @job.save!
-      redirect_to job_path(@job), notice: 'Job criado com sucesso'
+      redirect_to job_path(@job), notice: 'Vaga criada com sucesso'
     else
       render :new, status: :unprocessable_entity
     end
@@ -60,8 +60,15 @@ class JobsController < ApplicationController
   end
 
   def like
-    @job = Job.find(params[:job_id])
-    # logica para lidar com os likes precisa ser implementada
+    @match = Match.find(params[:match_id])
+    @match.matched = true
+    if @match.save
+      Chatroom.new(match: @match)
+      redirect_to match_path(@match), notice: 'Parabéns, você formou um match.'
+    else
+      render :new, status: :unprocessable_entity
+    end
+
   end
 
   def dislike
@@ -73,8 +80,6 @@ class JobsController < ApplicationController
       redirect_to job_path(@job), alert: 'Não foi possível atualizar o match com dislike.'
     end
   end
-
-
 
   private
 

@@ -1,0 +1,12 @@
+<h1>Lista dos Matches</h1>
+
+    <% @matches.each do |match| %>
+      <div class="card bg-card-job" >
+        <ul class="list-group list-group-flush ">
+          <li class="list-group-item bg-transparent text-white"><i class="fa-solid fa-quote-left"></i> <strong>Empresa:</strong> <%= match.job.company.company_name %></li>
+          <li class="list-group-item bg-transparent text-white"><i class="fa-solid fa-dollar-sign"></i> <strong>Função:</strong> <%= match.job.interest_area.name %></li>
+          <li class="list-group-item bg-transparent text-white"><i class="fa-solid fa-briefcase"></i> <strong>Remunaração:</strong> R$<%= match.job.salary %> /h</li>
+          <%= link_to 'Conversar com o contratante', chatroom_path(match.chatroom) %>
+        </ul>
+        </div>
+    <% end %>
