@@ -8,6 +8,8 @@ class ChatroomsController < ApplicationController
     @chatroom = Chatroom.new
     @match = Match.find(params[:match_id])
     @chatroom.match = @match
+    @chatroom.sender = current_user
+    @chatroom.receiver = @match.candidate.user
 
     if @chatroom.save
       redirect_to chatroom_path(@chatroom)
