@@ -4,15 +4,27 @@ class MatchesController < ApplicationController
   end
 
   def create
-    @match = Match.new(match_params)
-    @match.candidate = current_user.candidate
-
-    if @match.save
-      puts 'Successo'
+    if current_user.candidate.matches.none? { |match| match.job_id == (params[:job_id].to_i) }
+      @match = Match.new(match_params)
+      @match.candidate = current_user.candidate
+      if params[:dislike] == "false"
+        if @match.save
+          redirect_to root_path, notice: 'Candidatura efetuada'
+        else
+          puts 'Erro'
+        end
+      else
+        if @match.save
+          redirect_to root_path, notice: 'Desinterece cadastrado'
+        else
+          puts 'Erro'
+        end
+      end
     else
-      puts 'Erro'
+      puts "Erro"
     end
   end
+
 
   def destroy
     @match = Match.find(params[:id])
@@ -23,6 +35,6 @@ class MatchesController < ApplicationController
   private
 
   def match_params
-    params.permit(:job_id)
+    params.permit(:job_id, :dislike)
   end
 end
