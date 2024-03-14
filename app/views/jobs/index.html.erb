@@ -17,6 +17,10 @@
         <%# <div class="list-group list-group-flush "> %>
         <%# aqui pensei em colocarmos uma interpolação do n° da vaga antes da descrição. Ex: Vaga 1- Pedreiro. Vaga-2 Garçom. %>
 
+
+        <%# <div class="list-group list-group-flush "> %>
+        <%# aqui pensei em colocarmos uma interpolação do n° da vaga antes da descrição. Ex: Vaga 1- Pedreiro. Vaga-2 Garçom. %>
+
           <li class="button button-my-jobs"><%= link_to job_path(job) do %><strong style="color: #65656b;">  </strong> <span style="color: #65656b;"><%= job.interest_area.name %></span>
           <% end %></li>
           <%# <li class="list-group-item bg-transparent"><strong>Salário por hora:</strong> <%= job.salary %>
@@ -28,7 +32,7 @@
             <%# aqui podemos colocar o "jóia" com o número zero ao lado, representando zero likes %>
                 <%# <strong style="font-weight: 600;display: block; margin-top: 1px; text-align: center;  color: red;">Ainda não há candidatos.</strong> %>
             <% end %>
-          </li>
+          
         <%# </div> %>
 
       <%# <%= link_to 'Ver mais', job_path(job), class: "button button-transparent"%>
