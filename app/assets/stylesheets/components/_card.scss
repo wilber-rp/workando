@@ -15,3 +15,37 @@
   display: flex;
   gap: 12px;
 }
+
+.card-show-job {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 50em;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  border: 2px solid #14b9bcbe;
+  background-color: #14b9bc1e;
+  margin: 12px;
+  border-radius: 20px;
+
+  .descriptions {
+    margin: 12px;
+    padding-left: 24px;
+    padding-right: 24px;
+    }
+
+  .map {
+    border: 2px solid #000000fb;
+    margin: 12px;
+    height: 200px;
+    max-height: 300px;
+  }
+
+  .buttons {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    padding: 24px;
+    bottom: 0;
+    width: 100%;
+  }
+}
