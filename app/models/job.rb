@@ -4,4 +4,5 @@ class Job < ApplicationRecord
   has_many :matches, dependent: :destroy
   has_many :distances
   has_many :candidates, through: :distances
+
 end
