@@ -1,11 +1,12 @@
 <div class="container mt-4">
   <h2>MEU PERFIL</h2>
-  <% if current_user.candidate.photo.present? %>
-    <%= cl_image_tag @candidate.photo.key, height: 300, width: 400, crop: :fill, class:"profile-picture" %>
-  <% else %>
-    <%= image_tag("Imagem perfil candidato.png", alt:"Avatar do usuário", class:"profile-picture") %>
-  <% end %>
 
+  <% if @candidate.photo.present? %>
+   <%= cl_image_tag @candidate.photo.key, height: 300, width: 400, crop: :fill, class:"profile-picture" %>
+  <% else %>
+   <%= image_tag("Imagem perfil candidato.png", alt:"Avatar do usuário", class:"profile-picture") %>
+  <% end %>
+  
   <div class="profile-info mt-3"style="background-color: white; color: #65656B">
     <p><strong>Nome: </strong> <%= @candidate.first_name %></p>
 <hr>

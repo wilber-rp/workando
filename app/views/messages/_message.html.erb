@@ -1,7 +1,25 @@
 <div id="message-<%= message.id %>" class="message <%= message.user == current_user ? 'current-user' : 'other-user' %>">
-  <small>
-    <strong><%= message.user.nickname %></strong>
-    <i><%= message.created_at.strftime("%e de %b - %l:%M %p") %></i>
-  </small>
-  <p><%= message.content %></p>
+  <div class="avatar">
+
+  <% if message.user == message.chatroom.match.candidate.user %>
+   <% if message.chatroom.match.candidate.photo.attached? %>
+      <%= cl_image_tag message.chatroom.match.candidate.photo.key, height: 30, width: 30, crop: :fill, class:"profile-picture" %>
+    <% else %>
+      <%= image_tag("imagem_contratante.png", alt:"Avatar do usuário", class:"profile-picture") %>
+    <% end %>
+ <% else %>
+   <% if message.chatroom.match.job.company.photo.attached? %>
+      <%= cl_image_tag message.chatroom.match.job.company.photo.key, height: 30, width: 30, crop: :fill, class:"profile-picture" %>
+    <% else %>
+     <%= image_tag("Imagem perfil candidato.png", alt:"Avatar do usuário", class:"profile-picture") %>
+    <% end %>
+  <% end %>
+  </div>
+  <div class="message-content">
+    <small>
+      <strong><%= message.user.nickname %></strong>
+      <i><%= message.created_at.strftime("%e de %b - %l:%M %p") %></i>
+    </small>
+    <p><%= message.content %></p>
+  </div>
 </div>
