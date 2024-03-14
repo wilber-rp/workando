@@ -8,7 +8,7 @@ class JobsController < ApplicationController
       alljobs = Job.where(interest_area_id: current_user.candidate.interest_areas)
 
       alljobs.each do |job|
-        if job.lat != nil && job.lat != "undefined"
+        if job.lat != nil && job.lat != "undefined" && current_user.candidate.lat != nil && current_user.candidate.lat != "undefined"
           url = "https://api.mapbox.com/directions-matrix/v1/mapbox/driving/#{current_user.candidate.long.to_f},#{current_user.candidate.lat.to_f};#{job.long.to_f},#{job.lat.to_f}?sources=1&annotations=distance&access_token=#{mapbox_api_key}"
           json_data = URI.open(url).read
           parsed_data = JSON.parse(json_data)
@@ -90,7 +90,7 @@ class JobsController < ApplicationController
 
   def dislike
     @job = Job.find(params[:job_id])
-    match = Match.find(params[:format].to_i)
+    match = Match.find(params[:match])
     if match.update(dislike: true)
       redirect_to job_path(@job), notice: 'Match atualizado com dislike.'
     else
