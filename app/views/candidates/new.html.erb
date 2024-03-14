@@ -6,7 +6,7 @@
 
       <%= simple_form_for @candidate do |f| %>
       <%= f.collection_select :candidate_interest_areas, @interest_areas, :id, :name, {}, { multiple: true, include_hidden: false  } %>
-
+        <%= f.input :photo, as: :file %>
         <%= f.input :first_name, placeholder: "Nome:", label: false, input_html: { class: "profile-info"}%>
         <%= f.input :last_name, placeholder: "Sobrenome:", label: false, input_html: { class: "profile-info"} %>
         <%= f.input :cpf, placeholder: "CPF:", label: false, input_html: { class: "profile-info"} %>

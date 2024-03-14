@@ -4,4 +4,6 @@ class Company < ApplicationRecord
 
   validates :cnpj, :company_name, presence: true
   validates :cnpj, uniqueness: true
+
+  has_one_attached :photo
 end

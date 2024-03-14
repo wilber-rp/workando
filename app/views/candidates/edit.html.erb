@@ -2,12 +2,12 @@
   <h2>EDITAR PERFIL</h2>
 
   <%= image_tag("Imagem perfil candidato.png", alt:"Avatar do usuário", class:"profile-picture") %>
-
+  <%= cl_image_tag @candidate.photo.key, height: 300, width: 400, crop: :fill, class:'profile-picture'%>
 
 
   <div class="container text-start" data-controller="cep">
     <%= simple_form_for @candidate, url: candidate_path(@candidate), method: :patch do |f| %>
-
+      <%= f.input :photo, as: :file %>
       <%= f.input  :first_name, label: "Nome", input_html: { class: "profile-info"} %>
       <%= f.input  :last_name, label: "Sobrenome", input_html: { class: "profile-info"}%>
       <%= f.input  :cpf, label: "CPF", input_html: { class: "profile-info"}%>
