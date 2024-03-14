@@ -5,6 +5,8 @@ class Candidate < ApplicationRecord
   has_many :candidate_interest_areas
   has_many :interest_areas, through: :candidate_interest_areas
   has_many :matches, dependent: :destroy
+  has_many :distances
+  has_many :jobs, through: :distances
 
   accepts_nested_attributes_for :candidate_interest_areas
 
