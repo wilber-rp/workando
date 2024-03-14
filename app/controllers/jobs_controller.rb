@@ -78,7 +78,14 @@ class JobsController < ApplicationController
 
   def like
     @job = Job.find(params[:job_id])
-    # logica para lidar com os likes precisa ser implementada
+    @match = Match.find(params[:match_id])
+    @match.matched = true
+    if @match.save
+      Chatroom.new(match: @match)
+      redirect_to match_path(@match), notice: 'Parabéns, você formou um match.'
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def dislike
