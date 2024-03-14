@@ -26,12 +26,6 @@ class JobsController < ApplicationController
     @job = Job.new(job_params)
     @job.company = current_user.company
 
-    # base_url = "https://cep.awesomeapi.com.br/json/#{@job.cep}"
-    # cep_data = if URI.open(base_url).read
-    # cep = JSON.parse(cep_data)
-    # @job.long = cep['lng']
-    # @job.lat = cep['lat']
-
     if @job.save!
       redirect_to job_path(@job), notice: 'Vaga criada com sucesso'
     else
@@ -84,6 +78,6 @@ class JobsController < ApplicationController
   private
 
   def job_params
-    params.require(:job).permit(:description, :cep, :address, :city, :salary, :interest_area_id)
+    params.require(:job).permit(:description, :cep, :address, :city, :salary, :lat, :long, :interest_area_id)
   end
 end

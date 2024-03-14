@@ -11,10 +11,14 @@
         <%= f.input :last_name, placeholder: "Sobrenome:", label: false, input_html: { class: "profile-info"} %>
         <%= f.input :cpf, placeholder: "CPF:", label: false, input_html: { class: "profile-info"} %>
         <%= f.input :phone, placeholder: "Telefone:", label: false, input_html: { class: "profile-info"} %>
-        <%= f.input :cep, placeholder: "CEP:", input_html: { id: 'cepSelect', data: { action: 'change->cep#updateAddress' }}, label: false, input_html: { class: "profile-info"} %>
-        <%= f.input :address, placeholder: "Endereço:", input_html: { id: 'addressSelect' } , label: false, input_html: { class: "profile-info"}%>
-        <%= f.input :city, placeholder: "Cidade:", input_html: { id: 'citySelect' }, label: false, input_html: { class: "profile-info"} %>
+        <%= f.input :cep, input_html: { id: 'cepSelect', class: "profile-info", data: { action: 'change->cep#updateAddress' }}, placeholder: "CEP:", label: false %>
+        <%= f.input :address, input_html: { id: 'addressSelect', class: "profile-info" }, label: false, placeholder: "Endereço:"%>
+        <%= f.input :city, input_html: { id: 'citySelect', class: "profile-info" }, label: false, placeholder: "Cidade:" %>
         <%= f.input :experience, placeholder: "Experiência:" , label: false, input_html: { class: "profile-info"}%>
+
+        <%= f.input :long, label: false, input_html: { id: 'longSelect', class: "profile-info d-none"} %>
+        <%= f.input :lat, label: false, input_html: { id: 'latSelect', class: "profile-info d-none"} %>
+
         <%= f.button :submit, "ADICIONAR FOTO DE PERFIL", class: "button button-transparent"%>
         <%= f.submit "CONFIRMAR CADASTRO", class: "button button-blue button-no-border"%>
 

@@ -83,7 +83,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_13_191456) do
   end
 
   create_table "matches", force: :cascade do |t|
-    t.boolean "matched", default: false
+    t.boolean "matched"
     t.bigint "candidate_id", null: false
     t.bigint "job_id", null: false
     t.datetime "created_at", null: false
