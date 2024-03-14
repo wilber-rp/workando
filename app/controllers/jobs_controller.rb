@@ -29,7 +29,10 @@ class JobsController < ApplicationController
           end
         end
       end
-      @jobs = Job.where(interest_area_id: current_user.candidate.interest_areas).joins(:distances).order('distances.distance ASC')
+      # @jobs = Job.where(interest_area_id: current_user.candidate.interest_areas).joins(:distances).order('distances.distance ASC')
+      jobs = Job.where(interest_area_id: current_user.candidate.interest_areas).joins(:distances).where.not(id: Match.where(candidate_id: current_user.candidate.id).pluck(:job_id)).order('distances.distance ASC')
+      @job = jobs.first
+      raise
     end
   end
 
