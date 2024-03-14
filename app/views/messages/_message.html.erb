@@ -1,7 +1,16 @@
 <div id="message-<%= message.id %>" class="message <%= message.user == current_user ? 'current-user' : 'other-user' %>">
-  <small>
-    <strong><%= message.user.nickname %></strong>
-    <i><%= message.created_at.strftime("%e de %b - %l:%M %p") %></i>
-  </small>
-  <p><%= message.content %></p>
+  <div class="avatar">
+    <% if current_user.company.photo.present?  %>
+      <%= cl_image_tag @company.photo.key, height: 30, width: 30, crop: :fill, class:"profile-picture" %>
+    <% else %>
+      <%= image_tag("imagem_contratante.png", alt:"Avatar do usuário", class:"profile-picture") %>
+    <% end %>
+  </div>
+  <div class="message-content">
+    <small>
+      <strong><%= message.user.nickname %></strong>
+      <i><%= message.created_at.strftime("%e de %b - %l:%M %p") %></i>
+    </small>
+    <p><%= message.content %></p>
+  </div>
 </div>

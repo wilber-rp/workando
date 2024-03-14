@@ -11,10 +11,9 @@
   flex-grow: 1;
   color: black;
   text-align: left;
-  justify-content: left;
 
   h1 {
-    border-bottom: 1px solid $gray-200;
+    border-bottom: 1px solid #ddd;
     margin-bottom: 0;
     padding: 1rem;
   }
@@ -22,32 +21,41 @@
   .messages {
     text-align: left;
     height: 100%;
-    overflow: scroll;
+    overflow-y: auto; /* Alterado para overflow-y */
     padding: 1rem;
   }
 
-
   #new_message {
-    border-top: 1px solid $gray-200;
+    border-top: 1px solid #ddd;
     padding: 1rem;
 
     .form-group {
       margin-bottom: 0;
     }
   }
+
+  .current-user,
+  .other-user {
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin: 4px;
+    max-width: 70%; /* Limita a largura das mensagens */
+  }
+
   .current-user {
-    background-color: red;
+    background-color: #f44336; /* Vermelho */
     color: white;
-    float: right;
-    clear: both;
+    align-self: flex-end; /* Alinha à direita */
   }
 
   .other-user {
-    background-color: blue;
+    background-color: #2196f3; /* Azul */
     color: white;
-    float: left;
-    clear: both;
+    align-self: flex-start; /* Alinha à esquerda */
   }
 
-
+  .btn-primary {
+    margin-top: 0.5rem; /* Espaçamento entre o botão e a última mensagem */
+    align-self: flex-end; /* Alinha o botão à direita */
+  }
 }
