@@ -11,4 +11,6 @@ class Candidate < ApplicationRecord
   accepts_nested_attributes_for :candidate_interest_areas
 
   validates :first_name, :last_name, :cpf, :phone, presence: true
+
+  has_one_attached :photo
 end

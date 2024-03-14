@@ -48,7 +48,7 @@ class JobsController < ApplicationController
     @job.company = current_user.company
 
     if @job.save!
-      redirect_to job_path(@job), notice: 'Vaga criada com sucesso'
+      redirect_to job_path(@job), notice: 'Job criado com sucesso'
     else
       render :new, status: :unprocessable_entity
     end
@@ -75,15 +75,8 @@ class JobsController < ApplicationController
   end
 
   def like
-    @match = Match.find(params[:match_id])
-    @match.matched = true
-    if @match.save
-      Chatroom.new(match: @match)
-      redirect_to match_path(@match), notice: 'Parabéns, você formou um match.'
-    else
-      render :new, status: :unprocessable_entity
-    end
-
+    @job = Job.find(params[:job_id])
+    # logica para lidar com os likes precisa ser implementada
   end
 
   def dislike
@@ -95,6 +88,8 @@ class JobsController < ApplicationController
       redirect_to job_path(@job), alert: 'Não foi possível atualizar o match com dislike.'
     end
   end
+
+
 
   private
 
