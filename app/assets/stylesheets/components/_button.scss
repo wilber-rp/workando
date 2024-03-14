@@ -20,6 +20,7 @@ padding: 12px 0px;
   background-color: #bf203d;
   transition: background-color 1s ease;
 }
+
 .button-no-border {
   border: 0px;
 }
@@ -44,4 +45,15 @@ padding: 12px 0px;
 
 .btn-dislike{
   color:red;
+}
+
+
+.button-my-jobs {
+  border: 2px solid white;
+  padding: 15px;
+  margin-bottom: 20px;
+  text-align: left;
+  border-radius: 8px;
+  color:#65656b;
+  background-color: rgb(255, 255, 255);
 }

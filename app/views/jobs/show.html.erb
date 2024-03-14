@@ -11,11 +11,11 @@
   </ul>
   </div>
   <div class="flex-edit-delete">
-    <%= link_to 'Editar Vaga', edit_job_path(@job), class: "button button-transparent" %>
-    <%= link_to 'Deletar vaga', job_path(@job), data: { turbo_method: :delete }, class: "button button-transparent"  %>
+    <%= link_to 'EDITAR VAGA', edit_job_path(@job), class: "button button-transparent" %>
+    <%= link_to 'DELETAR VAGA', job_path(@job), data: { turbo_method: :delete }, class: "button button-red button-no-border"  %>
   </div>
-  <%= link_to 'Ver meus anuncios ', root_path, class: "button button-blue button-no-border"  %>
-
+  <%= link_to 'VER MINHAS VAGAS ANUNCIADAS', root_path, class: "button button-blue button-no-border"  %>
+  
 
   <h2>Quem curtiu minha vaga:</h2>
 
