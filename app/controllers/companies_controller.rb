@@ -29,7 +29,7 @@ class CompaniesController < ApplicationController
   end
 
   def update
-    @company = Company.find(params[:id])
+    @company = current_user.company
     if @company.user == current_user
       if @company.update(company_params)
         redirect_to company_path(@company)

@@ -51,7 +51,7 @@
       <%# <%= link_to 'Ver mais', job_path(job), class: "button button-transparent"%>
     <% end %>
       <%= link_to 'ANUNCIAR UMA VAGA', new_job_path, class: 'button button-blue button-no-border' %>
-      <%= link_to 'VOLTAR PARA PERFIL', company_path(@company), class: 'button button-transparent' %>
+      <%= link_to 'VOLTAR PARA PERFIL', company_path(current_user.company), class: 'button button-transparent' %>
   <% else %>
   <%# mostrar a parte do candidato. %>
   <h1 class="text-center text-white my-3">Lista dos jobs na região</h1>
