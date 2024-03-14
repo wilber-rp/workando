@@ -13,9 +13,6 @@
   <%= button_to job_like_path(job_id: @match.job.id, match_id: @match.id), method: :post, class: "btn-match btn-like" do %>
     <i class="fa-regular fa-thumbs-up"></i>
   <% end %>
-   <%= button_to job_matches_path(job_id: @match.job.id, dislike: false), method: :post, class: "btn-match btn-like" do %>
-    <i class="fa-regular fa-thumbs-up"></i>
-  <% end %>
   <%= button_to job_matches_path(job_id: @match.job.id, dislike: true), method: :post, class:"btn-match btn-dislike" do  %>
     <i class="fa-regular fa-thumbs-down"></i>
   <% end %>
