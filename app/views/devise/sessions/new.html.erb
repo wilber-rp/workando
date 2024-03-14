@@ -1,43 +1,62 @@
-<div class="container w-80">
+<div class="container d-flex justify-content-center">
+  <div class="custom-container">
+    <h1 style="margin-top: 64px; text-align: left">
+      Encontre seu <span>match</span><br />
+      perfeito no mercado de trabalho com o workando.
+    </h1>
+    <h2>Cadastre-se gratuitamente ou faça o login em sua conta</h2>
+    <div class="card">
+      <div class="form-container sign-up-container">
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "simple-form" }) do |f| %>
+          <h3>Cadastre-se gratuitamente</h3>
+          <%= f.error_notification %>
+          <div class="input-box">
+            <%= f.input :email, placeholder: 'E-mail', label: false, required: true, autofocus: true, input_html: { autocomplete: 'email', class: 'input' } %>
+          </div>
+          <div class="input-box">
+            <%= f.input :password, required: true, placeholder: 'Senha', label: false, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { autocomplete: 'new-password', class: 'input' } %>
+          </div>
+          <div class="input-box">
+            <%= f.input :password_confirmation, placeholder: 'Confirmar senha', label: false, required: true, input_html: { autocomplete: 'new-password', class: 'input' } %>
+          </div>
+          <div class="role-select">
+            <%= f.input :role, label: '', legend: false, collection: [['Quero trabalhar', :role_candidate], ['Quero contratar', :role_company]], as: :radio_buttons, input_html: { class: 'check-box' }, label_method: ->(item) { "<b>#{item.first}</b>".html_safe } %>
+          </div>
 
-<h1 style="margin-top: 64px; text-align: left;"><strong>Encontre seu <span style="color: #5AEAED; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);" >match</span><br> perfeito no mercado de trabalho com o workando.
-</strong></h1>
-
-<h2 style="margin-top: 64px;">Cadastre-se gratuitamente ou faça o login em sua conta</h2>
-
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs" style="text-align: left;">
-      <%= f.input :email,
-                  label: "e-mail",
-                  placeholder: "e-mail",
-                  required: false,
-                  autofocus: true,
-                  input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                label: "Senha",
-                placeholder: "Senha",
-                required: false,
-                input_html: { autocomplete: "current-password" } %>
-
-    <div class="row justify-content-between">
-      <div class="col-6">
-      <%= f.input :remember_me,
-                  label: "Mantenha-me logado",
-                  as: :boolean if devise_mapping.rememberable? %>
+          <%= f.button :submit, 'INICIAR CADASTRO', class: 'btn' %>
+        <% end %>
       </div>
-      <div class="col-6 text-end">
-      <%= link_to "esqueci a senha", new_password_path(resource_name) %><br />
+      <div class="form-container sign-in-container">
+        <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "simple-form" }) do |f| %>
+          <h3>Entrar</h3>
+          <div class="input-box">
+            <%= f.input :email, label: false, placeholder: 'e-mail', required: true, autofocus: true, input_html: { autocomplete: 'email', class: 'input' } %>
+          </div>
+          <div class="input-box">
+            <%= f.input :password, label: false, placeholder: 'Senha', required: true, input_html: { autocomplete: 'current-password', class: 'input' } %>
+          </div>
+          <div class="remember-box">
+            <%= f.input :remember_me, label: 'Mantenha-me logado', as: :boolean if devise_mapping.rememberable? %>
+            <%= link_to 'Esqueceu a senha?', new_password_path(resource_name), class: 'link-pass-forg' %>
+          </div>
+          <%= f.button :submit, 'LOGIN', class: 'btn' %>
+        <% end %>
+      </div>
+
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-left">
+            <h1>Welcome Back!</h1>
+            <p>To keep connected with us please login with your personal info</p>
+            <button class="ghost" id="signIn">Sign In</button>
+          </div>
+          <div class="overlay-panel overlay-right">
+            <h1>Hello, Friend!</h1>
+            <p>Enter your personal details and start journey with us</p>
+            <button class="ghost" id="signUp">Sign Up</button>
+          </div>
+        </div>
       </div>
     </div>
-
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "LOGIN", class: "button button-transparent"%>
-  </div>
-<% end %>
-
-<%= link_to "CADASTRAR", new_registration_path(resource_name), class: "button button-blue button-no-border" %><br />
-
-<%= image_tag("Logo fundo transparente.png", alt:"Avatar do usuário", class:"small-logo-picture", style: "margin-top: 50px;") %>
 </div>
