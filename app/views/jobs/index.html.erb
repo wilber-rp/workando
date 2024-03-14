@@ -1,39 +1,35 @@
-<div class="container">
+<div class="container mt-4">
 <% if @jobs.none?  %>
 <%# Se não houver Job aparecerá a mensagem abaixo %>
-  <div class="flash flash-danger alert alert-dismissible fade show" role="alert">
-    <span><strong>Oops!</strong> 😱 Você precisa criar uma vaga. </span>
-    <a data-bs-dismiss="alert" aria-label="Close">
+ <div class="flash flash-danger alert alert-dismissible fade show  " role="alert">
+    <span><strong>Oops!</strong> 😱 Não há vagas disponíveis!</span>
+    <a data-bs-dismiss="alert" aria-label="Close" style="position: absolute; top: 5px; right: 8px;">
       <i class="fas fa-times"></i>
     </a>
   </div>
+
   <% else %>
   <%# Executar as linhas de baixo %>
   <% if current_user.company.present? && current_user.company.jobs.any? %>
   <%# esta vendo se o currente.user e company e se tiver vagas vai mostrar o q esta a baixo %>
-    <h1 class="text-center text-white my-3" >MINHAS VAGAS ANUNCIADAS</h1>
+    <h2 class="text-center text-white my-3" >MINHAS VAGAS ANUNCIADAS</h2>
     <% @jobs.each do |job| %>
 
         <%# <div class="list-group list-group-flush "> %>
         <%# aqui pensei em colocarmos uma interpolação do n° da vaga antes da descrição. Ex: Vaga 1- Pedreiro. Vaga-2 Garçom. %>
-
-        <%# <div class="list-group list-group-flush "> %>
-        <%# aqui pensei em colocarmos uma interpolação do n° da vaga antes da descrição. Ex: Vaga 1- Pedreiro. Vaga-2 Garçom. %>
-
 
           <%= link_to job_path(job) do %>
             <li class="button button-my-jobs d-flex justify-content-between" >
               <span style="color: #65656b;"><%= job.interest_area.name %></span>
               <div class= "iconlike">
                 <% if job.matches.where(dislike: false).count > 0%>
-                  <i class="fa-regular fa-thumbs-up "></i> <strong>Likes:</strong> <%= job.matches.where(dislike: false).count %>
+                  <span style="display: inline-block; vertical-align: middle;"> <i class="far fa-thumbs-up"></i></span><span style="vertical-align: middle;">  <%= job.matches.where(dislike: false).count %></span>
                 <% else %>
-                  <i class="fa-regular fa-thumbs-up"></i> <strong>Likes:</strong> <%= job.matches.where(dislike: false).count %>
+                  <span style="display: inline-flex; align-items: center;"><i class="far fa-thumbs-up" style="margin-right: 5px;"></i> <%= job.matches.where(dislike: false).count %></span>
                 <% end %>
               </div>
             </li>
           <% end %>
-
 
           <%# <li class="list-group-item bg-transparent"><strong>Salário por hora:</strong> <%= job.salary %>
           <%# <li class="list-group-item bg-transparent"><strong>Contratante:</strong> <%= job.company.company_name %>
