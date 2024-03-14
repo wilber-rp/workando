@@ -1,12 +1,10 @@
 <div class="container mt-4">
   <h2>EDITAR PERFIL</h2>
 
-
-
-
   <div class="container text-start" data-controller="cep">
     <%= simple_form_for @candidate, url: candidate_path(@candidate), method: :patch do |f| %>
-      <%= f.input :photo, as: :file %>
+      <%= f.collection_select :candidate_interest_areas, @interest_areas, :id, :name, {}, { multiple: true, include_hidden: false} %>
+      <%= f.input :photo, as: :file, input_html: { class: "profile-info"} %>
       <%= f.input  :first_name, label: "Nome", input_html: { class: "profile-info"} %>
       <%= f.input  :last_name, label: "Sobrenome", input_html: { class: "profile-info"}%>
       <%= f.input  :cpf, label: "CPF", input_html: { class: "profile-info"}%>
@@ -15,7 +13,6 @@
       <%= f.input  :city, input_html: { id: 'citySelect' },label: "Cidade", input_html: { class: "profile-info"} %>
       <%= f.input  :address, input_html: { id: 'addressSelect' },label: "Endereço", input_html: { class: "profile-info"} %>
       <%= f.input  :experience, label: "Experiências profissionais", input_html: { class: "profile-info"} %>
-      <%= f.collection_select :candidate_interest_areas, @interest_areas, :id, :name, {}, { multiple: true, include_hidden: false  } %>
       <%= f.button :submit, "ATUALIZAR PERFIL", class: 'button button-blue button-no-border' %>
 
   <%= link_to 'VOLTAR PARA PERFIL', candidate_path(@candidate), class: 'button button-transparent' %>

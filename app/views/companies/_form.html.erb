@@ -1,12 +1,12 @@
-<div class="container">
+<div class="container text-start">
   <%= simple_form_for @company do |f| %>
-    <%= f.input :photo, as: :file %>
-    <%= f.input  :company_name %>
-    <%= f.input  :cnpj %>
-    <%= f.input  :company_description %>
+    <%= f.input :photo, as: :file, input_html: { class: "profile-info"} %>
+    <%= f.input  :company_name, input_html: { class: "profile-info"} %>
+    <%= f.input  :cnpj, input_html: { class: "profile-info"} %>
+    <%= f.input  :company_description, input_html: { class: "profile-info"} %>
     <%# <%= f.input  :phone %>
     <%# <%= f.input  :address %>
-    <%= f.submit  "Atualizar empresa", class: ' button button-blue button-no-border' %>
-
+  <%= f.submit  "Atualizar empresa", class: ' button button-blue button-no-border' %>
+  <%= link_to 'Voltar para Perfil', company_path(@company), class: 'button button-transparent' %>
   <% end %>
 </div>
