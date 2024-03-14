@@ -17,19 +17,36 @@
         <%# <div class="list-group list-group-flush "> %>
         <%# aqui pensei em colocarmos uma interpolação do n° da vaga antes da descrição. Ex: Vaga 1- Pedreiro. Vaga-2 Garçom. %>
 
-          <li class="button button-my-jobs"><%= link_to job_path(job) do %><strong style="color: #65656b;">  </strong> <span style="color: #65656b;"><%= job.interest_area.name %></span>
-          <% end %></li>
+        <%# <div class="list-group list-group-flush "> %>
+        <%# aqui pensei em colocarmos uma interpolação do n° da vaga antes da descrição. Ex: Vaga 1- Pedreiro. Vaga-2 Garçom. %>
+
+
+          <%= link_to job_path(job) do %>
+            <li class="button button-my-jobs d-flex justify-content-between" >
+              <span style="color: #65656b;"><%= job.interest_area.name %></span>
+              <div class= "iconlike">
+                <% if job.matches.where(dislike: false).count > 0%>
+                  <i class="fa-regular fa-thumbs-up "></i> <strong>Likes:</strong> <%= job.matches.where(dislike: false).count %>
+                <% else %>
+                  <i class="fa-regular fa-thumbs-up"></i> <strong>Likes:</strong> <%= job.matches.where(dislike: false).count %>
+                <% end %>
+              </div>
+            </li>
+          <% end %>
+
+
           <%# <li class="list-group-item bg-transparent"><strong>Salário por hora:</strong> <%= job.salary %>
           <%# <li class="list-group-item bg-transparent"><strong>Contratante:</strong> <%= job.company.company_name %>
           <%# <li class="list-group-item bg-transparent"> %>
-            <% if job.matches.where(dislike: false).count > 0%>
-              <i class="fa-regular fa-thumbs-up"></i> <strong>Likes:</strong> <%= job.matches.where(dislike: false).count %>
-            <% else %>
-            <%# aqui podemos colocar o "jóia" com o número zero ao lado, representando zero likes %>
-                <%# <strong style="font-weight: 600;display: block; margin-top: 1px; text-align: center;  color: red;">Ainda não há candidatos.</strong> %>
-            <% end %>
-          </li>
+
         <%# </div> %>
+
+      <%# <%= link_to 'Ver mais', job_path(job), class: "button button-transparent"%>
+          <%# <li class="list-group-item bg-transparent"><strong>Salário por hora:</strong> <%= job.salary %>
+          <%# <li class="list-group-item bg-transparent"><strong>Contratante:</strong> <%= job.company.company_name %>
+          <%# <li class="list-group-item bg-transparent"> %>
+
+
 
       <%# <%= link_to 'Ver mais', job_path(job), class: "button button-transparent"%>
     <% end %>
