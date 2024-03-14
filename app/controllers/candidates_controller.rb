@@ -15,7 +15,6 @@ class CandidatesController < ApplicationController
   def create
     @candidate = Candidate.new(cadidate_params)
     @candidate.user = current_user
-
     interest_areas = params[:candidate][:candidate_interest_areas]
     interest_areas.shift
     interest_areas.each do |area_id|
@@ -23,12 +22,6 @@ class CandidatesController < ApplicationController
       CandidateInterestArea.create(candidate: @candidate, interest_area: area)
     end
 
-
-    # base_url = "https://cep.awesomeapi.com.br/json/#{@candidate.cep}"
-    # cep_data = URI.open(base_url).read
-    # cep = JSON.parse(cep_data)
-    # @candidate.long = cep['lng']
-    # @candidate.lat = cep['lat']
 
     if @candidate.save
       current_user.nickname = "#{@candidate.first_name} #{@candidate.last_name}"
@@ -69,7 +62,7 @@ class CandidatesController < ApplicationController
   private
 
   def cadidate_params
-    params.require(:candidate).permit(:first_name, :last_name, :cpf, :phone, :cep, :address, :city, :experience, interest_area_ids: [])
+    params.require(:candidate).permit(:first_name, :last_name, :cpf, :phone, :cep, :address, :city, :experience, :lat, :long, interest_area_ids: [])
   end
 
   def update_params
