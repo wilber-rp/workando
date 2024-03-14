@@ -1,10 +1,10 @@
 .chatroom {
   margin: 24px;
   border-radius: 8px;
-  max-height: 720px;
+
   background: white;
   margin-top: 9px;
-  height: calc(100vh - 75px);
+  height:90vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -23,6 +23,9 @@
     height: 100%;
     overflow-y: auto; /* Alterado para overflow-y */
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap:20px;
   }
 
   #new_message {
@@ -34,26 +37,24 @@
     }
   }
 
-  .current-user,
-  .other-user {
-    border-radius: 8px;
-    padding: 8px 12px;
-    margin: 4px;
-    max-width: 70%; /* Limita a largura das mensagens */
-  }
-
   .current-user {
-    background-color: #f44336; /* Vermelho */
-    color: white;
-    align-self: flex-end; /* Alinha à direita */
+    background-color: #5AEAED;
+    color: rgb(51, 50, 50);
+    display: flex;
+    align-items: center;
+    align-self: flex-end;
+    width: 80%;
+    border-radius: 20px;
   }
-
   .other-user {
-    background-color: #2196f3; /* Azul */
-    color: white;
-    align-self: flex-start; /* Alinha à esquerda */
+    background-color: rgb(211, 211, 211);
+    color: rgb(51, 50, 50);
+    display: flex;
+    align-items: center;
+    align-self: flex-start;
+    width: 80%;
+    border-radius: 20px;
   }
-
   .btn-primary {
     margin-top: 0.5rem; /* Espaçamento entre o botão e a última mensagem */
     align-self: flex-end; /* Alinha o botão à direita */
