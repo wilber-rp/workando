@@ -1,14 +1,34 @@
 class JobsController < ApplicationController
   def index
     if current_user.role == "role_company"
-
       @jobs = Job.where(company_id: current_user.company.id)
-
-
       # Esta realizando uma comparação trazer job where o atributo company_id seja igual ao current_user company.id vai trazer todos jobs relazionado com os ids
     else
-      @jobs = Job.where(interest_area_id: current_user.candidate.interest_areas)
+      mapbox_api_key = ENV['MAPBOX_API_KEY']
+      alljobs = Job.where(interest_area_id: current_user.candidate.interest_areas)
 
+      alljobs.each do |job|
+        url = "https://api.mapbox.com/directions-matrix/v1/mapbox/driving/#{current_user.candidate.long.to_f},#{current_user.candidate.lat.to_f};#{job.long.to_f},#{job.lat.to_f}?sources=1&annotations=distance&access_token=#{mapbox_api_key}"
+        json_data = URI.open(url).read
+        parsed_data = JSON.parse(json_data)
+        distance = (parsed_data['distances'][0][0] / 1000.0).round(1)
+        existing_distance = Distance.find_by(candidate: current_user.candidate, job: job)
+
+        if existing_distance
+          existing_distance.update(distance: distance)
+          puts "Instância de Distance existente atualizada com sucesso!"
+        else
+          distance = Distance.create(candidate: current_user.candidate, job: job, distance: distance)
+
+          if distance.persisted?
+            puts "Nova instância de Distance criada com sucesso!"
+          else
+            puts "Falha ao criar nova instância de Distance."
+          end
+
+        end
+      end
+      @jobs = Job.where(interest_area_id: current_user.candidate.interest_areas).joins(:distances).order('distances.distance ASC')
     end
   end
 
