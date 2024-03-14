@@ -23,7 +23,8 @@
       <% @job.matches.where(dislike: false).each do |match| %>
         <li style="text-align: left; list-style-type: none">
           <div class="profile-info mt-3"style="background-color: white; color: #65656B">
-            <%= link_to "#{match.candidate.first_name} #{match.candidate.last_name}", style: "font-weight: bold;" %>
+           <%= link_to "#{match.candidate.first_name} #{match.candidate.last_name}", match_path(match), style: "font-weight: bold;" %>
+        <% end %>
         <% end %>
         </ul>
           </div>
