@@ -3,6 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="cep"
 export default class extends Controller {
   connect() {
+    console.log('conectado')
   }
 
   updateAddress() {

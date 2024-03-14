@@ -40,8 +40,7 @@
               <li class="list-group-item bg-transparent text-white"><i class="fa-solid fa-quote-left"></i> <strong>Description:</strong> <%= job.description %></li>
               <li class="list-group-item bg-transparent text-white"><i class="fa-solid fa-dollar-sign"></i> <strong>Salary:</strong> <%= job.salary %></li>
               <li class="list-group-item bg-transparent text-white"><i class="fa-solid fa-briefcase"></i> <strong>Company:</strong> <%= job.company.company_name %></li>
-              <li class="list-group-item bg-transparent text-white">A fourth item</li>
-              <li class="list-group-item bg-transparent text-white">And a fifth one</li>
+              <li class="list-group-item bg-transparent text-white"><i class="fa-solid fa-briefcase"></i> <strong>Distancia:</strong> <%= job.distances[0].distance %> km</li>
             </ul>
             <div class="d-flex justify-content-between">
               <%= button_to job_matches_path(job_id: job.id, dislike: false), method: :post, class: "btn-match btn-like" do %>

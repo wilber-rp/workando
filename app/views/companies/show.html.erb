@@ -5,7 +5,7 @@
   <%# se tiver foto adicionada vai motrar  %>
   <%= cl_image_tag @company.photo.key, height: 300, width: 400, crop: :fill, class:"profile-picture" %>
 <% else %>
-vai mostrar essa pre definida
+<%# vai mostrar essa pre definida %>
   <%= image_tag("imagem_contratante.png", alt:"Avatar do usuário", class:"profile-picture") %>
 <% end %>
 
@@ -28,6 +28,6 @@ vai mostrar essa pre definida
     </div>
 
     <%= link_to 'DELETAR PERFIL', company_path(@company), data: { turbo_method: :delete }, class: 'button button-red button-no-border' %>
-    <%= link_to "VOLTAR PARA VAGAS", jobs_path, class: ' button button-transparent' %>
+    <%# <%= link_to "VOLTAR PARA VAGAS", jobs_path, class: ' button button-transparent' %> 
   </div>
 </div>
