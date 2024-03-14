@@ -1,10 +1,19 @@
 <div id="message-<%= message.id %>" class="message <%= message.user == current_user ? 'current-user' : 'other-user' %>">
   <div class="avatar">
+  <% if current_user.role_company?  %>
     <% if current_user.company.photo.present?  %>
       <%= cl_image_tag @company.photo.key, height: 30, width: 30, crop: :fill, class:"profile-picture" %>
     <% else %>
       <%= image_tag("imagem_contratante.png", alt:"Avatar do usuário", class:"profile-picture") %>
     <% end %>
+    <% else %>
+
+    <% if current_user.candidate.photo.present?  %>
+      <%= cl_image_tag @candidate.photo.key, height: 30, width: 30, crop: :fill, class:"profile-picture" %>
+    <% else %>
+      <%= image_tag("Imagem perfil candidato.png", alt:"Avatar do usuário", class:"profile-picture") %>
+    <% end %>
+   <% end %>
   </div>
   <div class="message-content">
     <small>
