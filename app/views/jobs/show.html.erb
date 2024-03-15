@@ -17,19 +17,15 @@
   <%= link_to 'VER MINHAS VAGAS ANUNCIADAS', root_path, class: "button button-blue button-no-border"  %>
 
 
-    <h2 style="color: white;">Quem curtiu minha vaga:</h2>
+  <h2>Quem curtiu minha vaga:</h2>
 
-    <% if @job.matches.any? %>
+  <% if @job.matches.any? %>
+    <ul>
       <% @job.matches.where(dislike: false).each do |match| %>
-        <li style="text-align: left; list-style-type: none">
-          <div class="profile-info mt-3"style="background-color: white; color: #65656B">
-            <%= link_to "#{match.candidate.first_name} #{match.candidate.last_name}", style: "font-weight: bold;" %>
-        <% end %>
-        </ul>
-          </div>
-
-  </div>
-    <% else %>
-    <p>Ainda nenhum like.</p>
-    <% end %>
-  </div>
+        <li><%= link_to match.candidate.first_name, match_path(match) %></li>
+      <% end %>
+    </ul>
+  <% else %>
+  <p>Ainda nenhum like.</p>
+  <% end %>
+</div>
