@@ -4,8 +4,6 @@
     <%= f.input  :company_name, input_html: { class: "profile-info"} %>
     <%= f.input  :cnpj, input_html: { class: "profile-info"} %>
     <%= f.input  :company_description, input_html: { class: "profile-info"} %>
-    <%# <%= f.input  :phone %>
-    <%# <%= f.input  :address %>
   <%= f.submit  "Atualizar empresa", class: ' button button-blue button-no-border' %>
   <% end %>
   <%= link_to 'Voltar para Perfil', company_path(@company), class: 'button button-transparent' %>
