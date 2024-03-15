@@ -2,14 +2,13 @@
   <h2 class= "title-form"> INSIRA SEUS DADOS E CADASTRE SEU PERFIL </h2>
     <div class="container mt-3 text-start">
     <%= simple_form_for @company do |f| %>
-      <%= f.input :photo, as: :file %>
+      <%= f.input :photo, label: "Foto do perfil:", as: :file, input_html: { class: "profile-info"} %>
       <%= f.input :company_name, placeholder: "Nome Fantasia", label: false, input_html: { class: "profile-info"}%>
       <%= f.input :cnpj, placeholder: "CNPJ", label: false, input_html: { class: "profile-info"} %>
       <%= f.input :company_description,
-                  placeholder: "Descreve brevemente seu estabelecimento",
+                  placeholder: "Descreva brevemente seu estabelecimento",
                   label: false,
                   input_html: { class: "profile-info"} %>
-      <%= f.button :submit, "ADICIONAR FOTO DE PERFIL", class: "button button-transparent"%>
       <%= f.submit  "CONFIRMAR CADASTRO", class: "button button-blue button-no-border mt-3" %>
     <% end %>
   </div>

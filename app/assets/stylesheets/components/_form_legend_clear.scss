@@ -19,3 +19,16 @@ legend ~ div.form-check:first-of-type {
 input::-webkit-input-placeholder {
   color: rgb(156, 156, 156) !important;
   }
+
+
+  .form-checkbox-container {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .form-checkbox-column {
+    width: 49%;
+    display: inline-block;
+    text-align: left;
+  }

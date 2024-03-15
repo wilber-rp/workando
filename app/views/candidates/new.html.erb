@@ -2,27 +2,35 @@
 
   <h2 class="title-form"> INSIRA SEUS DADOS E ENCONTRE SUA VAGA!</h2>
 
-    <div class="container mt-3 text-start" data-controller="cep">
+  <div class="container mt-3 text-start" data-controller="cep">
 
-      <%= simple_form_for @candidate do |f| %>
-      <%= f.collection_select :candidate_interest_areas, @interest_areas, :id, :name, {}, { multiple: true, include_hidden: false  } %>
-        <%= f.input :photo, as: :file %>
-        <%= f.input :first_name, placeholder: "Nome:", label: false, input_html: { class: "profile-info"}%>
-        <%= f.input :last_name, placeholder: "Sobrenome:", label: false, input_html: { class: "profile-info"} %>
-        <%= f.input :cpf, placeholder: "CPF:", label: false, input_html: { class: "profile-info"} %>
-        <%= f.input :phone, placeholder: "Telefone:", label: false, input_html: { class: "profile-info"} %>
-        <%= f.input :cep, input_html: { id: 'cepSelect', class: "profile-info", data: { action: 'change->cep#updateAddress' }}, placeholder: "CEP:", label: false %>
-        <%= f.input :address, input_html: { id: 'addressSelect', class: "profile-info" }, label: false, placeholder: "Endereço:"%>
-        <%= f.input :city, input_html: { id: 'citySelect', class: "profile-info" }, label: false, placeholder: "Cidade:" %>
-        <%= f.input :experience, placeholder: "Experiência:" , label: false, input_html: { class: "profile-info"}%>
+    <%= simple_form_for @candidate do |f| %>
 
-        <%= f.input :long, label: false, input_html: { id: 'longSelect', class: "profile-info d-none"} %>
-        <%= f.input :lat, label: false, input_html: { id: 'latSelect', class: "profile-info d-none"} %>
+      <%= f.input :first_name, placeholder: "Nome:", label: false, input_html: { class: "profile-info"}%>
+      <%= f.input :last_name, placeholder: "Sobrenome:", label: false, input_html: { class: "profile-info"} %>
+      <%= f.input :cpf, placeholder: "CPF:", label: false, input_html: { class: "profile-info"} %>
+      <%= f.input :phone, placeholder: "Telefone:", label: false, input_html: { class: "profile-info"} %>
+      <%= f.input :cep, input_html: { id: 'cepSelect', class: "profile-info", data: { action: 'change->cep#updateAddress' }}, placeholder: "CEP:", label: false %>
+      <%= f.input :address, input_html: { id: 'addressSelect', class: "profile-info" }, label: false, placeholder: "Endereço:"%>
+      <%= f.input :city, input_html: { id: 'citySelect', class: "profile-info" }, label: false, placeholder: "Cidade:" %>
+      <%= f.input :experience, placeholder: "Experiência:" , label: false, input_html: { class: "profile-info"}%>
+      <%= f.input :long, label: false, input_html: { id: 'longSelect', class: "profile-info d-none"} %>
+      <%= f.input :lat, label: false, input_html: { id: 'latSelect', class: "profile-info d-none"} %>
+      <%= f.input :photo, label: "Foto do perfil:", as: :file %>
 
-        <%= f.button :submit, "ADICIONAR FOTO DE PERFIL", class: "button button-transparent"%>
-        <%= f.submit "CONFIRMAR CADASTRO", class: "button button-blue button-no-border"%>
+      <h2>HABILIDADES</h2>
+      <div class="form-checkbox-container">
+        <%= f.collection_check_boxes :candidate_interest_areas, @interest_areas, :id, :name, checked: @candidate.interest_area_ids do |cb| %>
+          <div class="form-checkbox-column">
+            <%= cb.check_box %>
+            <%= cb.label %>
+          </div>
+        <% end %>
+      </div>
 
-    </div>
-      <% end %>
+      <%= f.submit "CONFIRMAR CADASTRO", class: "button button-blue button-no-border"%>
+
+      </div>
+    <% end %>
   </div>
-  </div>
+</div>
