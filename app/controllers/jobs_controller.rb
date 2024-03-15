@@ -15,6 +15,7 @@ class JobsController < ApplicationController
           distance = (parsed_data['distances'][0][0] / 1000.0).round(1)
           existing_distance = Distance.find_by(candidate: current_user.candidate, job: job)
 
+
           if existing_distance
             existing_distance.update(distance: distance)
             puts "Instância de Distance existente atualizada com sucesso!"
