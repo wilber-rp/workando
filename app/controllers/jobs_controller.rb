@@ -54,7 +54,7 @@ class JobsController < ApplicationController
     @job.company = current_user.company
 
     if @job.save!
-      redirect_to job_path(@job), notice: 'Job criado com sucesso'
+      redirect_to job_path(@job)
     else
       render :new, status: :unprocessable_entity
     end
