@@ -9,13 +9,13 @@ class MatchesController < ApplicationController
       @match.candidate = current_user.candidate
       if params[:dislike] == "false"
         if @match.save
-          redirect_to root_path, notice: 'Candidatura efetuada'
+          redirect_to root_path
         else
           puts 'Erro'
         end
       else
         if @match.save
-          redirect_to root_path, notice: 'Desinteresse cadastrado'
+          redirect_to root_path
         else
           puts 'Erro'
         end
