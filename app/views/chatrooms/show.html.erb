@@ -6,7 +6,25 @@
      data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
      data-chatroom-subscription-current-user-id-value="<%= current_user.id %>">
 
-  <h1>CHAT</h1>
+
+<div>
+  <% if current_user.role_company? %>
+    <% if @chatroom.match.candidate.photo.attached? %>
+      <%= cl_image_tag @chatroom.match.candidate.photo.key, height: 30, width: 30, crop: :fill, class: "profile-picture" %>
+    <% else %>
+      <%= image_tag("Imagem perfil candidato.png", alt: "Avatar do usuário", class: "profile-picture") %>
+    <% end %>
+      <span><%= @chatroom.match.candidate.first_name %></span>
+  <% else %>
+    <% if @chatroom.match.job.company.photo.attached? %>
+      <%= cl_image_tag current_user.company.photo.key, height: 30, width: 30, crop: :fill, class: "profile-picture" %>
+      <%= @chatroom.match.job.company.company_name %>
+    <% else %>
+      <%= image_tag("imagem_contratante.png", alt: "Avatar do usuário", class: "profile-picture") %>
+     <%= @chatroom.match.job.company.company_name %>
+    <% end %>
+  <% end %>
+</div>
 
   <div class="messages" data-chatroom-subscription-target="messages">
     <% @chatroom.messages.each do |message| %>
