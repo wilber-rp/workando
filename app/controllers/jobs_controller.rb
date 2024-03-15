@@ -92,7 +92,7 @@ class JobsController < ApplicationController
     @job = Job.find(params[:job_id])
     match = Match.find(params[:match])
     if match.update(dislike: true)
-      redirect_to job_path(@job), notice: 'Match atualizado com dislike.'
+      redirect_to job_path(@job)
     else
       redirect_to job_path(@job), alert: 'Não foi possível atualizar o match com dislike.'
     end

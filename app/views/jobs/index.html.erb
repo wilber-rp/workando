@@ -66,11 +66,11 @@
         MAP HERE
       </div>
       <div class="buttons">
-        <%= button_to job_matches_path(job_id: @job.id, dislike: false), method: :post, class: "button-like" do %>
-          <i class="fa-regular fa-thumbs-up" data-job-animation-target="jobLeft" data-action="click->job-animation#left"></i>
-        <% end %>
         <%= button_to job_matches_path(job_id: @job.id, dislike: true), method: :post, class:"button-dislike" do  %>
-          <i class="fa-regular fa-thumbs-down" data-job-animation-target="jobRight" data-action="click->job-animation#right"></i>
+          <i class="fa-regular fa-thumbs-down" data-job-animation-target="jobLeft" data-action="click->job-animation#left"></i>
+        <% end %>
+        <%= button_to job_matches_path(job_id: @job.id, dislike: false), method: :post, class: "button-like" do %>
+          <i class="fa-regular fa-thumbs-up" data-job-animation-target="jobRight" data-action="click->job-animation#right"></i>
         <% end %>
       </div>
     </div>
