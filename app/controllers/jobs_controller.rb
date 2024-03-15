@@ -32,6 +32,8 @@ class JobsController < ApplicationController
       # @jobs = Job.where(interest_area_id: current_user.candidate.interest_areas).joins(:distances).order('distances.distance ASC')
       @jobs = Job.where(interest_area_id: current_user.candidate.interest_areas).joins(:distances).where.not(id: Match.where(candidate_id: current_user.candidate.id).pluck(:job_id)).order('distances.distance ASC')
       @job = @jobs.first
+      @marker = @job.geocode.map { |job| { lat: @job.lat.to_f, lng: @job.long.to_f, info_popup_html: render_to_string(partial: 'info_popup', locals: { job: @job }) } }
+
     end
   end
 
