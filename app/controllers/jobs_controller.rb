@@ -33,6 +33,10 @@ class JobsController < ApplicationController
       # @jobs = Job.where(interest_area_id: current_user.candidate.interest_areas).joins(:distances).order('distances.distance ASC')
       @jobs = Job.where(interest_area_id: current_user.candidate.interest_areas).joins(:distances).where.not(id: Match.where(candidate_id: current_user.candidate.id).pluck(:job_id)).order('distances.distance ASC')
       @job = @jobs.first
+      if @job != nil && @job.geocode != nil && @job.geocode.map != nil
+        @marker = @job.geocode.map { |job| { lat: @job.lat.to_f, lng: @job.long.to_f, info_popup_html: render_to_string(partial: 'info_popup', locals: { job: @job }) } }
+      end
+
     end
   end
 
@@ -51,7 +55,7 @@ class JobsController < ApplicationController
     @job.company = current_user.company
 
     if @job.save!
-      redirect_to job_path(@job), notice: 'Job criado com sucesso'
+      redirect_to job_path(@job)
     else
       render :new, status: :unprocessable_entity
     end
@@ -93,7 +97,7 @@ class JobsController < ApplicationController
     @job = Job.find(params[:job_id])
     match = Match.find(params[:match])
     if match.update(dislike: true)
-      redirect_to job_path(@job), notice: 'Match atualizado com dislike.'
+      redirect_to job_path(@job)
     else
       redirect_to job_path(@job), alert: 'Não foi possível atualizar o match com dislike.'
     end
