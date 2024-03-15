@@ -16,7 +16,7 @@
       <%= f.input :experience, placeholder: "Experiência:" , label: false, input_html: { class: "profile-info"}%>
       <%= f.input :long, label: false, input_html: { id: 'longSelect', class: "profile-info d-none"} %>
       <%= f.input :lat, label: false, input_html: { id: 'latSelect', class: "profile-info d-none"} %>
-      <%= f.input :photo, label: "Foto do perfil:", as: :file %>
+      <%= f.input :photo, label: "Foto do perfil:", as: :file, input_html: { class: 'profile-info', id: 'img-input' } %>
 
       <h2>HABILIDADES</h2>
       <div class="form-checkbox-container">
