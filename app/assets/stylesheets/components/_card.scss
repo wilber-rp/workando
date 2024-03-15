@@ -112,10 +112,6 @@
 }
 
 
-
-
-
-
 .card-show-match {
   display: flex;
   flex-direction: column;
@@ -142,7 +138,17 @@
       position: fixed;
       left: 50%;
       transform: translateX(-50%);
+
+      .disable-button {
+        padding:0;
+        margin:0;
+        border:0;
+        background-color:transparent;
+        color: #ffffff;
+        font-weight: 600;
     }
+    }
+
 
     .buttons-match {
       // position: absolute;
@@ -156,7 +162,6 @@
       position: fixed;
       left: 50%;
       transform: translateX(-50%);
-
 
 
     .btn-like-match{
