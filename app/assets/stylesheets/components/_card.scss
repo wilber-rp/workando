@@ -40,16 +40,21 @@
 
   .descriptions {
     margin: 12px;
-    padding-left: 24px;
-    padding-right: 24px;
     }
 
   .map {
     margin: 12px;
+    margin-top: 0px;
+    margin-bottom: 12px;
     height: 200px;
     max-height: 300px;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
     border-radius: 20px;
+  }
+
+  #description-text {
+    text-align: justify;
+    margin-left: 12px;
   }
 
   .buttons {
