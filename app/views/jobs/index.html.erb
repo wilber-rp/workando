@@ -62,9 +62,7 @@
           <li class="list-group-item bg-transparent text-white"><i class="fa-solid fa-road"></i> <strong>Distancia: </strong> <%= @job.distances[0].distance %> km</li>
         </ul>
       </div>
-      <div class="map">
-        <div style="width: 100%; height: 100%;" data-controller="map" data-map-markers-value="<%= @marker.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-      </div>
+        <div class="map" data-controller="map" data-map-markers-value="<%= @marker.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
       <div class="buttons">
         <%= button_to job_matches_path(job_id: @job.id, dislike: true), method: :post, class:"button-dislike" do  %>
           <i class="fa-regular fa-thumbs-down" data-job-animation-target="jobLeft" data-action="click->job-animation#left"></i>
