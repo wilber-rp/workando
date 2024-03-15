@@ -4,10 +4,10 @@
   <div class="card bg-card-job">
 
   <ul class="list-group list-group-flush ">
-    <li class="list-group-item bg-transparent text-black text-start"> <strong>Descrição :</strong> <%= @job.description %></li>
-    <li class="list-group-item bg-transparent text-black text-start"> <strong>Endereço :</strong> <%= @job.address %></li>
-    <li class="list-group-item bg-transparent text-black text-start"> <strong>Salario :</strong> <%= @job.salary %></li>
-    <li class="list-group-item bg-transparent text-black text-start"> <strong>Função :</strong> <%= @job.interest_area.name %></li>
+    <li class="list-group-item bg-transparent text-black text-start"> <strong>Descrição:</strong> <%= @job.description %></li>
+    <li class="list-group-item bg-transparent text-black text-start"> <strong>Endereço:</strong> <%= @job.address %></li>
+    <li class="list-group-item bg-transparent text-black text-start"> <strong>Remuneração: </strong>R$<%= @job.salary %>0</li>
+    <li class="list-group-item bg-transparent text-black text-start"> <strong>Função:</strong> <%= @job.interest_area.name %></li>
   </ul>
   </div>
   <div class="flex-edit-delete">
@@ -17,7 +17,7 @@
   <%= link_to 'VER MINHAS VAGAS ANUNCIADAS', root_path, class: "button button-blue button-no-border"  %>
 
 
-  <h2>Quem curtiu minha vaga:</h2>
+  <h2>Quem se candidatou:</h2>
 
   <% if @job.matches.any? %>
     <ul>
@@ -26,6 +26,6 @@
       <% end %>
     </ul>
   <% else %>
-  <p>Ainda nenhum like.</p>
+  <p>Ainda nenhum candidato. 😢</p>
   <% end %>
 </div>

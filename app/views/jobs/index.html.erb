@@ -49,30 +49,30 @@
       <%= link_to 'ANUNCIAR UMA VAGA', new_job_path, class: 'button button-blue button-no-border' %>
       <%= link_to 'VOLTAR PARA PERFIL', company_path(current_user.company), class: 'button button-transparent' %>
   <% else %>
-  <%# mostrar a parte do candidato. %>
-
+    <%# mostrar a parte do candidato. %>
     <div class="card-show-job" data-controller="job-animation" data-job-animation-target="divAnimate">
       <div class="descriptions">
         <ul class="list-group list-group-flush ">
-          <li class="list-group-item bg-transparent text-white"></i> <strong> <h1> <%= @job.interest_area.name.upcase %> </h1> </strong></li>
+          <li class="list-group-item bg-transparent text-white"></i> <strong> <h1> <strong><%= @job.interest_area.name.upcase %></strong> </h1> </strong></li>
           <li class="list-group-item bg-transparent text-white"><i class="fa-solid fa-user-tie"></i> <strong>Contratante: </strong> <%= @job.company.company_name %></li>
           <li class="list-group-item bg-transparent text-white"><i class="fa-solid fa-dollar-sign"></i> <strong>Remuneração: R$ <%= @job.salary %>0/h</strong></li>
           <li class="list-group-item bg-transparent text-white"><i class="fa-solid fa-location-dot"></i> <strong>Endereço: </strong> <%= @job.address %></li>
           <li class="list-group-item bg-transparent text-white"><i class="fa-solid fa-road"></i> <strong>Distância: </strong> <%= @job.distances[0].distance %> km</li>
         </ul>
       </div>
-        <div class="map" data-controller="map" data-map-markers-value="<%= @marker.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-          <li class="list-group-item bg-white profile-info margin" style="margin: 12px;"><strong><span style="color: #9A9A9D;">Descrição: </span> </strong><span style="color: #9A9A9D;"><%= @job.description %></span></li>
-        <div class="buttons">
-        <%= button_to job_matches_path(job_id: @job.id, dislike: true), method: :post, class:"button-dislike" do  %>
-          <i class="fa-regular fa-thumbs-down" data-job-animation-target="jobLeft" data-action="click->job-animation#left"></i>
-        <% end %>
-        <%= button_to job_matches_path(job_id: @job.id, dislike: false), method: :post, class: "button-like" do %>
-          <i class="fa-regular fa-thumbs-up" data-job-animation-target="jobRight" data-action="click->job-animation#right"></i>
-        <% end %>
+      <div class="map" data-controller="map" data-map-markers-value="<%= @marker.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+      <div id="description-text">
+          <li class="list-group-item bg-transparent text-white"></i> <strong>Descrição: </strong> <%= @job.description %></li>
+      </div>
+      <div class="buttons">
+      <%= button_to job_matches_path(job_id: @job.id, dislike: true), method: :post, class:"button-dislike" do  %>
+        <i class="fa-regular fa-thumbs-down" data-job-animation-target="jobLeft" data-action="click->job-animation#left"></i>
+      <% end %>
+      <%= button_to job_matches_path(job_id: @job.id, dislike: false), method: :post, class: "button-like" do %>
+        <i class="fa-regular fa-thumbs-up" data-job-animation-target="jobRight" data-action="click->job-animation#right"></i>
+      <% end %>
       </div>
     </div>
-
   <% end %>
 <% end %>
 </div>
