@@ -1,7 +1,8 @@
+
 <div id="message-<%= message.id %>" class="message <%= message.user == current_user ? 'current-user' : 'other-user' %>">
   <div class="avatar">
 
-  <% if message.user == message.chatroom.match.candidate.user %>
+  <% if message.user.role_candidate? %>
    <% if message.chatroom.match.candidate.photo.attached? %>
       <%= cl_image_tag message.chatroom.match.candidate.photo.key, height: 30, width: 30, crop: :fill, class:"profile-picture" %>
     <% else %>
