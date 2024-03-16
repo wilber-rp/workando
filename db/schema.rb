@@ -65,8 +65,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_15_161249) do
     t.string "city"
     t.string "long"
     t.string "lat"
-    t.float "latitude"
-    t.float "longitude"
     t.index ["user_id"], name: "index_candidates_on_user_id"
   end
 

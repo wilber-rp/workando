@@ -1,0 +1,66 @@
+.out-container{
+  padding-top: 24px;
+  padding-bottom: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  max-width: 550px;
+  margin-left: auto;
+  margin-right: auto;
+
+  .container-forms-custom {
+    margin: auto;
+    margin-bottom: 12px;
+    background: #f1f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Montserrat", sans-serif;
+    max-width: 550px;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 16px;
+
+    .title {
+      color: black;
+      margin-bottom: 12px;
+    }
+
+    .forms {
+      color: black;
+      width: 100%;
+
+      #img-input {
+        color: #a1a3a1 !important;
+      }
+
+      #input-area {
+        background-color: #f4f4f4;
+        color: #a1a3a1;
+      }
+    }
+
+    h2 {
+      color: black;
+    }
+
+    .checkboxes {
+      margin-bottom: 12px;
+
+      .form-checkbox-columns {
+        column-count: 3;
+      }
+
+      .form-checkbox-column {
+        display: inline-block;
+        width: 100%;
+      }
+
+      .checkbox-label {
+        font-size: 14px;
+        color: black; /* Define a cor do texto para preto */
+        margin-left: 4px;
+      }
+    }
+  }
+}
