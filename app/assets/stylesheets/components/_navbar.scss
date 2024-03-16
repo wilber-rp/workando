@@ -1,6 +1,6 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
+  background: #fff;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -12,9 +12,31 @@
 }
 
 .navbar-logo-style {
-  font-family: "Montserrat", sans-serif ;
+  font-family: "Montserrat", sans-serif;
   font-size: 30px;
   font-weight: 700;
   margin: 12px 0px;
   letter-spacing: -1px;
+  // background: #ff45c3;
+  // background: -webkit-linear-gradient(to right bottom, #c30a88, #053e83);
+  // background: linear-gradient(to right bottom, #c30a88, #053e83);
+  // background-repeat: no-repeat;
+  background: linear-gradient(-45deg, #ff45c3, #c30a88, #053e83, #3a90f8);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  height: 100vh;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

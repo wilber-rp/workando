@@ -65,6 +65,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_15_161249) do
     t.string "city"
     t.string "long"
     t.string "lat"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["user_id"], name: "index_candidates_on_user_id"
   end
 
@@ -123,7 +125,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_15_161249) do
   end
 
   create_table "matches", force: :cascade do |t|
-    t.boolean "matched", default: false
+    t.boolean "matched"
     t.bigint "candidate_id", null: false
     t.bigint "job_id", null: false
     t.datetime "created_at", null: false
