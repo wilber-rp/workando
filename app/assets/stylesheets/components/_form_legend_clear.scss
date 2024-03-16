@@ -8,14 +8,30 @@
 legend ~ div.form-check:first-of-type {
   clear: left;
 }
-.form-control{
-  color:#000;
+.form-control {
+  color: #000;
 }
 
-.form-control:focus{
+.form-control:focus {
   color: #000;
 }
 
 input::-webkit-input-placeholder {
   color: rgb(156, 156, 156) !important;
-  }
+}
+
+.form-checkbox-container {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-checkbox-column {
+  width: 49%;
+  display: inline-block;
+  text-align: left;
+}
+
+#img-input::-webkit-file-upload-button {
+  color: rgb(156, 156, 156);
+}

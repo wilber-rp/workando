@@ -1,13 +1,41 @@
 class JobsController < ApplicationController
   def index
     if current_user.role == "role_company"
-
       @jobs = Job.where(company_id: current_user.company.id)
-
-
       # Esta realizando uma comparação trazer job where o atributo company_id seja igual ao current_user company.id vai trazer todos jobs relazionado com os ids
     else
-      @jobs = Job.where(interest_area_id: current_user.candidate.interest_areas)
+      mapbox_api_key = ENV['MAPBOX_API_KEY']
+      alljobs = Job.where(interest_area_id: current_user.candidate.interest_areas)
+
+      alljobs.each do |job|
+        if job.lat != nil && job.lat != "undefined" && current_user.candidate.lat != nil && current_user.candidate.lat != "undefined"
+          url = "https://api.mapbox.com/directions-matrix/v1/mapbox/driving/#{current_user.candidate.long.to_f},#{current_user.candidate.lat.to_f};#{job.long.to_f},#{job.lat.to_f}?sources=1&annotations=distance&access_token=#{mapbox_api_key}"
+          json_data = URI.open(url).read
+          parsed_data = JSON.parse(json_data)
+          distance = (parsed_data['distances'][0][0] / 1000.0).round(1)
+          existing_distance = Distance.find_by(candidate: current_user.candidate, job: job)
+
+
+          if existing_distance
+            existing_distance.update(distance: distance)
+            puts "Instância de Distance existente atualizada com sucesso!"
+          else
+            distance = Distance.create(candidate: current_user.candidate, job: job, distance: distance)
+
+            if distance.persisted?
+              puts "Nova instância de Distance criada com sucesso!"
+            else
+              puts "Falha ao criar nova instância de Distance."
+            end
+          end
+        end
+      end
+      # @jobs = Job.where(interest_area_id: current_user.candidate.interest_areas).joins(:distances).order('distances.distance ASC')
+      @jobs = Job.where(interest_area_id: current_user.candidate.interest_areas).joins(:distances).where.not(id: Match.where(candidate_id: current_user.candidate.id).pluck(:job_id)).order('distances.distance ASC')
+      @job = @jobs.first
+      if @job != nil && @job.geocode != nil && @job.geocode.map != nil
+        @marker = @job.geocode.map { |job| { lat: @job.lat.to_f, lng: @job.long.to_f, info_popup_html: render_to_string(partial: 'info_popup', locals: { job: @job }) } }
+      end
 
     end
   end
@@ -26,14 +54,8 @@ class JobsController < ApplicationController
     @job = Job.new(job_params)
     @job.company = current_user.company
 
-    # base_url = "https://cep.awesomeapi.com.br/json/#{@job.cep}"
-    # cep_data = if URI.open(base_url).read
-    # cep = JSON.parse(cep_data)
-    # @job.long = cep['lng']
-    # @job.lat = cep['lat']
-
     if @job.save!
-      redirect_to job_path(@job), notice: 'Vaga criada com sucesso'
+      redirect_to job_path(@job)
     else
       render :new, status: :unprocessable_entity
     end
@@ -56,10 +78,11 @@ class JobsController < ApplicationController
   def destroy
     @job = Job.find(params[:id])
     @job.destroy
-    redirect_to jobs_path
+    redirect_to root_path
   end
 
   def like
+    @job = Job.find(params[:job_id])
     @match = Match.find(params[:match_id])
     @match.matched = true
     if @match.save
@@ -68,22 +91,23 @@ class JobsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-
   end
 
   def dislike
     @job = Job.find(params[:job_id])
-    match = Match.find(params[:format].to_i)
+    match = Match.find(params[:match])
     if match.update(dislike: true)
-      redirect_to job_path(@job), notice: 'Match atualizado com dislike.'
+      redirect_to job_path(@job)
     else
       redirect_to job_path(@job), alert: 'Não foi possível atualizar o match com dislike.'
     end
   end
 
+
+
   private
 
   def job_params
-    params.require(:job).permit(:description, :cep, :address, :city, :salary, :interest_area_id)
+    params.require(:job).permit(:description, :cep, :address, :city, :salary, :lat, :long, :interest_area_id)
   end
 end

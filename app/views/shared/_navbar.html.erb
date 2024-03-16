@@ -32,14 +32,14 @@
           <% end %>
           <% if current_user.role == "role_company" && current_user.company != nil %>
             <li class="nav-item active">
-              <%= link_to 'Meus anúncios', root_path, class: 'nav-link text-dark' %>
+              <%= link_to 'Minhas vagas anunciadas', root_path, class: 'nav-link text-dark' %>
             </li>
 
             <li class="nav-item">
               <%= link_to 'Anunciar vaga', new_job_path, class: 'nav-link text-dark' %>
             </li>
             <li class="nav-item">
-              <%= link_to 'Perfil da empresa', company_path, class: 'nav-link text-dark' %>
+              <%= link_to 'Perfil da empresa', company_path(current_user.company), class: 'nav-link text-dark' %>
             </li>
             <li class="nav-item">
                 <%# <%= link_to "Another action", "#", class: "dropdown-item" %>

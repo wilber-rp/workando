@@ -1,20 +1,19 @@
 .chatroom {
   margin: 24px;
   border-radius: 8px;
-  max-height: 720px;
+
   background: white;
   margin-top: 9px;
-  height: calc(100vh - 75px);
+  height:90vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex-grow: 1;
   color: black;
   text-align: left;
-  justify-content: left;
 
   h1 {
-    border-bottom: 1px solid $gray-200;
+    border-bottom: 1px solid #ddd;
     margin-bottom: 0;
     padding: 1rem;
   }
@@ -22,32 +21,46 @@
   .messages {
     text-align: left;
     height: 100%;
-    overflow: scroll;
+    overflow-y: auto; /* Alterado para overflow-y */
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap:20px;
   }
 
-
   #new_message {
-    border-top: 1px solid $gray-200;
+    border-top: 1px solid #ddd;
     padding: 1rem;
 
     .form-group {
       margin-bottom: 0;
     }
   }
+
   .current-user {
-    background-color: red;
-    color: white;
-    float: right;
-    clear: both;
+    background-color: #5AEAED;
+    color: rgb(51, 50, 50);
+    display: flex;
+    align-items: center;
+    align-self: flex-end;
+    width: 80%;
+    border-radius: 20px;
   }
-
   .other-user {
-    background-color: blue;
-    color: white;
-    float: left;
-    clear: both;
+    background-color: rgb(211, 211, 211);
+    color: rgb(51, 50, 50);
+    display: flex;
+    align-items: center;
+    align-self: flex-start;
+    width: 80%;
+    border-radius: 20px;
+  }
+  .btn-primary {
+    margin-top: 0.5rem; /* Espaçamento entre o botão e a última mensagem */
+    align-self: flex-end; /* Alinha o botão à direita */
   }
 
-
+  .card-chatroom{
+    
+  }
 }

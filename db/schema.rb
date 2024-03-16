@@ -10,9 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_13_191456) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_15_161249) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum"
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
 
   create_table "candidate_interest_areas", force: :cascade do |t|
     t.bigint "candidate_id", null: false
@@ -63,6 +91,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_13_191456) do
     t.index ["user_id"], name: "index_companies_on_user_id"
   end
 
+  create_table "distances", force: :cascade do |t|
+    t.bigint "candidate_id", null: false
+    t.bigint "job_id", null: false
+    t.float "distance"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["candidate_id"], name: "index_distances_on_candidate_id"
+    t.index ["job_id"], name: "index_distances_on_job_id"
+  end
+
   create_table "interest_areas", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -81,8 +119,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_13_191456) do
     t.string "city"
     t.string "lat"
     t.string "long"
-    t.float "latitude"
     t.float "longitude"
+    t.float "latitude"
     t.index ["company_id"], name: "index_jobs_on_company_id"
   end
 
@@ -123,6 +161,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_13_191456) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "candidate_interest_areas", "candidates"
   add_foreign_key "candidate_interest_areas", "interest_areas"
   add_foreign_key "candidates", "users"
@@ -130,6 +170,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_13_191456) do
   add_foreign_key "chatrooms", "users", column: "receiver_id"
   add_foreign_key "chatrooms", "users", column: "sender_id"
   add_foreign_key "companies", "users"
+  add_foreign_key "distances", "candidates"
+  add_foreign_key "distances", "jobs"
   add_foreign_key "jobs", "companies"
   add_foreign_key "matches", "candidates"
   add_foreign_key "matches", "jobs"

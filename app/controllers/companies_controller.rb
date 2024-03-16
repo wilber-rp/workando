@@ -25,11 +25,11 @@ class CompaniesController < ApplicationController
 
   def edit
     @company = current_user.company
-    redirect_to new_company_path, notice: 'You need to create a company first.' if @company.nil?
+    redirect_to new_company_path if @company.nil?
   end
 
   def update
-    @company = Company.find(params[:id])
+    @company = current_user.company
     if @company.user == current_user
       if @company.update(company_params)
         redirect_to company_path(@company)
@@ -53,6 +53,6 @@ class CompaniesController < ApplicationController
   private
 
   def company_params
-    params.require(:company).permit(:cnpj, :company_name)
+    params.require(:company).permit(:cnpj, :company_name, :company_description, :photo)
   end
 end
