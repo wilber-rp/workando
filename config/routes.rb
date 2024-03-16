@@ -15,7 +15,7 @@ Rails
     # aqui estarão todas os possíveis matches(o index dos jobs cujo interest_area_id são os mesmos que do candidato)
 
     # get 'company', to: 'companies#show', as: :company
-    resources :companies, only: %i[ show new create edit update destroy]
+    resources :companies, only: %i[show new create edit update destroy]
     resources :jobs, only: %i[new create show edit update destroy] do
       resources :matches, only: %i[create destroy]
       post 'like', to: 'jobs#like', as: 'like'

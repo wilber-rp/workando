@@ -9,7 +9,7 @@
       <%= f.input  :salary, input_html: { class: "profile-info" }, label: "Salário por hora" %>
       <label for="job_interest_area_id">Selecione uma categoria:</label>
       <%= f.collection_select :interest_area_id, @interest_areas, :id, :name, { include_blank: 'Selecione uma categoria' }, { selected: @job.interest_area_id, class: "profile-info", id: "job_interest_area_id" } %>
-      <%= f.submit  "Editar job", class: 'button button-blue button-no-border' %>
+      <%= f.submit "Editar job", class: 'button button-blue button-no-border' %>
   </div>
     <% end %>
   </div>

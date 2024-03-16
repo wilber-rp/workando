@@ -1,12 +1,20 @@
-<div class="container mt-3">
-  <h2 class="title-form">INSIRA SEUS DADOS E CADASTRE SEU PERFIL</h2>
-  <div class="container mt-3 text-start">
-    <%= simple_form_for @company do |f| %>
-      <%= f.input :company_name, placeholder: 'Nome Fantasia', label: false, input_html: { class: 'profile-info' } %>
-      <%= f.input :cnpj, placeholder: 'CNPJ', label: false, input_html: { class: 'profile-info' } %>
-      <%= f.input :company_description, placeholder: 'Descreva brevemente seu estabelecimento', label: false, input_html: { class: 'profile-info' } %>
-      <%= f.input :photo, label: 'Foto do perfil:', as: :file, input_html: { class: 'profile-info', id: 'img-input' } %>
-      <%= f.submit 'CONFIRMAR CADASTRO', class: 'button button-blue button-no-border mt-3' %>
-    <% end %>
+
+<div class="out-container">
+  <div class="container-forms-custom">
+
+    <div class="title">
+      <h2>Cadastre sua empresa gratuitamente!</h2>
+    </div>
+
+    <div class="forms">
+      <%= simple_form_for @company do |f| %>
+        <%= f.input :company_name, placeholder: 'Nome Fantasia', label: false, input_html: { class: 'profile-info' } %>
+        <%= f.input :cnpj, placeholder: 'CNPJ', label: false, input_html: { class: 'profile-info' } %>
+        <%= f.input :company_description, placeholder: 'Descreva brevemente seu estabelecimento', label: false, input_html: { class: 'profile-info' } %>
+        <%= f.input :photo, label: 'Foto do perfil:', as: :file, input_html: { class: 'profile-info', id: 'img-input' } %>
+    </div>
+
   </div>
+    <%= f.submit 'CONFIRMAR CADASTRO', class: 'button button-blue button-no-border mt-3' %>
+    <% end %>
 </div>

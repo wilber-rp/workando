@@ -33,13 +33,12 @@ class CandidatesController < ApplicationController
   end
 
   def edit
-    @candidate = current_user.candidate
+    @candidate = Candidate.find(params[:id])
     @interest_areas = InterestArea.all
   end
 
   def update
-
-    @candidate = current_user.candidate
+    @candidate = Candidate.find(params[:id])
     @interest_areas = InterestArea.all
 
     interest_areas = params[:candidate][:candidate_interest_areas]
@@ -66,7 +65,7 @@ class CandidatesController < ApplicationController
   end
 
   def update_params
-    params.require(:candidate).permit(:first_name, :last_name, :cpf, :phone, :cep, :address, :city, :experience)
+    params.require(:candidate).permit(:first_name, :last_name, :cpf, :phone, :cep, :address, :city, :experience, :candidate_interest_areas)
   end
 
 end
