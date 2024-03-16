@@ -5,10 +5,6 @@
   export default class extends Controller {
    static values = { apiKey: String, markers: Array, candidatemarkers: Array };
    connect() {
-    console.log("Conectado")
-    console.log(this.markersValue);
-    console.log(this.candidatemarkersValue);
-    console.warn(this.apiKeyValue);
     mapboxgl.accessToken = this.apiKeyValue;
     this.map = new mapboxgl.Map({
      container: this.element,

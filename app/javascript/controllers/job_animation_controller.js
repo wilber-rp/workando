@@ -6,7 +6,7 @@ export default class extends Controller {
   static targets = ["jobLeft", "jobRight", "divAnimate"]
 
   connect() {
-    console.log("conectado ao job animation");
+
   }
 
   left() {
