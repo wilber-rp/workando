@@ -1,30 +1,20 @@
 <div class="container w-80">
-  <h1 style="margin-top: 64px; text-align: left;"> <strong>Faça seu cadastro como <span style="color: #5AEAED; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);" >candidato</span> ou <span style="color: #5AEAED; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);" >contratante</span>.</strong></h1>
+  <h1 style="margin-top: 64px; text-align: left;">
+    <strong>Faça seu cadastro como <span style="color: #5AEAED; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">candidato</span> ou <span style="color: #5AEAED; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">contratante</span>.</strong>
+  </h1>
 
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <%= f.error_notification %>
 
     <div class="form-inputs" style="text-align: left;">
-      <%= f.input :email,
-                  required: true,
-                  autofocus: true,
-                  input_html: { autocomplete: "email" }%>
-      <%= f.input :password,
-                  required: true,
-                  hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                  input_html: { autocomplete: "new-password" } %>
-      <%= f.input :password_confirmation,
-                  required: true,
-                  input_html: { autocomplete: "new-password" } %>
-      <%= f.input :role,
-            collection: [['Quero trabalhar', :role_candidate], ["Quero contratar", :role_company]],
-            as: :radio_buttons,
-            label_method: ->(item) { "<b>#{item.first}</b>".html_safe } %>
+      <%= f.input :email, required: true, autofocus: true, input_html: { autocomplete: 'email' } %>
+      <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { autocomplete: 'new-password' } %>
+      <%= f.input :password_confirmation, required: true, input_html: { autocomplete: 'new-password' } %>
+      <%= f.input :role, collection: [['Quero trabalhar', :role_candidate], ['Quero contratar', :role_company]], as: :radio_buttons, label_method: ->(item) { "<b>#{item.first}</b>".html_safe } %>
     </div>
 
     <div class="form-actions">
-      <%= f.button :submit, "INICIAR CADASTRO", class: "button button-blue button-no-border" %>
+      <%= f.button :submit, 'INICIAR CADASTRO', class: 'button button-blue button-no-border' %>
     </div>
   <% end %>
-
 </div>

@@ -2,32 +2,31 @@
   <h2>MEU PERFIL</h2>
 
   <% if @company.photo.present? %>
-  <%# se tiver foto adicionada vai motrar  %>
-  <%= cl_image_tag @company.photo.key, height: 300, width: 400, crop: :fill, class:"profile-picture" %>
-<% else %>
-<%# vai mostrar essa pre definida %>
-  <%= image_tag("imagem_contratante.png", alt:"Avatar do usuário", class:"profile-picture") %>
-<% end %>
+    <%# se tiver foto adicionada vai motrar %>
+    <%= cl_image_tag @company.photo.key, height: 300, width: 400, crop: :fill, class: 'profile-picture' %>
+  <% else %>
+    <%# vai mostrar essa pre definida %>
+    <%= image_tag('imagem_contratante.png', alt: 'Avatar do usuário', class: 'profile-picture') %>
+  <% end %>
 
-  <div class="profile-info mt-3"style="background-color: white; color: #65656B">
+  <div class="profile-info mt-3" style="background-color: white; color: #65656B">
     <p><strong>Nome:</strong> <%= @company.company_name %></p>
-<hr>
- <p><strong>CNPJ:</strong> <%= @company.cnpj %></p>
-<hr>
- <p><strong>E-mail:</strong> <%= @company.user.email %></p>
-<hr>
+    <hr />
+    <p><strong>CNPJ:</strong> <%= @company.cnpj %></p>
+    <hr />
+    <p><strong>E-mail:</strong> <%= @company.user.email %></p>
+    <hr />
     <p><strong>Descrição da empresa:</strong> <%= @company.company_description %></p>
   </div>
 
   <div class="btn-group-vertical w-100 mt-3">
-    <%= link_to 'ANUNCIAR UMA VAGA', new_job_path, class: 'button button-blue button-no-border' %>
+    <%= link_to 'NOVA VAGA', new_job_path, class: 'button mb-3' %>
 
     <div class="flex-edit-delete w-100">
-      <%= link_to 'MINHAS VAGAS', root_path, class: 'button button-transparent' %>
-      <%= link_to 'EDITAR PERFIL', edit_company_path(@company), class: 'button button-transparent' %>
+      <%# <%= link_to 'MINHAS VAGAS', root_path, class: 'button button-transparent' %>
+      <%= link_to 'EDITAR PERFIL', edit_company_path(@company), class: 'button ghost' %>
     </div>
 
-    <%= link_to 'DELETAR PERFIL', company_path(@company), data: { turbo_method: :delete }, class: 'button button-red button-no-border' %>
     <%# <%= link_to "VOLTAR PARA VAGAS", jobs_path, class: ' button button-transparent' %>
   </div>
 </div>

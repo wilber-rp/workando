@@ -2,50 +2,47 @@
   <h2>CANDIDATO</h2>
 
   <% if @match.candidate.photo.present? %>
-    <%= cl_image_tag @match.candidate.photo.key, height: 300, width: 400, crop: :fill, class:"profile-picture", style:"display: block; margin: 0 auto;" %>
-    <% else %>
-    <%= image_tag("Imagem perfil candidato.png", alt:"Avatar do usuário", class:"profile-picture", style:"display: block; margin: 0 auto;") %>
-    <% end %>
+    <%= cl_image_tag @match.candidate.photo.key, height: 300, width: 400, crop: :fill, class: 'profile-picture', style: 'display: block; margin: 0 auto;' %>
+  <% else %>
+    <%= image_tag('Imagem perfil candidato.png', alt: 'Avatar do usuário', class: 'profile-picture', style: 'display: block; margin: 0 auto;') %>
+  <% end %>
 
-  <div class="profile-info mt-3"style="background-color: white; color: #65656B">
-      <p><strong>Nome: </strong> <%= "#{@match.candidate.first_name} #{@match.candidate.last_name}"%></p>
-  <hr>
-      <p><strong>Telefone:</strong> <%= @match.candidate.phone %></p>
-  <hr>
-      <p><strong>Cidade:</strong> <%= @match.candidate.city %></p>
-  <hr>
-      <p><strong>Endereço:</strong> <%= @match.candidate.address %></p>
-  <hr>
-      <p><strong>Experiências profissionais:</strong> <%= @match.candidate.experience %></p>
-    </div>
+  <div class="profile-info mt-3" style="background-color: white; color: #65656B">
+    <p><strong>Nome: </strong> <%= "#{@match.candidate.first_name} #{@match.candidate.last_name}" %></p>
+    <hr />
+    <p><strong>Telefone:</strong> <%= @match.candidate.phone %></p>
+    <hr />
+    <p><strong>Cidade:</strong> <%= @match.candidate.city %></p>
+    <hr />
+    <p><strong>Endereço:</strong> <%= @match.candidate.address %></p>
+    <hr />
+    <p><strong>Experiências profissionais:</strong> <%= @match.candidate.experience %></p>
+  </div>
 
-
-    <div class= "card-show-match">
+  <div class="card-show-match">
     <% if @match.matched? %>
-
-<div class="buttons-chat">
-      <div class= "button button-blue button-no-border" style="text-decoration: none;">
-      <% if @chatroom_match  %>
-        <%= link_to 'CONVERSAR COM CANDIDATO', chatroom_path(@chatroom_match) %>
-      <% else %>
-        <%= simple_form_for [@match, @chatroom] do |f| %>
-          <strong><%= f.submit 'INICIAR CONVERSA COM CANDIDATO', :class => "disable-button"%></strong>
-
-        <% end %>
-      <% end %>
+      <div class="buttons-chat">
+        <div class="button button-blue button-no-border" style="text-decoration: none;">
+          <% if @chatroom_match  %>
+            <%= link_to 'CONVERSAR COM CANDIDATO', chatroom_path(@chatroom_match) %>
+          <% else %>
+            <%= simple_form_for [@match, @chatroom] do |f| %>
+              <strong><%= f.submit 'INICIAR CONVERSA COM CANDIDATO', class: 'disable-button' %></strong>
+            <% end %>
+          <% end %>
+        </div>
       </div>
-      </div>
-      <% else %>
-
-
+    <% else %>
       <div class="buttons-match">
-      <%= button_to job_dislike_path(match: @match, job_id: @match.job.id, dislike: true), method: :post, class:"btn-dislike-match" do  %>
-        <i class="fa-regular fa-thumbs-down"></i>
-      <% end %>
-      <%= button_to job_like_path(job_id: @match.job.id, match_id: @match.id), method: :post, class: "btn-like-match" do %>
-        <i class="fa-regular fa-thumbs-up"></i>
-    </div>
-      <% end %>
+        <div class="gradient-border">
+          <%= button_to job_dislike_path(match: @match, job_id: @match.job.id, dislike: true), method: :post, class:"btn-dislike-match" do  %>
+            <i class="fa-regular fa-thumbs-down"></i>
+          <% end %>
+        </div>
+        <%= button_to job_like_path(job_id: @match.job.id, match_id: @match.id), method: :post, class: "btn-like-match" do %>
+          <i class="fa-regular fa-thumbs-up"></i>
+        <% end %>
+      </div>
     <% end %>
-    </div>
+  </div>
 </div>

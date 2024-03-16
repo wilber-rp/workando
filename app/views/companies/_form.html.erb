@@ -1,10 +1,15 @@
 <div class="container text-start">
   <%= simple_form_for @company do |f| %>
-    <%= f.input :photo, label: "Foto do perfil", as: :file, input_html: { class: "profile-info"} %>
-    <%= f.input  :company_name, label: "Nome da Empresa", input_html: { class: "profile-info"} %>
-    <%= f.input  :cnpj, label: "CNPJ", input_html: { class: "profile-info"} %>
-    <%= f.input  :company_description, label: "Descrição da empresa", input_html: { class: "profile-info"} %>
-  <%= f.submit  "Atualizar empresa", class: ' button button-blue button-no-border' %>
+    <%= f.input :photo, label: 'Foto do perfil', as: :file, input_html: { class: 'profile-info' } %>
+    <%= f.input :company_name, label: 'Nome da Empresa', input_html: { class: 'profile-info' } %>
+    <%= f.input :cnpj, label: 'CNPJ', input_html: { class: 'profile-info' } %>
+    <%= f.input :company_description, label: 'Descrição da empresa', input_html: { class: 'profile-info' } %>
+    <%= f.submit 'confirmar alterações', class: ' button button-blue button-no-border' %>
   <% end %>
-  <%= link_to 'Voltar para Perfil', company_path(@company), class: 'button button-transparent' %>
+  <div>
+    <%= button_to company_path(@company), method: :get, class: 'button ghost mt-3' do %>
+      Voltar para Perfil
+    <% end %>
+  </div>
+  <%# <%= link_to 'Deletar perfil', company_path(@company), data: { turbo_method: :delete }, id: 'link-delete' %>
 </div>
