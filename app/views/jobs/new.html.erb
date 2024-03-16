@@ -1,27 +1,24 @@
 
 <div class="out-container">
-  <div class="container-forms-custom">
-
-    <div class="title">
-      <h2>Nova vaga</h2>
-    </div>
-
-      <div class="forms">
-        <div data-controller="cep">
-          <%= simple_form_for @job do |f| %>
-            <%= f.collection_select :interest_area_id, @interest_areas, :id, :name, { include_blank: 'Selecione uma área' }, { id: 'input-area', class: "profile-info " } %>
-            <%= f.input  :cep, placeholder: 'CEP', label: false, input_html: { id: 'cepSelect', class: "profile-info", data: { action: 'change->cep#updateAddress' }}%>
-            <%= f.input  :address, placeholder: 'Endereço', label: false, input_html: { id: 'addressSelect', class: "profile-info" } %>
-            <%= f.input  :city, placeholder: 'Cidade', label: false, input_html: { id: 'citySelect', class: "profile-info" } %>
-            <%= f.input  :description, placeholder: 'Descrição da vaga', label: false, input_html: { class: "profile-info" } %>
-            <%= f.input  :salary, placeholder: 'Valor hora', label: false, input_html: { class: "profile-info" }%>
-
-            <%= f.input :long, label: false, input_html: { id: 'longSelect', class: "profile-info d-none"} %>
-            <%= f.input :lat, label: false, input_html: { id: 'latSelect', class: "profile-info d-none"} %>
+  <div data-controller="cep">
+    <%= simple_form_for @job do |f| %>
+      <div class="container-forms-custom">
+        <div class="title">
+          <h2>Nova vaga</h2>
+        </div>
+        <div class="forms">
+          <%= f.collection_select :interest_area_id, @interest_areas, :id, :name, { include_blank: 'Selecione uma área' }, { id: 'input-area', class: "profile-info " } %>
+          <%= f.input  :cep, placeholder: 'CEP', label: false, input_html: { id: 'cepSelect', class: "profile-info", data: { action: 'change->cep#updateAddress' }}%>
+          <%= f.input  :address, placeholder: 'Endereço', label: false, input_html: { id: 'addressSelect', class: "profile-info" } %>
+          <%= f.input  :city, placeholder: 'Cidade', label: false, input_html: { id: 'citySelect', class: "profile-info" } %>
+          <%= f.input  :description, placeholder: 'Descrição da vaga', label: false, input_html: { class: "profile-info" } %>
+          <%= f.input  :salary, placeholder: 'Valor hora', label: false, input_html: { class: "profile-info" }%>
+          <%= f.input :long, label: false, input_html: { id: 'longSelect', class: "profile-info d-none"} %>
+          <%= f.input :lat, label: false, input_html: { id: 'latSelect', class: "profile-info d-none"} %>
         </div>
       </div>
-    </div>
-      <%= f.submit "ANUNCIAR VAGA", class: 'button button-blue mt-5' %>
-      <%= link_to 'VOLTAR PARA PERFIL', company_path(@company), class: 'button button-transparent' %>
-          <% end %>
+    <%= f.submit "ANUNCIAR VAGA", class: 'button button-blue mt-5' %>
+    <%= link_to 'VOLTAR PARA PERFIL', company_path(@company), class: 'button button-transparent' %>
+    <% end %>
+  </div>
 </div>

@@ -65,7 +65,7 @@ class CandidatesController < ApplicationController
   end
 
   def update_params
-    params.require(:candidate).permit(:first_name, :last_name, :cpf, :phone, :cep, :address, :city, :experience, :candidate_interest_areas)
+    params.require(:candidate).permit(:first_name, :last_name, :cpf, :phone, :cep, :address, :city, :experience, :lat, :long, :candidate_interest_areas)
   end
 
 end

@@ -1,19 +1,18 @@
 <div class='out-container'>
-  <div class="container-forms-custom">
-    <div class="title">
-      <h2>Editar Perfil</h2>
-    </div>
-
-    <div class="forms">
-      <div data-controller="cep">
-        <%= simple_form_for @candidate, url: candidate_path(@candidate), method: :patch do |f| %>
-          <%= f.input :phone, placeholder: "Telefone:", label: false, input_html: { class: "profile-info"} %>
-          <%= f.input :cep, input_html: { id: 'cepSelect', class: "profile-info", data: { action: 'change->cep#updateAddress' }}, placeholder: "CEP:", label: false %>
-          <%= f.input :address, input_html: { id: 'addressSelect', class: "profile-info" }, label: false, placeholder: "Endereço:"%>
-          <%= f.input :city, input_html: { id: 'citySelect', class: "profile-info" }, label: false, placeholder: "Cidade:" %>
-          <%= f.input :experience, placeholder: "Experiência:" , label: false, input_html: { class: "profile-info"}%>
-          <%= f.input :photo, label: "Foto do perfil:", as: :file, input_html: { class: 'profile-info', id: 'img-input' } %>
-
+  <div data-controller="cep">
+    <%= simple_form_for @candidate, url: candidate_path(@candidate), method: :patch do |f| %>
+      <div class="container-forms-custom">
+        <div class="title"><h2>Editar Perfil</h2></div>
+          <div class="forms">
+            <%= f.input :phone, placeholder: "Telefone:", label: false, input_html: { class: "profile-info"} %>
+            <%= f.input :cep, input_html: { id: 'cepSelect', class: "profile-info", data: { action: 'change->cep#updateAddress' }}, placeholder: "CEP:", label: false %>
+            <%= f.input :address, input_html: { id: 'addressSelect', class: "profile-info" }, label: false, placeholder: "Endereço:"%>
+            <%= f.input :city, input_html: { id: 'citySelect', class: "profile-info" }, label: false, placeholder: "Cidade:" %>
+            <%= f.input :experience, placeholder: "Experiência:" , label: false, input_html: { class: "profile-info"}%>
+            <%= f.input :long, label: false, input_html: { id: 'longSelect', class: "profile-info d-none"} %>
+            <%= f.input :lat, label: false, input_html: { id: 'latSelect', class: "profile-info d-none"} %>
+            <%= f.input :photo, label: "Foto do perfil:", as: :file, input_html: { class: 'profile-info', id: 'img-input' } %>
+          </div>
           <div class= 'checkboxes'>
             <h2>Habilidades</h2>
             <div class="form-checkbox-columns">
@@ -25,12 +24,9 @@
               <% end %>
             </div>
           </div>
-      </div>
-    </div>
+        </div>
+      <%= f.button :submit, "CONFIRMAR ALTERAÇÕES", class: "button button-blue button-no-border" %>
+      <% end %>
+    <%= link_to 'VOLTAR', candidate_path(@candidate), class: 'button button-transparent' %>
   </div>
-  <%= f.button :submit, "CONFIRMAR ALTERAÇÕES", class: "button button-blue button-no-border" %>
-
-  <% end %>
-
-  <%= link_to 'VOLTAR', candidate_path(@candidate), class: 'button button-transparent' %>
 </div>

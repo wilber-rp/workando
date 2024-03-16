@@ -1,12 +1,9 @@
 <div class='out-container'>
-  <div class="container-forms-custom">
-    <div class="title">
-      <h2> Cadastre-se já e não perca nenhum match!</h2>
-    </div>
-
-    <div class="forms">
-      <div data-controller="cep">
-        <%= simple_form_for @candidate do |f| %>
+  <div data-controller="cep">
+    <%= simple_form_for @candidate do |f| %>
+      <div class="container-forms-custom">
+        <div class="title"><h2> Cadastre-se já e não perca nenhum match!</h2> </div>
+        <div class="forms">
           <%= f.input :first_name, placeholder: "Nome:", label: false, input_html: { class: "profile-info"}%>
           <%= f.input :last_name, placeholder: "Sobrenome:", label: false, input_html: { class: "profile-info"} %>
           <%= f.input :cpf, placeholder: "CPF:", label: false, input_html: { class: "profile-info"} %>
@@ -18,22 +15,20 @@
           <%= f.input :long, label: false, input_html: { id: 'longSelect', class: "profile-info d-none"} %>
           <%= f.input :lat, label: false, input_html: { id: 'latSelect', class: "profile-info d-none"} %>
           <%= f.input :photo, label: "Foto do perfil:", as: :file, input_html: { class: 'profile-info', id: 'img-input' } %>
+        </div>
+      <div class= 'checkboxes'>
+        <h2>Habilidades</h2>
+        <div class="form-checkbox-columns">
+          <%= f.collection_check_boxes :candidate_interest_areas, @interest_areas, :id, :name, checked: @candidate.interest_area_ids do |cb| %>
+            <div class="form-checkbox-column">
+              <%= cb.check_box class: 'form-check-input' %>
+              <%= cb.label class: 'checkbox-label'%>
+            </div>
+          <% end %>
+        </div>
       </div>
-        </div>
-
-        <div class= 'checkboxes'>
-          <h2>Habilidades</h2>
-          <div class="form-checkbox-columns">
-            <%= f.collection_check_boxes :candidate_interest_areas, @interest_areas, :id, :name, checked: @candidate.interest_area_ids do |cb| %>
-              <div class="form-checkbox-column">
-                <%= cb.check_box class: 'form-check-input' %>
-                <%= cb.label class: 'checkbox-label'%>
-              </div>
-            <% end %>
-          </div>
-        </div>
-
-          <%= f.submit "CONFIRMAR CADASTRO", class: "button button-blue button-no-border"%>
-        <% end %>
+    </div>
+  <%= f.submit "CONFIRMAR CADASTRO", class: "button button-blue button-no-border"%>
+  <% end %>
   </div>
-<div class='container'>
+</div>
