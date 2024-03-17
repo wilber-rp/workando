@@ -5,17 +5,12 @@
   border-radius: 8px;
   border: 2px solid #14B8BC;
 
-
-  // h2 {
-  //   margin:0;
-  // }
 }
 
 .flex-edit-delete{
   display: flex;
   gap: 12px;
 }
-
 
 .bg-card-candidates {
   background-color: #14B8BC;
@@ -24,7 +19,6 @@
   border-radius: 8px;
   border: 2px solid #ffffff;
 }
-
 
 .card-show-job {
   display: flex;
@@ -116,7 +110,6 @@
   }
 }
 
-
 .card-show-match {
   display: flex;
   flex-direction: column;
@@ -192,4 +185,78 @@
       padding-bottom: 5px;
     }
   }
+}
+
+.card-details-container {
+  padding-top: 24px;
+  padding-bottom: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  max-width: 550px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+
+  .container-infos {
+    margin: auto;
+    margin-bottom: 12px;
+    background: #f1f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Montserrat", sans-serif;
+    max-width: 550px;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 24px;
+    color: black;
+
+    .profile-photo {
+      margin-bottom: 36px;
+      border-radius: 50%;
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+
+    .list {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      font-size: 16px;
+
+      .info-row {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2px;
+        margin-bottom: 2px;
+        align-items: center;
+      }
+
+      hr {
+        width: 85%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      #info-title {
+        font-size: 20px;
+      }
+
+      .info-left {
+        text-align: left;
+        font-size: 14px;
+
+      }
+
+      .info-right {
+        text-align: right;
+      }
+    }
+  }
+
+  #link-delete {
+    margin-top: 12px;
+    text-decoration: none;
+  }
+
 }
