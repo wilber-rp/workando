@@ -1,31 +1,59 @@
-<div class="container my-3 mb-5">
-  <h2>VAGA DE <%= @job.interest_area.name.upcase %></h2>
+<div class="card-details-container">
+  <div class="container-infos">
+    <h2>Detalhes da vaga</h2>
 
-  <div class="card bg-card-job">
+    <div class ="list">
+      <div class="info-row">
+        <div class="info-left"><i class="fa-regular fa-building icon-color-default"></i></div>
+        <div class="info-right" id="info-title"><strong><%="Precisa-se de: #{@job.interest_area.name}"%></strong></div>
+      </div>
+      <hr>
+      <div class="info-row">
+        <div class="info-left">Endereço:</div>
+        <div class="info-right"><strong><%= @job.address %></strong></div>
+      </div>
+      <hr>
+      <div class="info-row">
+        <div class="info-left">Valor hora:</div>
+        <div class="info-right"><strong>R$<%= @job.salary %>0</strong></div>
+      </div>
+    </div>
 
-  <ul class="list-group list-group-flush ">
-    <li class="list-group-item bg-transparent text-black text-start"> <strong>Descrição:</strong> <%= @job.description %></li>
-    <li class="list-group-item bg-transparent text-black text-start"> <strong>Endereço:</strong> <%= @job.address %></li>
-    <li class="list-group-item bg-transparent text-black text-start"> <strong>Remuneração: </strong>R$<%= @job.salary %>0</li>
-    <li class="list-group-item bg-transparent text-black text-start"> <strong>Função:</strong> <%= @job.interest_area.name %></li>
-  </ul>
+
+    <h2 id="how-candidates">Quem se candidatou?</h2>
+
+    <% if @job.matches.any? %>
+      <div class="big-list">
+        <% @job.matches.where(dislike: false).each do |match| %>
+
+
+          <li class="info-row">
+            <% if match.candidate.photo.present? %>
+              <div class="photo-candidate"><%= cl_image_tag match.candidate.photo.key, height: 50, width: 50, crop: :fill, class: "photo-candidate" %></div>
+            <% else %>
+              <%= image_tag("Imagem perfil candidato.png", alt:"Avatar do usuário", class:"photo-candidate") %>
+            <% end %>
+            <div class="name-center"><strong><%= link_to match.candidate.first_name.capitalize, match_path(match) %></strong></div>
+
+
+
+          </li>
+          <hr>
+
+
+
+        <% end %>
+      </div>
+    <% else %>
+      <p>Ainda nenhum candidato. 😢</p>
+    <% end %>
+
   </div>
-  <div class="flex-edit-delete">
-    <%= link_to 'EDITAR VAGA', edit_job_path(@job), class: "button button-transparent" %>
-    <%= link_to 'DELETAR VAGA', job_path(@job), data: { turbo_method: :delete }, class: "button button-red button-no-border"  %>
-  </div>
-  <%= link_to 'VER MINHAS VAGAS ANUNCIADAS', root_path, class: "button button-blue button-no-border"  %>
 
-
-  <h2>Quem se candidatou:</h2>
-
-  <% if @job.matches.any? %>
-    <ul>
-      <% @job.matches.where(dislike: false).each do |match| %>
-        <li><%= link_to match.candidate.first_name, match_path(match) %></li>
-      <% end %>
-    </ul>
-  <% else %>
-  <p>Ainda nenhum candidato. 😢</p>
-  <% end %>
+  <%= link_to 'EDITAR VAGA', edit_job_path(@job), class: "button button-transparent" %>
+  <%= link_to 'EXCLUIR VAGA', job_path(@job), data: { turbo_method: :delete }, class: "button button-red button-no-border"  %>
 </div>
+
+
+
+  <%# <%= link_to 'VER MINHAS VAGAS ANUNCIADAS', root_path, class: "button button-blue button-no-border"  %>
