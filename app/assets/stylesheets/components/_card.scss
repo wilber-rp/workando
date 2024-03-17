@@ -126,7 +126,6 @@
     }
 
     .buttons-chat {
-      // position: absolute;
       display: flex;
       justify-content: space-between;
       padding: 24px;
@@ -200,7 +199,7 @@
   .container-infos {
     margin: auto;
     margin-bottom: 12px;
-    background: #f1f1f1;
+    background: #ffffff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -244,8 +243,7 @@
 
       .info-left {
         text-align: left;
-        font-size: 14px;
-
+        font-size: 24px;
       }
 
       .info-right {
@@ -259,4 +257,57 @@
     text-decoration: none;
   }
 
+}
+
+.mini-card-jobs-container {
+  padding-top: 24px;
+  padding-bottom: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  max-width: 550px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "Montserrat", sans-serif;
+  color: #000;
+
+
+  .mini-card-list {
+    margin: auto;
+    margin-bottom: 18px;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 550px;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    padding: 12px;
+    color: black;
+    list-style: none;
+
+    .mini-card-info-row {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2px;
+      margin-bottom: 2px;
+      align-items: center;
+      width: 100%;
+      font-size: 18px;
+
+      .mini-card-interest-area {
+        text-align: left;
+      }
+
+      .mini-card-likes {
+        text-align: right;
+
+
+        .thumb{
+          color: #f6c9e1;
+        }
+
+      }
+    }
+  }
 }
