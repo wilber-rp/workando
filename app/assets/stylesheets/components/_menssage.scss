@@ -3,21 +3,20 @@
 }
 
 .avatar img {
-  width: 30px; /* Largura da imagem */
-  height: 30px; /* Altura da imagem */
-  border-radius: 50%; /* Para tornar a imagem circular */
+  // width: 30px; /* Largura da imagem */
+  // height: 30px; /* Altura da imagem */
+  // border-radius: 50%; /* Para tornar a imagem circular */
 }
 
 .message-content {
   position: relative; /* Define a posição relativa para que possamos usar position:absolute dentro dela */
-  margin-left: 40px; /* Margem à esquerda para deixar espaço para a imagem */
+  width: 100%;
 }
 
 .message-content strong {
-  display: block; /* Faz com que o apelido do usuário ocupe toda a largura disponível */
+  // display: block; /* Faz com que o apelido do usuário ocupe toda a largura disponível */
 }
 
 .message-content p {
   margin-top: 0; /* Remove a margem superior para alinhar o texto com o apelido do usuário */
 }
-
