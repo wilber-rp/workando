@@ -11,7 +11,8 @@
         <%= f.input :photo, label: 'Foto do perfil:', as: :file, input_html: { class: 'profile-info', id: 'img-input' } %>
       </div>
     </div>
-    <%= f.submit  "Atualizar empresa", class: ' button button-blue button-no-border' %>
+    <%= f.submit  "Atualizar empresa", class: ' button mt-5' %>
   <% end %>
-  <%= link_to 'Voltar para Perfil', company_path(@company), class: 'button button-transparent' %>
+  <%= link_to 'Voltar para Perfil', company_path(@company), class: 'button ghost d-block text-center mt-3' %>
+  <%= link_to 'Deletar perfil', company_path(@company), data: { turbo_method: :delete }, id: 'link-delete', class: "text-center d-block mt-2" %>
 </div>

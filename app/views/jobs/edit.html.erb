@@ -16,7 +16,8 @@
           <%= f.input :lat, label: false, input_html: { id: 'latSelect', class: "profile-info d-none"} %>
         </div>
       </div>
-    <%= f.submit "Editar job", class: 'button button-blue button-no-border' %>
+    <%= f.submit "confirmar alterações", class: 'button mt-5' %>
     <% end %>
+    <%= link_to 'Voltar', job_path, class: "button ghost d-block text-center mt-3 mb-5" %>
   </div>
 </div>

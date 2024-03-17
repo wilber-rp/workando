@@ -31,10 +31,6 @@
     </div>
   </div>
 
-  <%= link_to 'NOVA VAGA', new_job_path, class: 'button button-blue button-no-border' %>
-  <%= link_to 'MINHAS VAGAS', root_path, class: 'button button-transparent' %>
-  <%= link_to 'EDITAR PERFIL', edit_company_path(@company), class: 'button button-transparent' %>
-
-
-  <%= link_to 'DELETAR PERFIL', company_path(@company), data: { turbo_method: :delete }, id: 'link-delete' %>
+  <%= link_to 'NOVA VAGA', new_job_path, class: 'button d-block mt-5' %>
+  <%= link_to 'EDITAR PERFIL', edit_company_path(@company), class: 'button ghost d-block mt-3 mb-5' %>
 </div>

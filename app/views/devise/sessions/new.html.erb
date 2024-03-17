@@ -6,7 +6,6 @@
       <div class="form-container sign-up-container" data-controller="formvalidation">
         <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "simple-form" }) do |f| %>
           <h3 id="sign-up-h3">Cadastre-se gratuitamente</h3>
-          <%= f.error_notification %>
           <div class="input-box">
             <%= f.input :email, placeholder: 'E-mail', label: false, required: true, autofocus: true, input_html: { autocomplete: 'email', class: 'input' } %>
           </div>

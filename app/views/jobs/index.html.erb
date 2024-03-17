@@ -1,19 +1,34 @@
 <div class="mini-card-jobs-container">
   <% if @jobs.none?  %>
   <%# Se não houver Job aparecerá a mensagem abaixo %>
-    <div class="flash flash-danger alert alert-dismissible fade show  " role="alert">
-      <span><strong>Oops!</strong> 😱 Não há vagas disponíveis!</span>
+    <% if @current_user.role_candidate?%>
+    <div id="flash-alert" class="flash alert alert-dismissible fade show" role="alert">
+      <p class="mb-0"><span>Oops!</span> 😱 Não há vagas disponíveis!</p>
       <a data-bs-dismiss="alert" aria-label="Close" style="position: absolute; top: 5px; right: 8px;">
         <i class="fas fa-times"></i>
       </a>
     </div>
+    <div class="d-flex w-100 justify-content-center" style="font-size:200px; margin-top:200px; color:#F5E4ED;">
+      <i class="fa-regular fa-circle-xmark"></i>
+    </div>
+    <% else %>
+    <div id="flash-alert" class="flash alert alert-dismissible fade show" role="alert">
+      <p class="mb-0"><span>Oops!</span> 😱 Você ainda não postou nenhuma vaga!</p>
+      <a data-bs-dismiss="alert" aria-label="Close" style="position: absolute; top: 5px; right: 8px;">
+        <i class="fas fa-times"></i>
+      </a>
+    </div>
+    <div class="d-flex w-100 justify-content-center" style="font-size:200px; margin-top:200px; color:#F5E4ED;">
+      <i class="fa-regular fa-circle-xmark"></i>
+    </div>
+    <% end %>
   <% else %> <%# Executar as linhas de baixo %>
 
   <% if current_user.company.present? && current_user.company.jobs.any? %> <%# esta vendo se o currente.user e company e se tiver vagas vai mostrar o q esta a baixo %>
-    <h2>Minhas vagas</h2>
+    <h2 class="text-center mb-3">Minhas vagas</h2>
     <% @jobs.each do |job| %>
         <%# aqui pensei em colocarmos uma interpolação do n° da vaga antes da descrição. Ex: Vaga 1- Pedreiro. Vaga-2 Garçom. %>
-        <%= link_to job_path(job) do %>
+        <%= link_to job_path(job), class: "text-decoration-none" do %>
         <div class="mini-card-list">
           <li class="mini-card-info-row">
             <div class="mini-card-interest-area">
@@ -30,8 +45,8 @@
         </div>
       <% end %>
     <% end %>
-  <%= link_to 'NOVA VAGA', new_job_path, class: 'button button-blue button-no-border' %>
-  <%= link_to 'VOLTAR', company_path(current_user.company), class: 'button button-transparent' %>
+  <%= link_to 'NOVA VAGA', new_job_path, class: 'button d-block mt-5 text-center' %>
+  <%= link_to 'VOLTAR', company_path(current_user.company), class: 'button ghost d-block text-center mt-3 mb-5' %>
 
 
 
@@ -53,15 +68,20 @@
         </div>
         <div class="map" data-controller="map" data-map-markers-value="<%= @marker.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
         <div id="description-text">
-            <li class="list-group-item bg-transparent text-white"></i> <strong>Descrição: </strong> <%= @job.description %></li>
+            <li class="list-group-item bg-transparent text-white"></i><strong>Descrição: </strong><%= @job.description %></li>
         </div>
-        <div class="buttons">
-        <%= button_to job_matches_path(job_id: @job.id, dislike: true), method: :post, class:"button-dislike" do  %>
+        <div class="buttons-match">
+          <div class="gradient-border">
+
+        <%= button_to job_matches_path(job_id: @job.id, dislike: true), method: :post, class:"btn-dislike-match" do  %>
           <i class="fa-regular fa-thumbs-down" data-job-animation-target="jobLeft" data-action="click->job-animation#left"></i>
         <% end %>
-        <%= button_to job_matches_path(job_id: @job.id, dislike: false), method: :post, class: "button-like" do %>
+        </div>
+        <div class="gradient-border">
+        <%= button_to job_matches_path(job_id: @job.id, dislike: false), method: :post, class: "btn-like-match" do %>
           <i class="fa-regular fa-thumbs-up" data-job-animation-target="jobRight" data-action="click->job-animation#right"></i>
         <% end %>
+        </div>
         </div>
       </div>
     <% end %>
