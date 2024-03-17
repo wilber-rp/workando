@@ -45,19 +45,6 @@ button:active {
   transform: scale(0.98);
 }
 
-button:focus {
-  outline: none;
-}
-
-.ghost {
-  background-color: transparent;
-  border-color: #404040;
-  color: #404040;
-  &:hover {
-    transform: scale(0.99);
-  }
-}
-
 #link-delete {
   text-decoration: none;
   text-align: center;
