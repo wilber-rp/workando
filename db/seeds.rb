@@ -18,8 +18,6 @@
 # end
 
 
-InterestArea.delete_all
-
 InterestArea.create!(name: "Barman")
 InterestArea.create!(name: "Carpinteiro")
 InterestArea.create!(name: "Diarista")
