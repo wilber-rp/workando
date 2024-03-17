@@ -17,17 +17,24 @@
 #     Job.create!(interest_area_id: interest, description: '22 hora', address: "Rua joão", salary: 22)
 # end
 
-InterestArea.create!(name: "Garçom")
-InterestArea.create!(name: "Pedreiro")
-InterestArea.create!(name: "Jardineiro")
-InterestArea.create!(name: "Diarista")
-InterestArea.create!(name: "BarMan")
-InterestArea.create!(name: "Pintor")
-InterestArea.create!(name: "Capinteiro")
-InterestArea.create!(name: "Segurança")
-InterestArea.create!(name: "Recepcionista")
-InterestArea.create!(name: "Motorista")
 
+InterestArea.create!(name: "Barman")
+InterestArea.create!(name: "Carpinteiro")
+InterestArea.create!(name: "Diarista")
+InterestArea.create!(name: "Eletricista")
+InterestArea.create!(name: "Encanador")
+InterestArea.create!(name: "Fotógrafo")
+InterestArea.create!(name: "Garçom")
+InterestArea.create!(name: "Jardineiro")
+InterestArea.create!(name: "Modelo")
+InterestArea.create!(name: "Pedreiro")
+InterestArea.create!(name: "Pintor")
+InterestArea.create!(name: "Professor")
+InterestArea.create!(name: "Programador")
+InterestArea.create!(name: "Promoter")
+InterestArea.create!(name: "Recepcionista")
+InterestArea.create!(name: "Segurança")
+InterestArea.create!(name: "Técnico em TI")
 
 
 
