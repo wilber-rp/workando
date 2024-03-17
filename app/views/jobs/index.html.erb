@@ -19,11 +19,11 @@
         <%# aqui pensei em colocarmos uma interpolação do n° da vaga antes da descrição. Ex: Vaga 1- Pedreiro. Vaga-2 Garçom. %>
 
           <%= link_to job_path(job), class: "text-decoration-none mb-5" do %>
-            <li class="btn-card mb-3 d-flex justify-content-between align-items-center" >
+            <li class="btn-card mb-3 d-flex justify-content-between align-items-center">
               <span><%= job.interest_area.name %></span>
               <div class= "iconlike">
                 <% if job.matches.where(dislike: false).count > 0%>
-                  <span style="display: inline-block; vertical-align: middle;"><i class="far fa-thumbs-up"></i></span><span style="vertical-align: middle;">  <%= job.matches.where(dislike: false).count %></span>
+                  <span style="display: inline-block; vertical-align: middle; gap: 2px;"><i class="far fa-thumbs-up m-1"></i></span><span style="vertical-align: middle;">  <%= job.matches.where(dislike: false).count %></span>
                 <% else %>
                   <span style="display: inline-flex; align-items: center;"><i class="far fa-thumbs-up" style="margin-right: 5px;"></i> <%= job.matches.where(dislike: false).count %></span>
                 <% end %>
@@ -67,12 +67,16 @@
           <li class="list-group-item bg-transparent text-white"></i> <strong>Descrição: </strong> <%= @job.description %></li>
       </div>
       <div class="buttons">
+        <div class="gradient-border">
       <%= button_to job_matches_path(job_id: @job.id, dislike: true), method: :post, class:"button-dislike" do  %>
         <i class="fa-regular fa-thumbs-down" data-job-animation-target="jobLeft" data-action="click->job-animation#left"></i>
       <% end %>
+      </div>
+      <div class="gradient-border">
       <%= button_to job_matches_path(job_id: @job.id, dislike: false), method: :post, class: "button-like" do %>
         <i class="fa-regular fa-thumbs-up" data-job-animation-target="jobRight" data-action="click->job-animation#right"></i>
       <% end %>
+      </div>
       </div>
     </div>
   <% end %>

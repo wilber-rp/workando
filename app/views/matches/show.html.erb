@@ -21,17 +21,13 @@
 
   <div class="card-show-match">
     <% if @match.matched? %>
-      <div class="buttons-chat">
-        <div class="button button-blue button-no-border" style="text-decoration: none;">
-          <% if @chatroom_match  %>
-            <%= link_to 'CONVERSAR COM CANDIDATO', chatroom_path(@chatroom_match) %>
-          <% else %>
-            <%= simple_form_for [@match, @chatroom] do |f| %>
-              <strong><%= f.submit 'INICIAR CONVERSA COM CANDIDATO', class: 'disable-button' %></strong>
-            <% end %>
-          <% end %>
-        </div>
-      </div>
+      <% if @chatroom_match  %>
+        <%= link_to 'CONVERSAR COM CANDIDATO', chatroom_path(@chatroom_match), class: 'button d-block text-center' %>
+      <% else %>
+        <%= simple_form_for [@match, @chatroom] do |f| %>
+          <%= f.submit 'iniciar conversa', class: 'button' %>
+        <% end %>
+      <% end %>
     <% else %>
       <div class="buttons-match">
         <div class="gradient-border">
@@ -39,9 +35,11 @@
             <i class="fa-regular fa-thumbs-down"></i>
           <% end %>
         </div>
-        <%= button_to job_like_path(job_id: @match.job.id, match_id: @match.id), method: :post, class: "btn-like-match" do %>
-          <i class="fa-regular fa-thumbs-up"></i>
-        <% end %>
+        <div class="gradient-border">
+          <%= button_to job_like_path(job_id: @match.job.id, match_id: @match.id), method: :post, class: "btn-like-match" do %>
+            <i class="fa-regular fa-thumbs-up"></i>
+          <% end %>
+        </div>
       </div>
     <% end %>
   </div>

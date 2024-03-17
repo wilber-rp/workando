@@ -7,7 +7,7 @@
       <%= f.input :company_description, placeholder: 'Descreva brevemente seu estabelecimento', label: false, input_html: { class: 'profile-info' } %>
       <%= f.input :photo, label: 'Foto do perfil:', as: :file, input_html: { class: 'profile-info', id: 'img-input' } %>
       <%= f.submit 'CONFIRMAR CADASTRO', class: 'button' %>
-      <%= f.submit 'VOLTAR', class: 'ghost button mt-3' %>
     <% end %>
+    <%= link_to 'Cancelar', root_path, class: 'button ghost d-block text-center mt-3' %>
   </div>
 </div>

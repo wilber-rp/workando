@@ -2,31 +2,29 @@
   <h2>MEU PERFIL</h2>
 
   <% if @candidate.photo.present? %>
-   <%= cl_image_tag @candidate.photo.key, height: 300, width: 400, crop: :fill, class:"profile-picture" %>
+    <%= cl_image_tag @candidate.photo.key, height: 300, width: 400, crop: :fill, class: 'profile-picture' %>
   <% else %>
-   <%= image_tag("Imagem perfil candidato.png", alt:"Avatar do usuário", class:"profile-picture") %>
+    <%= image_tag('Imagem perfil candidato.png', alt: 'Avatar do usuário', class: 'profile-picture') %>
   <% end %>
-  
-  <div class="profile-info mt-3"style="background-color: white; color: #65656B">
+
+  <div class="profile-info mt-3" style="background-color: white; color: #65656B">
     <p><strong>Nome: </strong> <%= @candidate.first_name %></p>
-<hr>
+    <hr />
     <p><strong>Sobrenome:</strong> <%= @candidate.last_name %></p>
-<hr>
+    <hr />
     <p><strong>CPF:</strong> <%= @candidate.cpf %></p>
-<hr>
+    <hr />
     <p><strong>Telefone:</strong> <%= @candidate.phone %></p>
-<hr>
+    <hr />
     <p><strong>CEP:</strong> <%= @candidate.cep %></p>
-<hr>
+    <hr />
     <p><strong>Cidade:</strong> <%= @candidate.city %></p>
-<hr>
+    <hr />
     <p><strong>Endereço:</strong> <%= @candidate.address %></p>
-<hr>
+    <hr />
     <p><strong>Experiências profissionais:</strong> <%= @candidate.experience %></p>
   </div>
 
-
-
-  <%= link_to 'EDITAR PERFIL', edit_candidate_path(@candidate), class: "button button-transparent"  %>
-  <%= link_to "PROCURAR VAGAS", root_path, class: "button button-blue button-no-border" %>
+  <%= link_to 'PROCURAR VAGAS', root_path, class: 'button d-block button' %>
+  <%= link_to 'EDITAR PERFIL', edit_candidate_path(@candidate), class: 'button ghost d-block mt-3 mb-5' %>
 </div>

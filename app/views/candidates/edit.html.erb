@@ -1,27 +1,25 @@
 <div class="container mt-4">
   <div class="container text-start" data-controller="cep">
     <%= simple_form_for @candidate, url: candidate_path(@candidate), method: :patch do |f| %>
-          <h2>HABILIDADES</h2>
+      <h2>HABILIDADES</h2>
       <div class="form-checkbox-container">
-      <%= f.collection_check_boxes :candidate_interest_areas, @interest_areas, :id, :name, checked: @candidate.interest_area_ids do |cb| %>
-        <div class="form-checkbox-column">
-          <%= cb.check_box %>
-          <%= cb.label %>
-        </div>
-      <% end %>
+        <%= f.collection_check_boxes :candidate_interest_areas, @interest_areas, :id, :name, checked: @candidate.interest_area_ids do |cb| %>
+          <div class="form-checkbox-column">
+            <%= cb.check_box %>
+            <%= cb.label %>
+          </div>
+        <% end %>
       </div>
 
-      <%= f.input :photo, label: "Foto", as: :file, input_html: { class: "profile-info"} %>
-      <%= f.input  :phone, label: "Telefone", input_html: { class: "profile-info"} %>
-      <%= f.input  :cep, input_html: { id: 'cepSelect', data: { action: 'change->cep#updateAddress' }},label: "CEP", input_html: { class: "profile-info"}%>
-      <%= f.input  :city, input_html: { id: 'citySelect' },label: "Cidade", input_html: { class: "profile-info"} %>
-      <%= f.input  :address, input_html: { id: 'addressSelect' },label: "Endereço", input_html: { class: "profile-info"} %>
-      <%= f.input  :experience, label: "Experiências profissionais", input_html: { class: "profile-info"} %>
-      <%= f.button :submit, "ATUALIZAR PERFIL", class: 'button button-blue button-no-border' %>
+      <%= f.input :photo, label: 'Foto', as: :file, input_html: { class: 'profile-info' } %>
+      <%= f.input :phone, label: 'Telefone', input_html: { class: 'profile-info' } %>
+      <%= f.input :cep, input_html: { id: 'cepSelect', data: { action: 'change->cep#updateAddress' } }, label: 'CEP', input_html: { class: 'profile-info' } %>
+      <%= f.input :city, input_html: { id: 'citySelect' }, label: 'Cidade', input_html: { class: 'profile-info' } %>
+      <%= f.input :address, input_html: { id: 'addressSelect' }, label: 'Endereço', input_html: { class: 'profile-info' } %>
+      <%= f.input :experience, label: 'Experiências profissionais', input_html: { class: 'profile-info' } %>
+      <button type="submit" class="button">ATUALIZAR PERFIL</button>
 
-  <%= link_to 'VOLTAR PARA PERFIL', candidate_path(@candidate), class: 'button button-transparent' %>
-
+      <%= link_to 'VOLTAR', candidate_path(@candidate), class: 'button ghost d-block text-center mt-3 mb-5' %>
     <% end %>
   </div>
-
 </div>
