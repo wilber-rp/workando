@@ -110,6 +110,10 @@
   }
 }
 
+.icon-color-default {
+  color: #f6c9e1;
+}
+
 .card-show-match {
   display: flex;
   flex-direction: column;
@@ -243,11 +247,64 @@
 
       .info-left {
         text-align: left;
-        font-size: 24px;
       }
 
       .info-right {
         text-align: right;
+      }
+    }
+
+    #how-candidates{
+      margin-top: 48px;
+    }
+
+
+    .big-list {
+      margin: auto;
+      background: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      max-width: 550px;
+      padding: 12px;
+      color: black;
+      list-style: none;
+      width: 100%;
+
+
+      .info-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        font-size: 18px;
+      }
+
+      hr {
+        width: 85%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .photo-candidate {
+        width: 50px;
+        height: 50px;
+        text-align: left;
+        border-radius: 50%;
+      }
+
+      .name-center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        a {
+          color: #000;
+          text-decoration: none;
+          font-size: 28px;
+          text-align: center;
+        }
       }
     }
   }
@@ -306,7 +363,6 @@
         .thumb{
           color: #f6c9e1;
         }
-
       }
     }
   }
