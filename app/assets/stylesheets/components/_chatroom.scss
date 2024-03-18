@@ -29,11 +29,12 @@
     color: #676767;
 
     .chat-top {
-      font-size: 40px;
+      font-size: 32px;
       display: flex;
       justify-content: space-between;
       width: 100%;
       padding-right: 56px;
+      padding-bottom: 8px;
       box-shadow: rgba(0, 0, 0, 0.24) 0px 7px 8px;
 
       .profile-picture {
