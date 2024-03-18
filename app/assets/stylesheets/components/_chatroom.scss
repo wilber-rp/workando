@@ -29,11 +29,12 @@
     color: #676767;
 
     .chat-top {
-      font-size: 40px;
+      font-size: 32px;
       display: flex;
       justify-content: space-between;
       width: 100%;
       padding-right: 56px;
+      padding-bottom: 8px;
       box-shadow: rgba(0, 0, 0, 0.24) 0px 7px 8px;
 
       .profile-picture {
@@ -54,7 +55,7 @@
       gap: 20px;
 
       .current-user {
-        background-color: rgb(255, 255, 255);
+        background-color: #f5c2dd;
         color: rgb(51, 50, 50);
         display: flex;
         align-items: center;
@@ -71,7 +72,7 @@
       }
 
       .other-user {
-        background-color: rgb(255, 255, 255);
+        background-color: #dafeff;
         color: rgb(51, 50, 50);
         display: flex;
         align-items: center;
