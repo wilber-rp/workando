@@ -23,22 +23,25 @@
     <div class= "card-show-match">
     <% if @match.matched? %>
 
-<div class="buttons-chat">
-      <div class="button button-blue button-no-border">
+
+
       <% if @chatroom_match  %>
         <%= link_to 'CONVERSAR COM CANDIDATO', chatroom_path(@chatroom_match),style: 'text-decoration: none;' %>
       <% else %>
         <%= simple_form_for [@match, @chatroom] do |f| %>
-          <%= f.submit 'Iniciar conversa com candidato' %>
-
+          <%= f.submit 'INICIAR CONVERSA', class: "button text-center d-block mt-5" %>
         <% end %>
       <% end %>
-      </div>
-      </div>
       <% else %>
 
 
       <div class="buttons-match">
+        <div class="gradient-border">
+      <%= button_to job_dislike_path(match: @match, job_id: @match.job.id, dislike: true), method: :post, class:"btn-dislike-match" do  %>
+        <i class="fa-regular fa-thumbs-down"></i>
+      <% end %>
+      </div>
+      <div class="gradient-border">
       <%= button_to job_like_path(job_id: @match.job.id, match_id: @match.id), method: :post, class: "btn-like-match" do %>
         <i class="fa-regular fa-thumbs-up"></i>
       <% end %>
@@ -46,6 +49,7 @@
         <i class="fa-regular fa-thumbs-down"></i>
     </div>
       <% end %>
+      </div>
     <% end %>
     </div>
 </div>

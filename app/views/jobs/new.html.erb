@@ -17,8 +17,8 @@
           <%= f.input :lat, label: false, input_html: { id: 'latSelect', class: "profile-info d-none"} %>
         </div>
       </div>
-    <%= f.submit "ANUNCIAR VAGA", class: 'button button-blue mt-5' %>
-    <%= link_to 'VOLTAR PARA PERFIL', company_path(@company), class: 'button button-transparent' %>
+    <%= f.submit "ANUNCIAR VAGA", class: 'button mt-5' %>
+    <%= link_to 'VOLTAR PARA PERFIL', company_path(@company), class: 'button ghost d-block text-center mt-3 mb-5' %>
     <% end %>
   </div>
 </div>
