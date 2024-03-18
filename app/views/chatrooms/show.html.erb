@@ -2,8 +2,6 @@
      data-controller="chatroom-subscription"
      data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
      data-chatroom-subscription-current-user-id-value="<%= current_user.id %>">
-
-
   <div class="chat-box">
     <div class="chat-top">
       <% if current_user.role_company? %>
@@ -12,31 +10,29 @@
         <% else %>
           <%= image_tag("Imagem perfil candidato.png", alt: "Avatar do usuário", class: "profile-picture") %>
         <% end %>
-          <span><%= "#{@chatroom.match.candidate.first_name.capitalize} #{@chatroom.match.candidate.last_name.capitalize}"%></span>
+        <span><%= "#{@chatroom.match.candidate.first_name.capitalize} #{@chatroom.match.candidate.last_name.capitalize}"%></span>
       <% else %>
         <% if @chatroom.match.job.company.photo.attached? %>
           <%= cl_image_tag current_user.company.photo.key, height: 30, width: 30, crop: :fill, class: "profile-picture" %>
           <%= @chatroom.match.job.company.company_name.capitalize %>
         <% else %>
           <%= image_tag("imagem_contratante.png", alt: "Avatar do usuário", class: "profile-picture") %>
-        <%= @chatroom.match.job.company.company_name.capitalize %>
+          <%= @chatroom.match.job.company.company_name.capitalize %>
         <% end %>
       <% end %>
     </div>
-
-
     <div class="chat-body" data-chatroom-subscription-target="messages">
       <% @chatroom.messages.each do |message| %>
         <%= render "messages/message", message: message %>
       <% end %>
     </div>
-
-
-
-      <%= simple_form_for [@chatroom, @message], html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" } } do |f| %>
+    <%= simple_form_for [@chatroom, @message], html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" } } do |f| %>
       <div class="chat-bottom">
         <%= f.input :content, label: false, placeholder: "Escreva sua mensagem", id: "form-chat" %>
-        <%= f.submit "Enviar", class: "btn btn-primary", id: "btn-chat" %>
+        <%= f.submit "<i class='fa-regular fa-paper-plane'></i> Iniciar conversa", class: "btn btn-primary", id: "hidden-submit", style: "display: none;" %>
+        <a href="#" class="btn btn-primary" id="btn-chat" onclick="document.getElementById('hidden-submit').click(); return false;">
+          <i class="fa-regular fa-paper-plane"></i>
+        </a>
       <% end %>
     </div>
   </div>
