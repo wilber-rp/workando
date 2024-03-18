@@ -1,45 +1,39 @@
-
-
-
 <div class="chatroom"
      data-controller="chatroom-subscription"
      data-chatroom-subscription-chatroom-id-value="<%= @chatroom.id %>"
      data-chatroom-subscription-current-user-id-value="<%= current_user.id %>">
-
-
-
-<div >
-  <% if current_user.role_company? %>
-    <% if @chatroom.match.candidate.photo.attached? %>
-      <%= cl_image_tag @chatroom.match.candidate.photo.key, height: 30, width: 30, crop: :fill, class: "profile-picture" %>
-    <% else %>
-      <%= image_tag("Imagem perfil candidato.png", alt: "Avatar do usuário", class: "profile-picture") %>
-    <% end %>
-      <span><%= @chatroom.match.candidate.first_name %></span>
-  <% else %>
-    <% if @chatroom.match.job.company.photo.attached? %>
-      <%= cl_image_tag @chatroom.match.job.company.photo.key, height: 30, width: 30, crop: :fill, class: "profile-picture" %>
-      <%= @chatroom.match.job.company.company_name %>
-    <% else %>
-      <%= image_tag("imagem_contratante.png", alt: "Avatar do usuário", class: "profile-picture") %>
-     <%= @chatroom.match.job.company.company_name %>
-    <% end %>
-  <% end %>
-</div>
-
-  <div class="messages" data-chatroom-subscription-target="messages">
-    <% @chatroom.messages.each do |message| %>
-      <%= render "messages/message", message: message %>
-    <% end %>
+  <div class="chat-box">
+    <div class="chat-top">
+      <% if current_user.role_company? %>
+        <% if @chatroom.match.candidate.photo.attached? %>
+          <%= cl_image_tag @chatroom.match.candidate.photo.key, height: 30, width: 30, crop: :fill, class: "profile-picture" %>
+        <% else %>
+          <%= image_tag("Imagem perfil candidato.png", alt: "Avatar do usuário", class: "profile-picture") %>
+        <% end %>
+        <span><%= "#{@chatroom.match.candidate.first_name.capitalize} #{@chatroom.match.candidate.last_name.capitalize}"%></span>
+      <% else %>
+        <% if @chatroom.match.job.company.photo.attached? %>
+          <%= cl_image_tag @chatroom.match.job.company.photo.key, height: 30, width: 30, crop: :fill, class: "profile-picture" %>
+          <%= @chatroom.match.job.company.company_name.capitalize %>
+        <% else %>
+          <%= image_tag("imagem_contratante.png", alt: "Avatar do usuário", class: "profile-picture") %>
+          <%= @chatroom.match.job.company.company_name.capitalize %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="chat-body" data-chatroom-subscription-target="messages">
+      <% @chatroom.messages.each do |message| %>
+        <%= render "messages/message", message: message %>
+      <% end %>
+    </div>
+    <%= simple_form_for [@chatroom, @message], html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" } } do |f| %>
+      <div class="chat-bottom">
+        <%= f.input :content, label: false, placeholder: "Escreva sua mensagem", id: "form-chat" %>
+        <%= f.submit "<i class='fa-regular fa-paper-plane'></i> Iniciar conversa", class: "btn btn-primary", id: "hidden-submit", style: "display: none;" %>
+        <a href="#" class="btn btn-primary" id="btn-chat" onclick="document.getElementById('hidden-submit').click(); return false;">
+          <i class="fa-regular fa-paper-plane"></i>
+        </a>
+      <% end %>
+    </div>
   </div>
-
-  <%= simple_form_for [@chatroom, @message],
-    html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex" } do |f| %>
-    <%= f.input :content,
-      label: false,
-      placeholder: "Type your message here",
-      wrapper_html: {class: "flex-grow-1"} %>
-    <%= f.submit "Send", class: "btn btn-primary mb-3" %>
-  <% end %>
-
 </div>

@@ -1,15 +1,23 @@
-<div class="container mt-4">
-
-  <h2>EDITAR VAGA</h2>
-
-  <div class="container text-start">
+<div class='out-container'>
+  <div data-controller="cep">
     <%= simple_form_for @job do |f| %>
-      <%= f.input  :description, input_html: { class: "profile-info" }, label: "Descrição da vaga" %>
-      <%= f.input  :address, input_html: { class: "profile-info" }, label: "Endereço" %>
-      <%= f.input  :salary, input_html: { class: "profile-info" }, label: "Salário por hora" %>
-      <%= f.collection_select :interest_area_id, @interest_areas, :id, :name, { include_blank: 'Selecione uma categoria' }, { selected: @job.interest_area_id } %>
-      <%= f.submit  "Editar job", class: 'button button-blue button-no-border' %>
-  </div>
+      <div class='container-forms-custom'>
+        <div class=title>
+          <h2>Editar vaga</h2>
+        </div>
+        <div class="forms">
+          <%= f.collection_select :interest_area_id, @interest_areas, :id, :name, { include_blank: 'Selecione uma área' }, { selected: @job.interest_area_id, class: "profile-info",  id: 'input-area' } %>
+          <%= f.input  :cep, placeholder: 'CEP', label: false, input_html: { id: 'cepSelect', class: "profile-info", data: { action: 'change->cep#updateAddress' }}%>
+          <%= f.input  :address, placeholder: 'Endereço', label: false, input_html: { id: 'addressSelect', class: "profile-info" } %>
+          <%= f.input  :city, placeholder: 'Cidade', label: false, input_html: { id: 'citySelect', class: "profile-info" } %>
+          <%= f.input  :description, placeholder: 'Descrição da vaga', label: false, input_html: { class: "profile-info" } %>
+          <%= f.input  :salary, placeholder: 'Valor hora', label: false, input_html: { class: "profile-info" } %>
+          <%= f.input :long, label: false, input_html: { id: 'longSelect', class: "profile-info d-none"} %>
+          <%= f.input :lat, label: false, input_html: { id: 'latSelect', class: "profile-info d-none"} %>
+        </div>
+      </div>
+    <%= f.submit "confirmar alterações", class: 'button mt-5' %>
     <% end %>
+    <%= link_to 'Voltar', job_path, class: "button ghost d-block text-center mt-3 mb-5" %>
   </div>
 </div>

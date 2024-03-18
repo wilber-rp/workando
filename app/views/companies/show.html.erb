@@ -1,33 +1,36 @@
-<div class="container my-3 mb-5">
-  <h2>MEU PERFIL</h2>
-
-  <% if @company.photo.present? %>
-  <%# se tiver foto adicionada vai motrar  %>
-  <%= cl_image_tag @company.photo.key, height: 300, width: 400, crop: :fill, class:"profile-picture" %>
-<% else %>
-<%# vai mostrar essa pre definida %>
-  <%= image_tag("imagem_contratante.png", alt:"Avatar do usuário", class:"profile-picture") %>
-<% end %>
-
-  <div class="profile-info mt-3"style="background-color: white; color: #65656B">
-    <p><strong>Nome:</strong> <%= @company.company_name %></p>
-<hr>
- <p><strong>CNPJ:</strong> <%= @company.cnpj %></p>
-<hr>
- <p><strong>e-mail:</strong> <%= @company.user.email %></p>
-<hr>
-    <p><strong>Breve descrição da empresa:</strong> <%= @company.company_description %></p>
-  </div>
-
-  <div class="btn-group-vertical w-100 mt-3">
-    <%= link_to 'ANUNCIAR UMA VAGA', new_job_path, class: 'button button-blue button-no-border' %>
-
-    <div class="flex-edit-delete w-100">
-      <%= link_to 'MINHAS VAGAS', root_path, class: 'button button-transparent' %>
-      <%= link_to 'EDITAR PERFIL', edit_company_path(@company), class: 'button button-transparent' %>
+<div class="card-details-container">
+  <div class="container-infos">
+    <div class="profile-photo">
+      <% if @company.photo.present? %> <%# se tiver foto adicionada vai motrar  %>
+          <%= cl_image_tag @company.photo.key, height: 300, width: 400, crop: :fill, class:"profile-picture" %>
+      <% else %>
+        <%= image_tag("imagem_contratante.png", alt:"Avatar do usuário", class:"profile-picture") %> <%# vai mostrar essa pre definida %>
+      <% end %>
     </div>
 
-    <%= link_to 'DELETAR PERFIL', company_path(@company), data: { turbo_method: :delete }, class: 'button button-red button-no-border' %>
-    <%# <%= link_to "VOLTAR PARA VAGAS", jobs_path, class: ' button button-transparent' %> 
+    <div class="list">
+      <div class="info-row">
+        <div class="info-left">Nome:</div>
+        <div class="info-right" id="info-title"><strong><%= @company.company_name %></strong></div>
+      </div>
+      <hr>
+      <div class="info-row">
+        <div class="info-left">CNPJ:</div>
+        <div class="info-right"><strong><%= @company.cnpj %></strong></div>
+      </div>
+      <hr>
+      <div class="info-row">
+        <div class="info-left">E-mail:</div>
+        <div class="info-right"><strong><%= @company.user.email %></strong></div>
+      </div>
+      <hr>
+      <div class="info-row">
+        <div class="info-left">Descrição da empresa:</div>
+        <div class="info-right"><strong><%= @company.company_description %></strong></div>
+      </div>
+    </div>
   </div>
+
+  <%= link_to 'NOVA VAGA', new_job_path, class: 'button d-block mt-5' %>
+  <%= link_to 'EDITAR PERFIL', edit_company_path(@company), class: 'button ghost d-block mt-3 mb-5' %>
 </div>

@@ -1,32 +1,51 @@
-<div class="container mt-4">
-  <h2>MEU PERFIL</h2>
+<div class="card-details-container">
+  <div class="container-infos">
+    <div class="profile-photo">
+      <% if @candidate.photo.present? %>
+        <%= cl_image_tag @candidate.photo.key, height: 300, width: 400, crop: :fill, class:"profile-picture" %>
+      <% else %>
+        <%= image_tag("Imagem perfil candidato.png", alt:"Avatar do usuário", class:"profile-picture") %>
+      <% end %>
+    </div>
 
-  <% if @candidate.photo.present? %>
-   <%= cl_image_tag @candidate.photo.key, height: 300, width: 400, crop: :fill, class:"profile-picture" %>
-  <% else %>
-   <%= image_tag("Imagem perfil candidato.png", alt:"Avatar do usuário", class:"profile-picture") %>
-  <% end %>
-  
-  <div class="profile-info mt-3"style="background-color: white; color: #65656B">
-    <p><strong>Nome: </strong> <%= @candidate.first_name %></p>
-<hr>
-    <p><strong>Sobrenome:</strong> <%= @candidate.last_name %></p>
-<hr>
-    <p><strong>CPF:</strong> <%= @candidate.cpf %></p>
-<hr>
-    <p><strong>Telefone:</strong> <%= @candidate.phone %></p>
-<hr>
-    <p><strong>CEP:</strong> <%= @candidate.cep %></p>
-<hr>
-    <p><strong>Cidade:</strong> <%= @candidate.city %></p>
-<hr>
-    <p><strong>Endereço:</strong> <%= @candidate.address %></p>
-<hr>
-    <p><strong>Experiências profissionais:</strong> <%= @candidate.experience %></p>
+    <div class ="list">
+      <div class="info-row">
+        <div class="info-left">Nome: </div>
+        <div class="info-right" id="info-title"><strong><%= @candidate.first_name %> <%= @candidate.last_name %></strong></div>
+      </div>
+      <hr>
+      <div class="info-row">
+        <div class="info-left">CPF:</div>
+        <div class="info-right"><strong><%= @candidate.cpf %></strong></div>
+      </div>
+      <hr>
+      <div class="info-row">
+        <div class="info-left">Telefone:</div>
+        <div class="info-right"><strong><%= @candidate.phone %></strong></div>
+      </div>
+      <hr>
+      <div class="info-row">
+        <div class="info-left">CEP:</div>
+        <div class="info-right"><strong><%= @candidate.cep %></strong></div>
+      </div>
+      <hr>
+      <div class="info-row">
+        <div class="info-left">Endereço:</div>
+        <div class="info-right"><strong><%= @candidate.address %></strong></div>
+      </div>
+      <hr>
+      <div class="info-row">
+        <div class="info-left">Cidade:</div>
+        <div class="info-right"><strong><%= @candidate.city %></strong></div>
+      </div>
+      <hr>
+      <div class="info-row">
+        <div class="info-left">Experiências profissionais:</div>
+        <div class="info-right"><strong><%= @candidate.experience %></strong></div>
+      </div>
+    </div>
   </div>
 
-
-
-  <%= link_to 'EDITAR PERFIL', edit_candidate_path(@candidate), class: "button button-transparent"  %>
-  <%= link_to "PROCURAR VAGAS", root_path, class: "button button-blue button-no-border" %>
+  <%= link_to "PROCURAR VAGAS", root_path, class: "button d-block mt-5" %>
+  <%= link_to 'EDITAR PERFIL', edit_candidate_path(@candidate), class: "button ghost d-block text-center mt-3 mb-5"  %>
 </div>

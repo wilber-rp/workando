@@ -9,3 +9,17 @@
   right: 50px;
   z-index: 1000;
 }
+
+#flash-alert {
+  background: #fff;
+  border-radius: 5px;
+  color: #404040;
+  font-weight: 500;
+  span {
+    font-weight: 700;
+  }
+
+  a {
+    font-size: 12px;
+  }
+}
