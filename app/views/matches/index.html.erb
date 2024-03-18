@@ -9,7 +9,7 @@
           <li class="list-group-item bg-transparent text-white"><i class="fa-solid fa-dollar-sign"></i> <strong>Função:</strong> <%= match.job.interest_area.name %></li>
           <li class="list-group-item bg-transparent text-white"><i class="fa-solid fa-briefcase"></i> <strong>Remuneração:</strong> R$<%= match.job.salary %> /h</li>
         <%  unless match.chatroom.nil? %>
-        <%# esta perguntando se o chatroom esta nulo %>
+        <%# esta perguntando se o chatroom esta nulo o unless pula essa linha se for nulo o if iria colocar essa linha%>
           <%= link_to 'Conversar com o contratante', chatroom_path(match.chatroom) %>
           <% end %>
         </ul>

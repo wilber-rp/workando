@@ -18,7 +18,7 @@
       <span><%= @chatroom.match.candidate.first_name %></span>
   <% else %>
     <% if @chatroom.match.job.company.photo.attached? %>
-      <%= cl_image_tag current_user.company.photo.key, height: 30, width: 30, crop: :fill, class: "profile-picture" %>
+      <%= cl_image_tag @chatroom.match.job.company.photo.key, height: 30, width: 30, crop: :fill, class: "profile-picture" %>
       <%= @chatroom.match.job.company.company_name %>
     <% else %>
       <%= image_tag("imagem_contratante.png", alt: "Avatar do usuário", class: "profile-picture") %>
