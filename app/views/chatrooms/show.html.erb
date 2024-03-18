@@ -12,7 +12,7 @@
         <% else %>
           <%= image_tag("Imagem perfil candidato.png", alt: "Avatar do usuário", class: "profile-picture") %>
         <% end %>
-          <span><%= "#{@chatroom.match.candidate.first_name.capitalize @chatroom.match.candidate.last_name.capitalize}"%></span>
+          <span><%= "#{@chatroom.match.candidate.first_name.capitalize} #{@chatroom.match.candidate.last_name.capitalize}"%></span>
       <% else %>
         <% if @chatroom.match.job.company.photo.attached? %>
           <%= cl_image_tag current_user.company.photo.key, height: 30, width: 30, crop: :fill, class: "profile-picture" %>

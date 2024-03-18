@@ -31,7 +31,9 @@ class CompaniesController < ApplicationController
   def update
     @company = current_user.company
     if @company.user == current_user
+      current_user.nickname = params[:company][:company_name]
       if @company.update(company_params)
+        current_user.save
         redirect_to company_path(@company)
       else
         render :edit
