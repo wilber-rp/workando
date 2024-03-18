@@ -1,0 +1,47 @@
+.list-title-h2 {
+  font-size: 28px;
+  color: #404040;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.list-card-title {
+  font-size: 18px;
+  margin: 0;
+  color: #404040;
+  font-weight: 600;
+}
+
+.list-leg {
+  font-size: 10px;
+  color: #707070;
+  margin: 0;
+}
+
+.list-item-card {
+  font-weight: 600;
+  color: #404040;
+  margin: 0;
+}
+
+.link-conv-contratante {
+  text-decoration: none;
+  margin-top: 30px;
+  margin-bottom: 5px;
+  span {
+    margin-right: 5px;
+    color: #f5c2dd;
+  }
+
+  a {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    color: #404040;
+    transition: 150ms;
+
+    &:hover {
+      color: #707070;
+    }
+  }
+}
