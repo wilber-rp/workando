@@ -87,7 +87,7 @@ class JobsController < ApplicationController
     @match.matched = true
     if @match.save
       Chatroom.new(match: @match)
-      redirect_to match_path(@match), notice: 'Parabéns, você formou um match.'
+      redirect_to match_path(@match), notice: 'Parabéns! Você deu match!'
     else
       render :new, status: :unprocessable_entity
     end
