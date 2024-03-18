@@ -49,27 +49,12 @@
       <% end %>
     </div>
   <% else %>
-<<<<<<< HEAD
-    <div class="buttons-match">
-      <div class="gradient-border">
-        <%= button_to job_dislike_path(match: @match, job_id: @match.job.id, dislike: true), method: :post, class:"btn-dislike-match" do  %>
-          <i class="fa-regular fa-thumbs-down"></i>
-        <% end %>
-      </div>
-      <div class="gradient-border">
-      <%= button_to job_like_path(job_id: @match.job.id, match_id: @match.id), method: :post, class: "btn-like-match" do %>
-        <i class="fa-regular fa-thumbs-up"></i>
-    </div>
-      <% end %>
-      </div>
-=======
   </div>
   <div class="buttons-match">
     <div class="gradient-border">
       <%= button_to job_dislike_path(match: @match, job_id: @match.job.id, dislike: true), method: :post, class:"btn-dislike-match" do  %>
       <i class="fa-regular fa-thumbs-down"></i>
       <% end %>
->>>>>>> e8e9b119e1bfbbcacd337fd64d0f1462fa1bd62c
     </div>
     <div class="gradient-border" id="like-green">
       <%= button_to job_like_path(job_id: @match.job.id, match_id: @match.id), method: :post, class: "btn-like-match" do %>
