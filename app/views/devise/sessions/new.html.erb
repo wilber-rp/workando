@@ -1,22 +1,77 @@
 <div class="container d-flex justify-content-center">
   <div class="custom-container">
-    <h1>Encontre seu <span>match</span> perfeito no mercado de trabalho com o <span>workando</span>.</h1>
+    <h1>
+      Encontre seu <span>match</span> perfeito no mercado de trabalho com o
+      <span>workando</span>.
+    </h1>
 
     <div class="card" id="container" data-controller="form-motion">
-      <div class="form-container sign-up-container" data-controller="formvalidation">
+      <div
+        class="form-container sign-up-container"
+        data-controller="formvalidation"
+      >
         <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "simple-form" }) do |f| %>
           <h3 id="sign-up-h3">Cadastre-se gratuitamente</h3>
           <div class="input-box">
-            <%= f.input :email, placeholder: 'E-mail', label: false, required: true, autofocus: true, input_html: { autocomplete: 'email', class: 'input' } %>
+            <%=
+              f.input :email,
+                      placeholder: 'E-mail',
+                      label: false,
+                      required: true,
+                      autofocus: true,
+                      input_html: {
+                        autocomplete: 'email',
+                        class: 'input',
+                      }
+            %>
           </div>
           <div class="input-box">
-            <%= f.input :password, required: true, placeholder: 'Senha', label: false, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length), input_html: { autocomplete: 'new-password', class: 'input' } %>
+            <%=
+              f.input :password,
+                      required: true,
+                      placeholder: 'Senha',
+                      label: false,
+                      hint:
+                        (
+                          if @minimum_password_length
+                            "#{@minimum_password_length} characters minimum"
+                          end
+                        ),
+                      input_html: {
+                        autocomplete: 'new-password',
+                        class: 'input',
+                      }
+            %>
           </div>
           <div class="input-box">
-            <%= f.input :password_confirmation, placeholder: 'Confirmar senha', label: false, required: true, input_html: { autocomplete: 'new-password', class: 'input' } %>
+            <%=
+              f.input :password_confirmation,
+                      placeholder: 'Confirmar senha',
+                      label: false,
+                      required: true,
+                      input_html: {
+                        autocomplete: 'new-password',
+                        class: 'input',
+                      }
+            %>
           </div>
           <div class="role-select">
-            <%= f.input :role, label: '', legend: false, collection: [['Quero trabalhar', :role_candidate], ['Quero contratar', :role_company]], as: :radio_buttons, input_html: { class: 'check-box' }, label_method: ->(item) { "<b>#{item.first}</b>".html_safe } %>
+            <%=
+              f.input :role,
+                      label: '',
+                      legend: false,
+                      collection: [
+                        ['Quero trabalhar', :role_candidate],
+                        ['Quero contratar', :role_company],
+                      ],
+                      as: :radio_buttons,
+                      input_html: {
+                        class: 'check-box',
+                      },
+                      label_method: ->(item) {
+                        "<b>#{item.first}</b>".html_safe
+                      }
+            %>
           </div>
           <%= f.button :submit, 'INICIAR CADASTRO', class: 'btn' %>
         <% end %>
@@ -25,14 +80,41 @@
         <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "simple-form" }) do |f| %>
           <h3 id="sign-in-h3">Entrar</h3>
           <div class="input-box">
-            <%= f.input :email, label: false, placeholder: 'e-mail', required: true, autofocus: true, input_html: { autocomplete: 'email', class: 'input' } %>
+            <%=
+              f.input :email,
+                      label: false,
+                      placeholder: 'e-mail',
+                      required: true,
+                      autofocus: true,
+                      input_html: {
+                        autocomplete: 'email',
+                        class: 'input',
+                      }
+            %>
           </div>
           <div class="input-box">
-            <%= f.input :password, label: false, placeholder: 'Senha', required: true, input_html: { autocomplete: 'current-password', class: 'input' } %>
+            <%=
+              f.input :password,
+                      label: false,
+                      placeholder: 'Senha',
+                      required: true,
+                      input_html: {
+                        autocomplete: 'current-password',
+                        class: 'input',
+                      }
+            %>
           </div>
           <div class="remember-box">
-            <%= f.input :remember_me, label: 'Mantenha-me logado', as: :boolean if devise_mapping.rememberable? %>
-            <%= link_to 'Esqueceu a senha?', new_password_path(resource_name), class: 'link-pass-forg' %>
+            <%=
+              if devise_mapping.rememberable?
+                f.input :remember_me, label: 'Mantenha-me logado', as: :boolean
+              end
+            %>
+            <%=
+              link_to 'Esqueceu a senha?',
+                      new_password_path(resource_name),
+                      class: 'link-pass-forg'
+            %>
           </div>
           <%= f.button :submit, 'ENTRAR', class: 'btn' %>
         <% end %>
@@ -41,7 +123,7 @@
       <div class="overlay-container">
         <div class="overlay">
           <div class="overlay-panel overlay-left">
-            <h1 class="overlay-title">Bom te ver por aqui!</h1>
+            <h1 class="overlay-title text-center">Bom te ver por aqui!</h1>
             <p>Entre na sua conta e não deixe nenhuma oportunidade passar.</p>
             <button class="ghost btn" id="signIn">Entrar</button>
           </div>

@@ -90,11 +90,11 @@
     <% else %>
       <%# mostrar a parte do candidato. %>
       <div
-        class="card-details-container"
+        class="card-details-container d-flex flex-column justify-content-center"
         data-controller="job-animation"
         data-job-animation-target="divAnimate"
       >
-        <div class="container-infos my-3">
+        <div class="container-infos mt-3 mb-1">
           <div class="list">
             <h1 class="cand-detail-h1"><%= @job.interest_area.name %></h1>
             <div class="info-row mb-4 d-flex justify-content-between">
@@ -128,25 +128,25 @@
               data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
             ></div>
           </div>
-          <div class="buttons-match">
-            <div class="gradient-border">
-              <%= button_to job_matches_path(job_id: @job.id, dislike: true), method: :post, class:"btn-dislike-match" do  %>
-                <i
-                  class="fa-regular fa-thumbs-down"
-                  data-job-animation-target="jobLeft"
-                  data-action="click->job-animation#left"
-                ></i>
-              <% end %>
-            </div>
-            <div class="gradient-border">
-              <%= button_to job_matches_path(job_id: @job.id, dislike: false), method: :post, class: "btn-like-match" do %>
-                <i
-                  class="fa-regular fa-thumbs-up"
-                  data-job-animation-target="jobRight"
-                  data-action="click->job-animation#right"
-                ></i>
-              <% end %>
-            </div>
+        </div>
+        <div class="buttons-match">
+          <div class="gradient-border">
+            <%= button_to job_matches_path(job_id: @job.id, dislike: true), method: :post, class:"btn-dislike-match" do  %>
+              <i
+                class="fa-regular fa-thumbs-down"
+                data-job-animation-target="jobLeft"
+                data-action="click->job-animation#left"
+              ></i>
+            <% end %>
+          </div>
+          <div class="gradient-border" id="like-green">
+            <%= button_to job_matches_path(job_id: @job.id, dislike: false), method: :post, class: "btn-like-match" do %>
+              <i
+                class="fa-regular fa-thumbs-up"
+                data-job-animation-target="jobRight"
+                data-action="click->job-animation#right"
+              ></i>
+            <% end %>
           </div>
         </div>
       </div>
