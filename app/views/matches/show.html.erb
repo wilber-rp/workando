@@ -5,61 +5,64 @@
     <% else %>
       <%= image_tag("Imagem perfil candidato.png", alt:"Avatar do usuário", class:"profile-picture", style:"display: block; margin: 0 auto;") %>
     <% end %>
-      <h2 id="candidate-name"><%="#{@match.candidate.first_name.capitalize} #{@match.candidate.last_name.capitalize}"%> </h2>
-      <div class="list" id="not-flex-list">
-        <hr>
-        <div class="info-row mb-4">
-          <div class="info-left">
-            <p class="list-leg">Cidade: </p>
-          </div>
-          <h3 class="list-card-title"><%= @match.candidate.city %></h3>
+    <h2 id="candidate-name"><%="#{@match.candidate.first_name.capitalize} #{@match.candidate.last_name.capitalize}"%> </h2>
+    <div class="list" id="not-flex-list">
+      <hr>
+      <div class="info-row mb-4">
+        <div class="info-left">
+          <p class="list-leg">Cidade: </p>
         </div>
-        <hr>
-        <div class="info-row mb-4">
-          <div class="info-left">
-            <p class="list-leg">Endereço: </p>
-          </div>
-          <h3 class="list-card-title"><%= @match.candidate.address %></h3>
+        <h3 class="list-card-title"><%= @match.candidate.city %></h3>
+      </div>
+      <hr>
+      <div class="info-row mb-4">
+        <div class="info-left">
+          <p class="list-leg">Endereço: </p>
         </div>
-        <hr>
-
-        <div class="info-row mb-4">
-          <div class="info-left">
-            <p class="list-leg">Telefone: </p>
-          </div>
-          <h3 class="list-card-title"><%= @match.candidate.phone %></h3>
+        <h3 class="list-card-title"><%= @match.candidate.address %></h3>
+      </div>
+      <hr>
+      <div class="info-row mb-4">
+        <div class="info-left">
+          <p class="list-leg">Telefone: </p>
         </div>
-        <hr >
-
-        <div class="info-row">
-          <p class="list-leg m-0">Experiência: </p>
-          <p class="list-item-card"><%= @match.candidate.experience %></p>
-        </div>
+        <h3 class="list-card-title"><%= @match.candidate.phone %></h3>
+      </div>
+      <hr>
+      <div class="info-row">
+        <p class="list-leg m-0">Experiência: </p>
+        <p class="list-item-card"><%= @match.candidate.experience %></p>
       </div>
     </div>
-
-    <div class= "card-show-match">
-      <% if @match.matched? %>
-        <% if @chatroom_match  %>
-          <%= link_to 'CONVERSAR COM CANDIDATO', chatroom_path(@chatroom_match) %>
-        <% else %>
-          <%= simple_form_for [@match, @chatroom] do |f| %>
-            <%= f.submit 'INICIAR CONVERSA', class: "button text-center d-block mt-5" %>
-          <% end %>
-        <% end %>
+    <% if @match.matched? %>
+      <% if @chatroom_match  %>
+        <p class="link-conv-contratante">
+          <span><i class="fa-regular fa-comment"></i></span>
+          <%= link_to 'Conversar com candidato', chatroom_path(@chatroom_match) %>
+        </p>
+        <div class= "card-show-match">
       <% else %>
-        <div class="buttons-match">
-          <div class="gradient-border">
-            <%= button_to job_dislike_path(match: @match, job_id: @match.job.id, dislike: true), method: :post, class:"btn-dislike-match" do  %>
-              <i class="fa-regular fa-thumbs-down"></i>
-            <% end %>
-          </div>
-          <div class="gradient-border">
-            <%= button_to job_like_path(job_id: @match.job.id, match_id: @match.id), method: :post, class: "btn-like-match" do %>
-              <i class="fa-regular fa-thumbs-up"></i>
-            <% end %>
-          </div>
-        </div>
+        <%= simple_form_for [@match, @chatroom] do |f| %>
+          <p class="link-conv-contratante">
+            <span><i class="fa-regular fa-comment"></i></span>
+            <a href="#" onclick="document.querySelector('form').submit();">Iniciar conversa</a>
+          </p>
+        <% end %>
       <% end %>
     </div>
+  <% else %>
+    <div class="buttons-match">
+      <div class="gradient-border">
+        <%= button_to job_dislike_path(match: @match, job_id: @match.job.id, dislike: true), method: :post, class:"btn-dislike-match" do  %>
+          <i class="fa-regular fa-thumbs-down"></i>
+        <% end %>
+      </div>
+      <div class="gradient-border">
+        <%= button_to job_like_path(job_id: @match.job.id, match_id: @match.id), method: :post, class: "btn-like-match" do %>
+          <i class="fa-regular fa-thumbs-up"></i>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
 </div>
