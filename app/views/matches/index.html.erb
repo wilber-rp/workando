@@ -1,21 +1,6 @@
 <div class="card-details-container">
   <h2 class="list-title-h2">Deu match</h2>
 
-<<<<<<< HEAD
-
-    <% @matches.each do |match| %>
-
-      <div class="card bg-card-job" >
-        <ul class="list-group list-group-flush ">
-          <li class="list-group-item bg-transparent text-white"><i class="fa-solid fa-quote-left"></i> <strong>Empresa:</strong> <%= match.job.company.company_name %></li>
-          <li class="list-group-item bg-transparent text-white"><i class="fa-solid fa-dollar-sign"></i> <strong>Função:</strong> <%= match.job.interest_area.name %></li>
-          <li class="list-group-item bg-transparent text-white"><i class="fa-solid fa-briefcase"></i> <strong>Remuneração:</strong> R$<%= match.job.salary %> /h</li>
-        <%  unless match.chatroom.nil? %>
-        <%# esta perguntando se o chatroom esta nulo o unless pula essa linha se for nulo o if iria colocar essa linha%>
-          <%= link_to 'Conversar com o contratante', chatroom_path(match.chatroom) %>
-          <% end %>
-        </ul>
-=======
   <% @matches.each do |match| %>
     <div class="container-infos my-3">
       <div class="list">
@@ -24,7 +9,6 @@
             <i class="fa-regular fa-building icon-color-default"></i>
           </div>
           <h3 class="list-card-title"><%= match.job.company.company_name %></h3>
->>>>>>> a422e79c7e9b245458e309fe7a0a5830190fc8d1
         </div>
         <div class="info-row">
           <p class="list-leg m-0">Cargo:</p>
@@ -39,7 +23,7 @@
           <%# esta perguntando se o chatroom esta nulo %>
           <p class="link-conv-contratante">
             <span><i class="fa-regular fa-comment"></i></span>
-            <%= link_to 'Iniciar conversa', chatroom_path(match.chatroom) %>
+            <%= link_to 'Entrar na conversa', chatroom_path(match.chatroom) %>
           </p>
         <% end %>
       </div>
