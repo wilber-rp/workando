@@ -16,5 +16,6 @@ class AddFieldsToUsers < ActiveRecord::Migration[7.1]
     add_column :users, :state, :string
     add_column :users, :lat, :float
     add_column :users, :long, :float
+    add_column :users, :is_company, :boolean
   end
 end

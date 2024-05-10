@@ -1,7 +1,7 @@
 <div class="mini-card-jobs-container">
-  <% if @jobs.none?  %>
+  <% if @jobs.nil?  %>
     <%# Se não houver Job aparecerá a mensagem abaixo %>
-    <% if @current_user.role_candidate? %>
+
       <div id="flash-alert" class="flash alert alert-dismissible fade show" role="alert" style="background-color: #A30155;">
         <p class="mb-0" style="color: white;"><span>Oops!</span> 😱 Não há vagas disponíveis!</p>
         <a data-bs-dismiss="alert" aria-label="Close" style="position: absolute; top: 5px; right: 8px; color: white;">
@@ -11,21 +11,11 @@
       <div class="d-flex w-100 justify-content-center" style="font-size:200px; margin-top:200px; color:#F5E4ED;">
         <i class="fa-regular fa-circle-xmark"></i>
       </div>
-    <% else %>
-      <div id="flash-alert" class="flash alert alert-dismissible fade show" role="alert" style="background-color: #A30155;">
-        <p class="mb-0" style="color: white;"><span>Oops!</span> 😱 Você ainda não postou nenhuma vaga!</p>
-        <a data-bs-dismiss="alert" aria-label="Close" style="position: absolute; top: 5px; right: 8px; color: white">
-          <i class="fas fa-times"></i>
-        </a>
-      </div>
-      <div class="d-flex w-100 justify-content-center" style="font-size:200px; margin-top:200px; color:#F5E4ED;">
-        <i class="fa-regular fa-circle-xmark"></i>
-      </div>
-    <% end %>
+
   <% else %>
     <%# Executar as linhas de baixo %>
 
-    <% if current_user.company.present? && current_user.company.jobs.any? %>
+    <% if current_user.present? && current_user.jobs.any? %>
       <%# esta vendo se o currente.user e company e se tiver vagas vai mostrar o q esta a baixo %>
       <h2 class="text-center mb-3">Minhas vagas</h2>
       <% @jobs.each do |job| %>
@@ -50,7 +40,7 @@
         <% end %>
       <% end %>
       <%= link_to 'NOVA VAGA', new_job_path, class: 'button d-block mt-5 text-center' %>
-      <%= link_to 'VOLTAR', company_path(current_user.company), class: 'button ghost d-block text-center mt-3 mb-5' %>
+      <%# <%= link_to 'VOLTAR', company_path(current_user.company), class: 'button ghost d-block text-center mt-3 mb-5' %> %>
     <% else %>
       <%# mostrar a parte do candidato. %>
       <div class="card-details-container d-flex flex-column justify-content-center" data-controller="job-animation" data-job-animation-target="divAnimate">

@@ -43,19 +43,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_143000) do
   end
 
   create_table "candidate_interest_areas", force: :cascade do |t|
-    t.bigint "candidate_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "interest_area_id"
-    t.index ["candidate_id"], name: "index_candidate_interest_areas_on_candidate_id"
-    t.index ["interest_area_id"], name: "index_candidate_interest_areas_on_interest_area_id"
-  end
-
-  create_table "candidates", force: :cascade do |t|
     t.bigint "user_id", null: false
+    t.bigint "interest_area_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_candidates_on_user_id"
+    t.index ["interest_area_id"], name: "index_candidate_interest_areas_on_interest_area_id"
+    t.index ["user_id"], name: "index_candidate_interest_areas_on_user_id"
   end
 
   create_table "chatrooms", force: :cascade do |t|
@@ -70,13 +63,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_143000) do
   end
 
   create_table "distances", force: :cascade do |t|
-    t.bigint "candidate_id", null: false
+    t.bigint "user_id", null: false
     t.bigint "job_id", null: false
     t.float "distance"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["candidate_id"], name: "index_distances_on_candidate_id"
     t.index ["job_id"], name: "index_distances_on_job_id"
+    t.index ["user_id"], name: "index_distances_on_user_id"
   end
 
   create_table "interest_areas", force: :cascade do |t|
@@ -104,13 +97,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_143000) do
 
   create_table "matches", force: :cascade do |t|
     t.boolean "matched", default: false
-    t.bigint "candidate_id", null: false
+    t.bigint "user_id", null: false
     t.bigint "job_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "dislike"
-    t.index ["candidate_id"], name: "index_matches_on_candidate_id"
     t.index ["job_id"], name: "index_matches_on_job_id"
+    t.index ["user_id"], name: "index_matches_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -131,7 +124,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_143000) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "is_company"
     t.string "nickname"
     t.string "first_name"
     t.string "last_name"
@@ -149,23 +141,23 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_143000) do
     t.string "state"
     t.float "lat"
     t.float "long"
+    t.boolean "is_company"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "candidate_interest_areas", "candidates"
   add_foreign_key "candidate_interest_areas", "interest_areas"
-  add_foreign_key "candidates", "users"
+  add_foreign_key "candidate_interest_areas", "users"
   add_foreign_key "chatrooms", "matches"
   add_foreign_key "chatrooms", "users", column: "receiver_id"
   add_foreign_key "chatrooms", "users", column: "sender_id"
-  add_foreign_key "distances", "candidates"
   add_foreign_key "distances", "jobs"
+  add_foreign_key "distances", "users"
   add_foreign_key "jobs", "users"
-  add_foreign_key "matches", "candidates"
   add_foreign_key "matches", "jobs"
+  add_foreign_key "matches", "users"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
 end

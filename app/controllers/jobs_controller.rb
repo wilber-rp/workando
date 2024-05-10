@@ -1,42 +1,38 @@
 class JobsController < ApplicationController
   def index
-    if current_user.role == "role_company"
-      @jobs = Job.where(company_id: current_user.company.id)
-      # Esta realizando uma comparação trazer job where o atributo company_id seja igual ao current_user company.id vai trazer todos jobs relazionado com os ids
-    else
-      mapbox_api_key = ENV['MAPBOX_API_KEY']
-      alljobs = Job.where(interest_area_id: current_user.candidate.interest_areas)
+    mapbox_api_key = ENV['MAPBOX_API_KEY']
+    alljobs = Job.where(interest_area_id: current_user.interest_areas)
 
-      alljobs.each do |job|
-        if job.lat != nil && job.lat != "undefined" && current_user.candidate.lat != nil && current_user.candidate.lat != "undefined"
-          url = "https://api.mapbox.com/directions-matrix/v1/mapbox/driving/#{current_user.candidate.long.to_f},#{current_user.candidate.lat.to_f};#{job.long.to_f},#{job.lat.to_f}?sources=1&annotations=distance&access_token=#{mapbox_api_key}"
-          json_data = URI.open(url).read
-          parsed_data = JSON.parse(json_data)
-          distance = (parsed_data['distances'][0][0] / 1000.0).round(1)
-          existing_distance = Distance.find_by(candidate: current_user.candidate, job: job)
+    alljobs.each do |job|
+      if job.lat != nil && job.lat != "undefined" && current_user.lat != nil && current_user.lat != "undefined"
+        url = "https://api.mapbox.com/directions-matrix/v1/mapbox/driving/#{current_user.long.to_f},#{current_user.lat.to_f};#{job.long.to_f},#{job.lat.to_f}?sources=1&annotations=distance&access_token=#{mapbox_api_key}"
+        json_data = URI.open(url).read
+        parsed_data = JSON.parse(json_data)
+        distance = (parsed_data['distances'][0][0] / 1000.0).round(1)
+        existing_distance = Distance.find_by(candidate: current_user, job: job)
 
+        if existing_distance
+          existing_distance.update(distance: distance)
+          puts "Instância de Distance existente atualizada com sucesso!"
+        else
+          distance = Distance.create(candidate: current_user.candidate, job: job, distance: distance)
 
-          if existing_distance
-            existing_distance.update(distance: distance)
-            puts "Instância de Distance existente atualizada com sucesso!"
+          if distance.persisted?
+            puts "Nova instância de Distance criada com sucesso!"
           else
-            distance = Distance.create(candidate: current_user.candidate, job: job, distance: distance)
-
-            if distance.persisted?
-              puts "Nova instância de Distance criada com sucesso!"
-            else
-              puts "Falha ao criar nova instância de Distance."
-            end
+            puts "Falha ao criar nova instância de Distance."
           end
         end
       end
-      # @jobs = Job.where(interest_area_id: current_user.candidate.interest_areas).joins(:distances).order('distances.distance ASC')
-      @jobs = Job.where(interest_area_id: current_user.candidate.interest_areas).joins(:distances).where.not(id: Match.where(candidate_id: current_user.candidate.id).pluck(:job_id)).order('distances.distance ASC')
-      @job = @jobs.first
-      if @job != nil && @job.geocode != nil && @job.geocode.map != nil
-        @marker = @job.geocode.map { |job| { lat: @job.lat.to_f, lng: @job.long.to_f, info_popup_html: render_to_string(partial: 'info_popup', locals: { job: @job }) } }
-      end
+    end
+    # @jobs = Job.where(interest_area_id: current_user.candidate.interest_areas).joins(:distances).order('distances.distance ASC')
+    # @jobs = Job.where(interest_area_id: current_user.interest_areas).joins(:distances).where.not(id: Match.where(current_user_id: current_user.id).pluck(:job_id)).order('distances.distance ASC')
+    # @job = @jobs.first
+    @jobs = Job.all
+    @job = Job.last
 
+    if @job != nil && @job.geocode != nil && @job.geocode.map != nil
+      @marker = @job.geocode.map { |job| { lat: @job.lat.to_f, lng: @job.long.to_f, info_popup_html: render_to_string(partial: 'info_popup', locals: { job: @job }) } }
     end
   end
 
@@ -47,12 +43,11 @@ class JobsController < ApplicationController
   def new
     @job = Job.new
     @interest_areas = InterestArea.all
-    @company = current_user.company
   end
 
   def create
     @job = Job.new(job_params)
-    @job.company = current_user.company
+    @job.user = current_user
 
     if @job.save!
       redirect_to job_path(@job)
