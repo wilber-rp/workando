@@ -144,7 +144,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_143000) do
     t.string "address"
     t.string "number"
     t.string "complement"
-    t.string "neighborhoot"
+    t.string "neighborhood"
     t.string "city"
     t.string "state"
     t.float "lat"

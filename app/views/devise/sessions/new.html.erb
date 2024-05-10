@@ -55,24 +55,204 @@
                       }
             %>
           </div>
-          <div class="role-select">
+
+          <div class="input-box">
             <%=
-              f.input :role,
-                      label: '',
-                      legend: false,
-                      collection: [
-                        ['Quero trabalhar', :role_candidate],
-                        ['Quero contratar', :role_company],
-                      ],
-                      as: :radio_buttons,
+              f.input :first_name,
+                      placeholder: 'Nome',
+                      label: false,
+                      required: false,
                       input_html: {
-                        class: 'check-box',
-                      },
-                      label_method: ->(item) {
-                        "<b>#{item.first}</b>".html_safe
+                        autocomplete: 'first_name',
+                        class: 'input',
                       }
             %>
           </div>
+
+          <div class="input-box">
+            <%=
+              f.input :last_name,
+                      placeholder: 'Sobrenome',
+                      label: false,
+                      required: false,
+                      input_html: {
+                        autocomplete: 'last_name',
+                        class: 'input',
+                      }
+            %>
+          </div>
+
+          <div class="input-box">
+            <%=
+              f.input :cpf,
+                      placeholder: 'CPF',
+                      label: false,
+                      required: false,
+                      input_html: {
+                        autocomplete: 'cpf',
+                        class: 'input',
+                      }
+            %>
+          </div>
+
+          <div class="input-box">
+            <%=
+              f.input :company_name,
+                      placeholder: 'Razão Social',
+                      label: false,
+                      required: false,
+                      input_html: {
+                        autocomplete: 'company_name',
+                        class: 'input',
+                      }
+            %>
+          </div>
+
+          <div class="input-box">
+            <%=
+              f.input :cnpj,
+                      placeholder: 'CNPJ',
+                      label: false,
+                      required: false,
+                      input_html: {
+                        autocomplete: 'cnpj',
+                        class: 'input',
+                      }
+            %>
+          </div>
+
+          <div class="input-box">
+            <%=
+              f.input :phone,
+                      placeholder: 'Telefone com DDD',
+                      label: false,
+                      required: false,
+                      input_html: {
+                        autocomplete: 'phone',
+                        class: 'input',
+                      }
+            %>
+          </div>
+
+          <div class="input-box">
+            <%=
+              f.input :zip,
+                      placeholder: 'CEP',
+                      label: false,
+                      required: false,
+                      input_html: {
+                        autocomplete: 'zip',
+                        class: 'input',
+                      }
+            %>
+          </div>
+
+          <div class="input-box">
+            <%=
+              f.input :address,
+                      placeholder: 'Endereço',
+                      label: false,
+                      required: false,
+                      input_html: {
+                        autocomplete: 'address',
+                        class: 'input',
+                      }
+            %>
+          </div>
+
+          <div class="input-box">
+            <%=
+              f.input :number,
+                      placeholder: 'Número',
+                      label: false,
+                      required: false,
+                      input_html: {
+                        autocomplete: 'number',
+                        class: 'input',
+                      }
+            %>
+          </div>
+
+          <div class="input-box">
+            <%=
+              f.input :complement,
+                      placeholder: 'Complemento',
+                      label: false,
+                      required: false,
+                      input_html: {
+                        autocomplete: 'complement',
+                        class: 'input',
+                      }
+            %>
+          </div>
+
+          <div class="input-box">
+            <%=
+              f.input :neighborhood,
+                      placeholder: 'Bairro',
+                      label: false,
+                      required: false,
+                      input_html: {
+                        autocomplete: 'neighborhood',
+                        class: 'input',
+                      }
+            %>
+          </div>
+
+          <div class="input-box">
+            <%=
+              f.input :city,
+                      placeholder: 'Cidade',
+                      label: false,
+                      required: false,
+                      input_html: {
+                        autocomplete: 'city',
+                        class: 'input',
+                      }
+            %>
+          </div>
+
+          <div class="input-box">
+            <%=
+              f.input :state,
+                      placeholder: 'Estado',
+                      label: false,
+                      required: false,
+                      input_html: {
+                        autocomplete: 'state',
+                        class: 'input',
+                      }
+            %>
+          </div>
+
+          <div class="input-box">
+            <%=
+              f.input :lat,
+                      placeholder: 'Latitude',
+                      label: false,
+                      required: false,
+                      input_html: {
+                        autocomplete: 'lat',
+                        class: 'input',
+                      }
+            %>
+          </div>
+
+          <div class="input-box">
+            <%=
+              f.input :long,
+                      placeholder: 'Longitude',
+                      label: false,
+                      required: false,
+                      input_html: {
+                        autocomplete: 'long',
+                        class: 'input',
+                      }
+            %>
+          </div>
+
+
+
           <%= f.button :submit, 'INICIAR CADASTRO', class: 'btn' %>
         <% end %>
       </div>

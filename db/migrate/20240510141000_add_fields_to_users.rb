@@ -11,7 +11,7 @@ class AddFieldsToUsers < ActiveRecord::Migration[7.1]
     add_column :users, :address, :string
     add_column :users, :number, :string
     add_column :users, :complement, :string
-    add_column :users, :neighborhoot, :string
+    add_column :users, :neighborhood, :string
     add_column :users, :city, :string
     add_column :users, :state, :string
     add_column :users, :lat, :float
