@@ -29,7 +29,9 @@ export default class extends Controller {
             lat.value = data.lat
           } else {
               address.value = "Cep não encontrado"
+              neighborhood.value = "Cep não encontrado"
               city.value = "Cep não encontrado"
+              state.value = "Cep não encontrado"
             }
         })
       .catch(error => console.error('Error fetching ceps:', error));
