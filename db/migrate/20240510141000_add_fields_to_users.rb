@@ -3,6 +3,7 @@ class AddFieldsToUsers < ActiveRecord::Migration[7.1]
     add_column :users, :first_name, :string
     add_column :users, :last_name, :string
     add_column :users, :cpf, :string
+    add_column :users, :experience, :string
     add_column :users, :company_name, :string
     add_column :users, :cnpj, :string
     add_column :users, :phone, :string

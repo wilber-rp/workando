@@ -52,19 +52,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_143000) do
   end
 
   create_table "candidates", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "cpf"
-    t.string "phone"
-    t.string "address"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "experience"
-    t.string "cep"
-    t.string "city"
-    t.string "long"
-    t.string "lat"
     t.index ["user_id"], name: "index_candidates_on_user_id"
   end
 
@@ -77,16 +67,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_143000) do
     t.index ["match_id"], name: "index_chatrooms_on_match_id"
     t.index ["receiver_id"], name: "index_chatrooms_on_receiver_id"
     t.index ["sender_id"], name: "index_chatrooms_on_sender_id"
-  end
-
-  create_table "companies", force: :cascade do |t|
-    t.string "cnpj"
-    t.string "company_name"
-    t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "company_description"
-    t.index ["user_id"], name: "index_companies_on_user_id"
   end
 
   create_table "distances", force: :cascade do |t|
@@ -109,7 +89,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_143000) do
     t.string "description"
     t.string "address"
     t.float "salary"
-    t.bigint "company_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "interest_area_id"
@@ -120,7 +99,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_143000) do
     t.float "longitude"
     t.float "latitude"
     t.bigint "user_id"
-    t.index ["company_id"], name: "index_jobs_on_company_id"
     t.index ["user_id"], name: "index_jobs_on_user_id"
   end
 
@@ -130,7 +108,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_143000) do
     t.bigint "job_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.float "distance"
     t.boolean "dislike"
     t.index ["candidate_id"], name: "index_matches_on_candidate_id"
     t.index ["job_id"], name: "index_matches_on_job_id"
@@ -155,11 +132,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_143000) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "is_company"
-    t.integer "role"
     t.string "nickname"
     t.string "first_name"
     t.string "last_name"
     t.string "cpf"
+    t.string "experience"
     t.string "company_name"
     t.string "cnpj"
     t.string "phone"
@@ -184,10 +161,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_10_143000) do
   add_foreign_key "chatrooms", "matches"
   add_foreign_key "chatrooms", "users", column: "receiver_id"
   add_foreign_key "chatrooms", "users", column: "sender_id"
-  add_foreign_key "companies", "users"
   add_foreign_key "distances", "candidates"
   add_foreign_key "distances", "jobs"
-  add_foreign_key "jobs", "companies"
   add_foreign_key "jobs", "users"
   add_foreign_key "matches", "candidates"
   add_foreign_key "matches", "jobs"

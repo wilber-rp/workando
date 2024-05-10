@@ -4,7 +4,6 @@ class CreateJobs < ActiveRecord::Migration[7.1]
       t.string :description
       t.string :address
       t.float :salary
-      t.references :company, null: false, foreign_key: true
 
       t.timestamps
     end
