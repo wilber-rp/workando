@@ -5,9 +5,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_one :candidate, dependent: :destroy
-  has_one :company, dependent: :destroy
+  has_many :candidates, dependent: :destroy
+  has_many :jobs, dependent: :destroy
 
-  enum role: [:role_candidate, :role_company]
-  validates :role, presence: true
+  has_one_attached :photo
+
+  # has_one :candidate, dependent: :destroy
+  # has_one :company, dependent: :destroy
+  # enum role: [:role_candidate, :role_company]
+  # validates :role, presence: true
 end

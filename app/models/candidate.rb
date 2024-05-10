@@ -5,13 +5,15 @@ class Candidate < ApplicationRecord
   has_many :candidate_interest_areas, dependent: :destroy
   has_many :interest_areas, through: :candidate_interest_areas
   has_many :matches, dependent: :destroy
-  has_many :distances
+  has_many :distances, dependent: :destroy
   has_many :chatrooms, through: :matches
   has_many :jobs, through: :distances
 
+  belongs_to :user
+
   accepts_nested_attributes_for :candidate_interest_areas
 
-  validates :first_name, :last_name, :cpf, :phone, presence: true
+  # validates :first_name, :last_name, :cpf, :phone, presence: true
 
-  has_one_attached :photo
+  # has_one_attached :photo
 end

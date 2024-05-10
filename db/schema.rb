@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_15_161249) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_10_143000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -119,7 +119,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_15_161249) do
     t.string "long"
     t.float "longitude"
     t.float "latitude"
+    t.bigint "user_id"
     t.index ["company_id"], name: "index_jobs_on_company_id"
+    t.index ["user_id"], name: "index_jobs_on_user_id"
   end
 
   create_table "matches", force: :cascade do |t|
@@ -155,6 +157,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_15_161249) do
     t.boolean "is_company"
     t.integer "role"
     t.string "nickname"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "cpf"
+    t.string "company_name"
+    t.string "cnpj"
+    t.string "phone"
+    t.string "zip"
+    t.string "address"
+    t.string "number"
+    t.string "complement"
+    t.string "neighborhoot"
+    t.string "city"
+    t.string "state"
+    t.float "lat"
+    t.float "long"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -171,6 +188,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_15_161249) do
   add_foreign_key "distances", "candidates"
   add_foreign_key "distances", "jobs"
   add_foreign_key "jobs", "companies"
+  add_foreign_key "jobs", "users"
   add_foreign_key "matches", "candidates"
   add_foreign_key "matches", "jobs"
   add_foreign_key "messages", "chatrooms"
