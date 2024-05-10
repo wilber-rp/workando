@@ -51,7 +51,7 @@
               <div class="info-left">
                 <i class="fa-regular fa-building icon-color-default"></i>
               </div>
-              <h3 class="list-card-title"><%= @job.company.company_name %></h3>
+              <h3 class="list-card-title"><%= @job.user.nickname %></h3>
             </div>
             <div class="info-row">
               <p class="list-leg m-0">Valor hora:</p>
@@ -68,7 +68,7 @@
               <p class="list-item-card m-0"><%= @job.description %></p>
             </div>
             <p class="distance">
-              <span><i class="fa-solid fa-road"></i></span>Distância <%= @job.distances[0].distance %>kms
+              <%# <span><i class="fa-solid fa-road"></i></span>Distância <%= @job.distances[0].distance %>kms %>
             </p>
             <div class="map" data-controller="map" data-map-markers-value="<%= @marker.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
           </div>

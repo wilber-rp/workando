@@ -26,12 +26,12 @@
       <div class="big-list">
         <% @job.matches.where(dislike: false).each do |match| %>
           <li class="info-row">
-            <% if match.candidate.photo.present? %>
-              <div class="photo-candidate"><%= cl_image_tag match.candidate.photo.key, height: 50, width: 50, crop: :fill, class: "photo-candidate" %></div>
+            <% if match.user.photo.present? %>
+              <div class="photo-candidate"><%= cl_image_tag match.user.photo.key, height: 50, width: 50, crop: :fill, class: "photo-candidate" %></div>
             <% else %>
               <%= image_tag("Imagem perfil candidato.png", alt:"Avatar do usuário", class:"photo-candidate") %>
             <% end %>
-            <div class="name-center"><strong><%= link_to match.candidate.first_name.capitalize, match_path(match) %></strong></div>
+            <div class="name-center"><strong><%= link_to match.user.nickname.capitalize, match_path(match) %></strong></div>
           </li>
           <hr>
         <% end %>

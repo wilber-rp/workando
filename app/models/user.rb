@@ -16,15 +16,23 @@ class User < ApplicationRecord
 
   accepts_nested_attributes_for :candidate_interest_areas
 
-  before_validation :check_cnpj_presence
+  before_validation :check_cnpj_presence, :add_nickname
 
-private
+  private
 
   def check_cnpj_presence
     if self.cnpj.present?
       self.is_company = true
     else
       self.is_company = false
+    end
+  end
+
+  def add_nickname
+    if self.cnpj.present?
+      self.nickname = self.company_name
+    else
+      self.nickname = "#{self.first_name} #{self.last_name}"
     end
   end
 end
