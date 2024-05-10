@@ -13,11 +13,11 @@
         <span><%= "#{@chatroom.match.candidate.first_name.capitalize} #{@chatroom.match.candidate.last_name.capitalize}"%></span>
       <% else %>
         <% if @chatroom.match.job.company.photo.attached? %>
-          <%= cl_image_tag @chatroom.match.job.company.photo.key, height: 30, width: 30, crop: :fill, class: "profile-picture" %>
-          <%= @chatroom.match.job.company.company_name.capitalize %>
+          <%= cl_image_tag @chatroom.match.job.user.photo.key, height: 30, width: 30, crop: :fill, class: "profile-picture" %>
+          <%= @chatroom.match.job.user.company_name.capitalize %>
         <% else %>
           <%= image_tag("imagem_contratante.png", alt: "Avatar do usuário", class: "profile-picture") %>
-          <%= @chatroom.match.job.company.company_name.capitalize %>
+          <%= @chatroom.match.job.user.company_name.capitalize %>
         <% end %>
       <% end %>
     </div>

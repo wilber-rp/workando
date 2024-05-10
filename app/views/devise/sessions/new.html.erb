@@ -1,4 +1,4 @@
-<div class="container d-flex justify-content-center">
+<div class="container d-flex justify-content-center" data-controller="cep">
   <div class="custom-container">
     <h1>
       Encontre seu <span>match</span> perfeito no mercado de trabalho com o
@@ -139,10 +139,12 @@
               f.input :zip,
                       placeholder: 'CEP',
                       label: false,
-                      required: false,
+                      required: true,
                       input_html: {
                         autocomplete: 'zip',
                         class: 'input',
+                        id: 'cepSelect',
+                        data: { action: 'change->cep#updateAddress' },
                       }
             %>
           </div>
@@ -152,10 +154,11 @@
               f.input :address,
                       placeholder: 'Endereço',
                       label: false,
-                      required: false,
+                      required: true,
                       input_html: {
                         autocomplete: 'address',
                         class: 'input',
+                        id: 'addressSelect',
                       }
             %>
           </div>
@@ -165,7 +168,7 @@
               f.input :number,
                       placeholder: 'Número',
                       label: false,
-                      required: false,
+                      required: true,
                       input_html: {
                         autocomplete: 'number',
                         class: 'input',
@@ -191,10 +194,11 @@
               f.input :neighborhood,
                       placeholder: 'Bairro',
                       label: false,
-                      required: false,
+                      required: true,
                       input_html: {
                         autocomplete: 'neighborhood',
                         class: 'input',
+                        id: 'neighborhoodSelect',
                       }
             %>
           </div>
@@ -204,10 +208,11 @@
               f.input :city,
                       placeholder: 'Cidade',
                       label: false,
-                      required: false,
+                      required: true,
                       input_html: {
                         autocomplete: 'city',
                         class: 'input',
+                        id: 'citySelect',
                       }
             %>
           </div>
@@ -215,12 +220,13 @@
           <div class="input-box">
             <%=
               f.input :state,
-                      placeholder: 'Estado',
+                      placeholder: 'UF',
                       label: false,
-                      required: false,
+                      required: true,
                       input_html: {
                         autocomplete: 'state',
                         class: 'input',
+                        id: 'stateSelect',
                       }
             %>
           </div>
@@ -233,7 +239,8 @@
                       required: false,
                       input_html: {
                         autocomplete: 'lat',
-                        class: 'input',
+                        class: 'input, d-none',
+                        id: 'latSelect',
                       }
             %>
           </div>
@@ -246,7 +253,8 @@
                       required: false,
                       input_html: {
                         autocomplete: 'long',
-                        class: 'input',
+                        class: 'input, d-none',
+                        id: 'longSelect',
                       }
             %>
           </div>

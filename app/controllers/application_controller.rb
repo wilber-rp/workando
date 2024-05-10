@@ -8,7 +8,9 @@ class ApplicationController < ActionController::Base
   # metodo para sobrescrever o caminho depois do login, queremos jogar o candidato para os jobs.
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:role])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :cpf, :company_name, :cnpj, :phone, :zip, :address, :number, :complement, :neighborhood, :city, :state, :lat, :long, :experience])
+
+    devise_parameter_sanitizer.permit(:account_update, keys: [:phone, :zip, :address, :number, :complement, :neighborhood, :city, :state, :lat, :long, :experience])
   end
   # include Pundit::Authorization
 

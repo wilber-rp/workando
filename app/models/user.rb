@@ -12,13 +12,19 @@ class User < ApplicationRecord
   has_many :distances, dependent: :destroy
   has_many :chatrooms, through: :matches
   has_many :jobs, dependent: :destroy
+  has_one_attached :photo
 
   accepts_nested_attributes_for :candidate_interest_areas
 
-  has_one_attached :photo
+  before_validation :check_cnpj_presence
 
-  # has_one :candidate, dependent: :destroy
-  # has_one :company, dependent: :destroy
-  # enum role: [:role_candidate, :role_company]
-  # validates :role, presence: true
+private
+
+  def check_cnpj_presence
+    if self.cnpj.present?
+      self.is_company = true
+    else
+      self.is_company = false
+    end
+  end
 end
