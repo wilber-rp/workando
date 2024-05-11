@@ -1,11 +1,10 @@
 class RegistrationsController < Devise::RegistrationsController
 
   def create
-    
-    build_resource(sign_up_params)
-    interest_areas = params[:user][:candidate_interest_areas].reject(&:empty?)
+    build_resource(sign_up_params.delete(:candidate_interest_areas))
+    interest_areas = sign_up_params.delete(:candidate_interest_areas)
     if resource.save
-      interest_areas.each do |area_id|
+      interest_areas.reject(&:empty?).each do |area_id|
         area = InterestArea.find(area_id.to_i)
         CandidateInterestArea.create(user: resource, interest_area: area)
       end
