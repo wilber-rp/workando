@@ -55,24 +55,10 @@
                       }
             %>
           </div>
-          <div class="role-select">
-            <%=
-              f.input :role,
-                      label: '',
-                      legend: false,
-                      collection: [
-                        ['Quero trabalhar', :role_candidate],
-                        ['Quero contratar', :role_company],
-                      ],
-                      as: :radio_buttons,
-                      input_html: {
-                        class: 'check-box',
-                      },
-                      label_method: ->(item) {
-                        "<b>#{item.first}</b>".html_safe
-                      }
-            %>
-          </div>
+
+
+
+
           <%= f.button :submit, 'INICIAR CADASTRO', class: 'btn' %>
         <% end %>
       </div>

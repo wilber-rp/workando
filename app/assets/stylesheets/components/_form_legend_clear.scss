@@ -16,6 +16,10 @@ legend ~ div.form-check:first-of-type {
   color: #000;
 }
 
+.form-control::placeholder {
+  color: #999; /* Cor desejada para o texto do placeholder */
+}
+
 input::-webkit-input-placeholder {
   color: rgb(156, 156, 156) !important;
 }

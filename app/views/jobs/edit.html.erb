@@ -6,10 +6,14 @@
           <h2>Editar vaga</h2>
         </div>
         <div class="forms">
-          <%= f.collection_select :interest_area_id, @interest_areas, :id, :name, { include_blank: 'Selecione uma área' }, { selected: @job.interest_area_id, class: 'profile-info', id: 'input-area' } %>
+          <%= f.collection_select :interest_area_id, @interest_areas, :id, :name, { include_blank: 'Selecione uma área' }, { id: 'input-area', class: 'profile-info ' } %>
           <%= f.input :cep, placeholder: 'CEP', label: false, input_html: { id: 'cepSelect', class: 'profile-info', data: { action: 'change->cep#updateAddress' } } %>
           <%= f.input :address, placeholder: 'Endereço', label: false, input_html: { id: 'addressSelect', class: 'profile-info' } %>
+          <%= f.input :number, placeholder: 'Número', label: false, input_html: {class: 'profile-info' } %>
+          <%= f.input :complement, placeholder: 'Complemento', label: false, input_html: {class: 'profile-info' } %>
+          <%= f.input :neighborhood, placeholder: 'Bairro', label: false, input_html: { id: 'neighborhoodSelect', class: 'profile-info' } %>
           <%= f.input :city, placeholder: 'Cidade', label: false, input_html: { id: 'citySelect', class: 'profile-info' } %>
+          <%= f.input :state, placeholder: 'Estado', label: false, input_html: { id: 'stateSelect', class: 'profile-info' } %>
           <%= f.input :description, placeholder: 'Descrição da vaga', label: false, input_html: { class: 'profile-info', maxlength: 150 } %>
           <%= f.input :salary, placeholder: 'Valor hora', label: false, input_html: { class: 'profile-info' } %>
           <%= f.input :long, label: false, input_html: { id: 'longSelect', class: 'profile-info d-none' } %>

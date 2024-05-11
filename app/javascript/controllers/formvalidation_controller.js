@@ -18,7 +18,7 @@ export default class extends Controller {
 
     if (isEmpty) {
       event.preventDefault(); // Prevent form submission
-      alert("Todos os campos precisam ser preenchidos!."); // You can customize this message
+      alert("Existem campos obrigatórios não preenchidos!."); // You can customize this message
     }
   }
 }

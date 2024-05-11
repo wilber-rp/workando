@@ -9,7 +9,9 @@ export default class extends Controller {
   updateAddress() {
     const cep = document.getElementById('cepSelect');
     const address = document.getElementById('addressSelect');
+    const neighborhood = document.getElementById('neighborhoodSelect');
     const city = document.getElementById('citySelect');
+    const state = document.getElementById('stateSelect');
     const long = document.getElementById('longSelect');
     const lat = document.getElementById('latSelect');
 
@@ -20,12 +22,16 @@ export default class extends Controller {
       .then(data => {
           if (data.code !== "not_found" ) {
             address.value = data.address;
+            neighborhood.value = data.district;
             city.value = data.city;
+            state.value = data.state;
             long.value = data.lng;
             lat.value = data.lat
           } else {
               address.value = "Cep não encontrado"
+              neighborhood.value = "Cep não encontrado"
               city.value = "Cep não encontrado"
+              state.value = "Cep não encontrado"
             }
         })
       .catch(error => console.error('Error fetching ceps:', error));

@@ -18,25 +18,29 @@
 # end
 
 
-InterestArea.create!(name: "Barman")
-InterestArea.create!(name: "Carpinteiro")
-InterestArea.create!(name: "Diarista")
-InterestArea.create!(name: "Eletricista")
-InterestArea.create!(name: "Encanador")
-InterestArea.create!(name: "Fotógrafo")
-InterestArea.create!(name: "Garçom")
-InterestArea.create!(name: "Jardineiro")
-InterestArea.create!(name: "Modelo")
-InterestArea.create!(name: "Pedreiro")
-InterestArea.create!(name: "Pintor")
-InterestArea.create!(name: "Professor")
-InterestArea.create!(name: "Programador")
-InterestArea.create!(name: "Promoter")
-InterestArea.create!(name: "Recepcionista")
-InterestArea.create!(name: "Segurança")
-InterestArea.create!(name: "Técnico em TI")
+interest_areas = [
+  "Barman",
+  "Carpinteiro",
+  "Diarista",
+  "Eletricista",
+  "Encanador",
+  "Fotógrafo",
+  "Garçom",
+  "Jardineiro",
+  "Modelo",
+  "Pedreiro",
+  "Pintor",
+  "Professor",
+  "Programador",
+  "Promoter",
+  "Recepcionista",
+  "Segurança",
+  "Técnico em TI"
+]
 
-
+interest_areas.each do |area_name|
+  InterestArea.find_or_create_by(name: area_name)
+end
 
 # POSSÍVEIS CATEGORIAS DE JOBS ABAIXO
 
