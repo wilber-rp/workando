@@ -8,7 +8,7 @@
           <%= f.input :zip, input_html: { id: 'cepSelect', class: 'profile-info', data: { action: 'change->cep#updateAddress' } }, placeholder: 'CEP:', label: false %>
           <%= f.input :address, input_html: { id: 'addressSelect', class: 'profile-info' }, label: false, placeholder: 'Endereço:' %>
           <%= f.input :city, input_html: { id: 'citySelect', class: 'profile-info' }, label: false, placeholder: 'Cidade:' %>
-          <%= f.input :experience, placeholder: 'Experiência:', label: false, input_html: { class: 'profile-info', maxlength: 100 } %>
+          <%= f.input :experience, as: :text, placeholder: 'Experiência:', label: false, input_html: { class: 'profile-info', maxlength: 100, style: 'height: 150px;' } %>
           <%= f.input :long, label: false, input_html: { id: 'longSelect', class: 'profile-info d-none' } %>
           <%= f.input :lat, label: false, input_html: { id: 'latSelect', class: 'profile-info d-none' } %>
           <%= f.input :photo, label: 'Foto do perfil:', as: :file, input_html: { class: 'profile-info', id: 'img-input' } %>

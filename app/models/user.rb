@@ -17,8 +17,6 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :candidate_interest_areas
 
   before_validation :check_cnpj_presence, :add_nickname
-  after_create :create_interest_areas
-
 
   private
 

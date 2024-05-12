@@ -1,12 +1,11 @@
 class RegistrationsController < Devise::RegistrationsController
-
   def create
-    build_resource(sign_up_params.delete(:candidate_interest_areas))
-    interest_areas = sign_up_params.delete(:candidate_interest_areas)
+    interest_areas = sign_up_params["interest_area_ids"].reject!(&:empty?)
+    build_resource(sign_up_params.except(:interest_area_ids))
     if resource.save
-      interest_areas.reject(&:empty?).each do |area_id|
+      interest_areas.each do |area_id|
         area = InterestArea.find(area_id.to_i)
-        CandidateInterestArea.create(user: resource, interest_area: area)
+        CandidateInterestArea.create(user: resource, interest_area_id: area.id)
       end
       sign_up(resource_name, resource)
       respond_with resource, location: after_sign_up_path_for(resource)
@@ -15,39 +14,7 @@ class RegistrationsController < Devise::RegistrationsController
       set_minimum_password_length
       respond_with resource
     end
-    raise
   end
-
-
-  # def create
-  #   filtered_params = sign_up_params
-  #   interest_areas = filtered_params[:candidate_interest_areas]
-  #   interest_areas.shift
-
-
-
-  #   interest_areas.each do |area_id|
-  #     area = InterestArea.find(area_id.to_i)
-  #     CandidateInterestArea.create(user: current_user, interest_area: area)
-  #   end
-
-
-
-  #   raise
-
-  #     interest_areas = params[:candidate][:candidate_interest_areas]
-
-
-  #     if @candidate.save
-  #       current_user.save
-  #       redirect_to candidate_path(@candidate), notice: 'Candidato criado com sucesso'
-  #     else
-  #       render :new, status: :unprocessable_entity
-  #     end
-
-
-
-  # end
 
   def update
     filtered_params = account_update_params
@@ -72,7 +39,7 @@ class RegistrationsController < Devise::RegistrationsController
   private
 
   def sign_up_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name, :cpf, :company_name, :cnpj, :phone, :zip, :address, :number, :complement, :neighborhood, :city, :state, :lat, :long, :experience, candidate_interest_areas: [])
+    params.require(:user).permit(:email, :password, :password_confirmation, :first_name, :last_name, :cpf, :company_name, :cnpj, :phone, :zip, :address, :number, :complement, :neighborhood, :city, :state, :lat, :long, :experience, interest_area_ids: [])
   end
 
   def account_update_params
