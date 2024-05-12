@@ -2,7 +2,7 @@ Rails
   .application
   .routes
   .draw do
-    devise_for :users
+    devise_for :users, controllers: { registrations: 'registrations' }
 
     # get '/user' => "welcome#index", :as => :user_root
 
@@ -26,7 +26,8 @@ Rails
       resources :chatrooms, only: :create
     end
 
-    # get 'candidate', to: 'candidates#show', as: :candidate
+    # My jobs oppotunities
+    get 'my_jobs', to: 'jobs#my_jobs', as: 'my_jobs'
 
     resources :candidates, only: %i[show index new create edit update] do
       post 'like', to: 'candidates#like', as: 'like'

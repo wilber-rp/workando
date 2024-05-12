@@ -56,6 +56,15 @@
             %>
           </div>
 
+          <div class="input-box">
+            <%= f.fields_for :candidate_interest_areas do |interest_area_form| %>
+              <% InterestArea.all.each do |interest_area| %>
+                <%= interest_area_form.check_box :interest_area_id, { multiple: true }, interest_area.id, nil %>
+                <%= interest_area.name %>
+              <% end %>
+            <% end %>
+          </div>
+
 
 
 

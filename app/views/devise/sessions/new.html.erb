@@ -231,6 +231,19 @@
             %>
           </div>
 
+        <div class="checkboxes" style="color: black">
+          <h2>Habilidades</h2>
+          <div class="form-checkbox-columns">
+            <%= f.collection_check_boxes :interest_area_ids, InterestArea.all, :id, :name do |cb| %>
+              <div class="form-checkbox-column">
+                <%= cb.check_box class: 'form-check-input' %>
+                <%= cb.label class: 'checkbox-label' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+
           <div class="input-box">
             <%=
               f.input :lat,

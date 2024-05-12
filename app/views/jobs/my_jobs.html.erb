@@ -1,0 +1,25 @@
+<div class="mini-card-jobs-container">
+  <h2 class="text-center mb-3">Minhas vagas anunciadas</h2>
+        <% @jobs.each do |job| %>
+          <%# aqui pensei em colocarmos uma interpolação do n° da vaga antes da descrição. Ex: Vaga 1- Pedreiro. Vaga-2 Garçom. %>
+          <%= link_to job_path(job), class: "text-decoration-none" do %>
+            <div class="mini-card-list">
+              <li class="mini-card-info-row">
+                <div class="mini-card-interest-area">
+                  <strong><%= job.interest_area.name %></strong>
+                </div>
+                <div class="mini-card-likes">
+                  <% if job.matches.where(dislike: false).count > 0 %>
+                    <i class="far fa-thumbs-up thumb"></i>
+                    <strong><%= job.matches.where(dislike: false).count %></strong>
+                  <% else %>
+                    <i class="far fa-thumbs-up thumb"></i>
+                    <strong><%= job.matches.where(dislike: false).count %></strong>
+                  <% end %>
+                </div>
+              </li>
+            </div>
+          <% end %>
+        <% end %>
+        <%= link_to 'NOVA VAGA', new_job_path, class: 'button d-block mt-5 text-center' %>
+</div>

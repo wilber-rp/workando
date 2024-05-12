@@ -11,36 +11,7 @@
       <div class="d-flex w-100 justify-content-center" style="font-size:200px; margin-top:200px; color:#F5E4ED;">
         <i class="fa-regular fa-circle-xmark"></i>
       </div>
-
   <% else %>
-    <%# Executar as linhas de baixo %>
-
-    <% if current_user.present? && current_user.jobs.any? %>
-      <%# esta vendo se o currente.user e company e se tiver vagas vai mostrar o q esta a baixo %>
-      <h2 class="text-center mb-3">Minhas vagas</h2>
-      <% @jobs.each do |job| %>
-        <%# aqui pensei em colocarmos uma interpolação do n° da vaga antes da descrição. Ex: Vaga 1- Pedreiro. Vaga-2 Garçom. %>
-        <%= link_to job_path(job), class: "text-decoration-none" do %>
-          <div class="mini-card-list">
-            <li class="mini-card-info-row">
-              <div class="mini-card-interest-area">
-                <strong><%= job.interest_area.name %></strong>
-              </div>
-              <div class="mini-card-likes">
-                <% if job.matches.where(dislike: false).count > 0 %>
-                  <i class="far fa-thumbs-up thumb"></i>
-                  <strong><%= job.matches.where(dislike: false).count %></strong>
-                <% else %>
-                  <i class="far fa-thumbs-up thumb"></i>
-                  <strong><%= job.matches.where(dislike: false).count %></strong>
-                <% end %>
-              </div>
-            </li>
-          </div>
-        <% end %>
-      <% end %>
-      <%= link_to 'NOVA VAGA', new_job_path, class: 'button d-block mt-5 text-center' %>
-    <% else %>
       <%# mostrar a parte do candidato. %>
       <div class="card-details-container d-flex flex-column justify-content-center" data-controller="job-animation" data-job-animation-target="divAnimate">
         <div class="container-infos mt-3 mb-1">
@@ -85,6 +56,5 @@
           </div>
         </div>
       </div>
-    <% end %>
   <% end %>
 </div>

@@ -14,7 +14,7 @@
           <%= f.input :neighborhood, placeholder: 'Bairro', label: false, input_html: { id: 'neighborhoodSelect', class: 'profile-info' } %>
           <%= f.input :city, placeholder: 'Cidade', label: false, input_html: { id: 'citySelect', class: 'profile-info' } %>
           <%= f.input :state, placeholder: 'Estado', label: false, input_html: { id: 'stateSelect', class: 'profile-info' } %>
-          <%= f.input :description, placeholder: 'Descrição da vaga', label: false, input_html: { class: 'profile-info', maxlength: 150 } %>
+          <%= f.input :description, as: :text, placeholder: 'Descrição da vaga', label: false, input_html: { class: 'profile-info', maxlength: 150, style: 'height: 150px;' } %>
           <%= f.input :salary, placeholder: 'Valor hora', label: false, input_html: { class: 'profile-info' } %>
           <%= f.input :long, label: false, input_html: { id: 'longSelect', class: 'profile-info d-none' } %>
           <%= f.input :lat, label: false, input_html: { id: 'latSelect', class: 'profile-info d-none' } %>
