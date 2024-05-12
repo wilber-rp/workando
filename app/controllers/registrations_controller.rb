@@ -20,17 +20,18 @@ class RegistrationsController < Devise::RegistrationsController
     filtered_params = account_update_params
     interest_areas = filtered_params[:candidate_interest_areas]
     interest_areas.shift
-    if interest_areas.empty?
-      current_user.candidate_interest_areas.destroy_all
-    else
-      interest_areas.each do |area_id|
-        current_user.candidate_interest_areas.destroy_all
-        area = InterestArea.find(area_id.to_i)
-        CandidateInterestArea.create(user: current_user, interest_area: area)
-      end
-    end
-
     if current_user.update(filtered_params.except(:candidate_interest_areas))
+      if interest_areas.empty?
+        current_user.candidate_interest_areas.destroy_all
+        redirect_to root_path
+      else
+        interest_areas.each do |area_id|
+          current_user.candidate_interest_areas.destroy_all
+          area = InterestArea.find(area_id.to_i)
+          CandidateInterestArea.create(user: current_user, interest_area: area)
+        end
+        redirect_to root_path
+      end
     else
       render :edit
     end

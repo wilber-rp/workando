@@ -38,7 +38,7 @@
               <p class="list-item-card m-0"><%= @job.description %></p>
             </div>
             <p class="distance">
-              <%# <span><i class="fa-solid fa-road"></i></span>Distância <%= @job.distances[0].distance %>kms %>
+              <span><i class="fa-solid fa-road"></i></span>Distância <%= @job.distances.where(user: current_user)[0].distance %>km
             </p>
             <div class="map" data-controller="map" data-map-markers-value="<%= @marker.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
           </div>
