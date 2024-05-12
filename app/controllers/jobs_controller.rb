@@ -9,13 +9,13 @@ class JobsController < ApplicationController
         json_data = URI.open(url).read
         parsed_data = JSON.parse(json_data)
         distance = (parsed_data['distances'][0][0] / 1000.0).round(1)
-        existing_distance = Distance.find_by(candidate: current_user, job: job)
+        existing_distance = Distance.find_by(user: current_user, job: job)
 
         if existing_distance
           existing_distance.update(distance: distance)
           puts "Instância de Distance existente atualizada com sucesso!"
         else
-          distance = Distance.create(candidate: current_user.candidate, job: job, distance: distance)
+          distance = Distance.create(user: current_user, job: job, distance: distance)
 
           if distance.persisted?
             puts "Nova instância de Distance criada com sucesso!"
@@ -25,12 +25,14 @@ class JobsController < ApplicationController
         end
       end
     end
-    # @jobs = Job.where(interest_area_id: current_user.candidate.interest_areas).joins(:distances).order('distances.distance ASC')
-    # @jobs = Job.where(interest_area_id: current_user.interest_areas).joins(:distances).where.not(id: Match.where(current_user_id: current_user.id).pluck(:job_id)).order('distances.distance ASC')
-    # @job = @jobs.first
-    @jobs = Job.all
-    @job = Job.last
+    @jobs = Job.joins(:distances)
+                .select('jobs.*, distances.distance AS job_distance')
+                .where.not(user_id: current_user.id)
+                .where(interest_area_id: current_user.interest_areas.pluck(:id))
+                .order('distances.distance ASC')
 
+    @job = @jobs.first
+    
     if @job != nil && @job.geocode != nil && @job.geocode.map != nil
       @marker = @job.geocode.map { |job| { lat: @job.lat.to_f, lng: @job.long.to_f, info_popup_html: render_to_string(partial: 'info_popup', locals: { job: @job }) } }
     end
@@ -68,7 +70,7 @@ class JobsController < ApplicationController
   def update
     @job = Job.find(params[:id])
     if @job.update(job_params)
-      redirect_to job_path(@job)
+      redirect_to my_jobs_path
     else
       render :edit
     end
@@ -101,8 +103,6 @@ class JobsController < ApplicationController
       redirect_to job_path(@job), alert: 'Não foi possível atualizar o match com dislike.'
     end
   end
-
-
 
   private
 
