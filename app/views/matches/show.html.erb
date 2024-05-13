@@ -1,12 +1,12 @@
 <div class="card-details-container">
   <div class="container-infos mb-1">
-    <% if @match.candidate.photo.present? %>
-      <%= cl_image_tag @match.candidate.photo.key, height: 300, width: 400, crop: :fill, class:"profile-picture", style:"display: block; margin: 0 auto;" %>
+    <% if @match.user.photo.present? %>
+      <%= cl_image_tag @match.user.photo.key, height: 300, width: 400, crop: :fill, class:"profile-picture", style:"display: block; margin: 0 auto;" %>
     <% else %>
       <%= image_tag("Imagem perfil candidato.png", alt:"Avatar do usuário", class:"profile-picture", style:"display: block; margin: 0 auto;") %>
     <% end %>
     <h2 id="candidate-name">
-      <%="#{@match.candidate.first_name.capitalize} #{@match.candidate.last_name.capitalize}"%>
+      <%="#{@match.user.nickname.camelize}"%>
     </h2>
     <div class="list" id="not-flex-list">
       <hr>
@@ -14,26 +14,26 @@
         <div class="info-left">
           <p class="list-leg">Cidade: </p>
         </div>
-        <h3 class="list-card-title"><%= @match.candidate.city %></h3>
+        <h3 class="list-card-title"><%= @match.user.city %></h3>
       </div>
       <hr>
       <div class="info-row mb-4">
         <div class="info-left">
           <p class="list-leg">Endereço: </p>
         </div>
-        <h3 class="list-card-title"><%= @match.candidate.address %></h3>
+        <h3 class="list-card-title"><%= @match.user.address %></h3>
       </div>
       <hr>
       <div class="info-row mb-4">
         <div class="info-left">
           <p class="list-leg">Telefone: </p>
         </div>
-        <h3 class="list-card-title"><%= @match.candidate.phone %></h3>
+        <h3 class="list-card-title"><%= @match.user.phone %></h3>
       </div>
       <hr>
       <div class="mb-5">
         <p class="list-leg m-0" style="font-size:14px;">Experiência: </p>
-        <p class="list-item-card"><%= @match.candidate.experience %></p>
+        <p class="list-item-card"><%= @match.user.experience %></p>
       </div>
     </div>
     <% if @match.matched? %>

@@ -1,12 +1,12 @@
 class MatchesController < ApplicationController
   def index
-    Match.none? ? @matches = nil : @matches = Match.where(candidate: current_user, matched: true)
+    Match.none? ? @matches = nil : @matches = Match.where(user: current_user, matched: true)
   end
 
   def create
-    if current_user.candidate.matches.none? { |match| match.job_id == (params[:job_id].to_i) }
+    if current_user.matches.none? { |match| match.job_id == (params[:job_id].to_i) }
       @match = Match.new(match_params)
-      @match.candidate = current_user.candidate
+      @match.user = current_user
       if params[:dislike] == "false"
         if @match.save
           redirect_to root_path
