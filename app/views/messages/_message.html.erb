@@ -3,7 +3,7 @@
 
   <div class="message-content">
     <small>
-      <strong><%= message.user.nickname %></strong>
+      <strong><%= message.user.nickname.camelize %></strong>
     </small>
     <p><%= message.content %></p>
     <i><%= message.created_at.strftime("%e de %b - %l:%M %p") %></i>

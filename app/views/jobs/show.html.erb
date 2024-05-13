@@ -31,7 +31,7 @@
             <% else %>
               <%= image_tag("Imagem perfil candidato.png", alt:"Avatar do usuário", class:"photo-candidate") %>
             <% end %>
-            <div class="name-center"><strong><%= link_to match.user.nickname.capitalize, match_path(match) %></strong></div>
+            <div class="name-center"><strong><%= link_to match.user.nickname.camelize, match_path(match) %></strong></div>
           </li>
           <hr>
         <% end %>

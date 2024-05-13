@@ -4,20 +4,20 @@
      data-chatroom-subscription-current-user-id-value="<%= current_user.id %>">
   <div class="chat-box">
     <div class="chat-top">
-      <% if current_user.role_company? %>
-        <% if @chatroom.match.candidate.photo.attached? %>
-          <%= cl_image_tag @chatroom.match.candidate.photo.key, height: 30, width: 30, crop: :fill, class: "profile-picture" %>
+      <% if current_user == @chatroom.match.job.user %>
+        <% if @chatroom.match.user.photo.attached? %>
+          <%= cl_image_tag @chatroom.match.user.photo.key, height: 30, width: 30, crop: :fill, class: "profile-picture" %>
         <% else %>
           <%= image_tag("Imagem perfil candidato.png", alt: "Avatar do usuário", class: "profile-picture") %>
         <% end %>
-        <span><%= "#{@chatroom.match.candidate.first_name.capitalize} #{@chatroom.match.candidate.last_name.capitalize}"%></span>
+        <span><%= "#{@chatroom.match.user.nickname.camelize}"%></span>
       <% else %>
-        <% if @chatroom.match.job.company.photo.attached? %>
+        <% if @chatroom.match.job.user.photo.attached? %>
           <%= cl_image_tag @chatroom.match.job.user.photo.key, height: 30, width: 30, crop: :fill, class: "profile-picture" %>
-          <%= @chatroom.match.job.user.company_name.capitalize %>
+          <%= @chatroom.match.job.user.nickname.camelize %>
         <% else %>
           <%= image_tag("imagem_contratante.png", alt: "Avatar do usuário", class: "profile-picture") %>
-          <%= @chatroom.match.job.user.company_name.capitalize %>
+          <%= @chatroom.match.job.user.nickname.camelize %>
         <% end %>
       <% end %>
     </div>

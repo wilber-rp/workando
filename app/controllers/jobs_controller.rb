@@ -25,14 +25,16 @@ class JobsController < ApplicationController
         end
       end
     end
+
     @jobs = Job.joins(:distances)
                 .select('jobs.*, distances.distance AS job_distance')
                 .where.not(user_id: current_user.id)
                 .where(interest_area_id: current_user.interest_areas.pluck(:id))
+                .where.not("EXISTS (SELECT 1 FROM matches WHERE matches.job_id = jobs.id AND matches.user_id = ?)", current_user.id)
                 .order('distances.distance ASC')
 
     @job = @jobs.first
-    
+
     if @job != nil && @job.geocode != nil && @job.geocode.map != nil
       @marker = @job.geocode.map { |job| { lat: @job.lat.to_f, lng: @job.long.to_f, info_popup_html: render_to_string(partial: 'info_popup', locals: { job: @job }) } }
     end
@@ -69,6 +71,9 @@ class JobsController < ApplicationController
 
   def update
     @job = Job.find(params[:id])
+    @job.matches.each do |match|
+      match.destroy if match.dislike == true
+    end
     if @job.update(job_params)
       redirect_to my_jobs_path
     else
@@ -87,10 +92,17 @@ class JobsController < ApplicationController
     @match = Match.find(params[:match_id])
     @match.matched = true
     if @match.save
-      Chatroom.new(match: @match)
-      redirect_to match_path(@match), notice: '🥳Parabéns! Você deu match!🥳'
+      @chatroom = Chatroom.new
+      @chatroom.match = @match
+      @chatroom.sender = current_user
+      @chatroom.receiver = @match.user
+        if @chatroom.save
+          redirect_to chatroom_path(@chatroom), notice: '🥳Parabéns! Você deu match!🥳'
+        else
+          render 'matches/show'
+        end
     else
-      render :new, status: :unprocessable_entity
+      puts 'Erro'
     end
   end
 

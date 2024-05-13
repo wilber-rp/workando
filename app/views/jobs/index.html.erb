@@ -1,5 +1,5 @@
 <div class="mini-card-jobs-container">
-  <% if @jobs.nil?  %>
+  <% if @job.nil?  %>
     <%# Se não houver Job aparecerá a mensagem abaixo %>
 
       <div id="flash-alert" class="flash alert alert-dismissible fade show" role="alert" style="background-color: #A30155;">
@@ -21,7 +21,7 @@
               <div class="info-left">
                 <i class="fa-regular fa-building icon-color-default"></i>
               </div>
-              <h3 class="list-card-title"><%= @job.user.nickname %></h3>
+              <h3 class="list-card-title"><%= @job.user.nickname.camelize %></h3>
             </div>
             <div class="info-row">
               <p class="list-leg m-0">Valor hora:</p>
