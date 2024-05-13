@@ -92,10 +92,17 @@ class JobsController < ApplicationController
     @match = Match.find(params[:match_id])
     @match.matched = true
     if @match.save
-      Chatroom.new(match: @match)
-      redirect_to match_path(@match), notice: '🥳Parabéns! Você deu match!🥳'
+      @chatroom = Chatroom.new
+      @chatroom.match = @match
+      @chatroom.sender = current_user
+      @chatroom.receiver = @match.user
+        if @chatroom.save
+          redirect_to chatroom_path(@chatroom), notice: '🥳Parabéns! Você deu match!🥳'
+        else
+          render 'matches/show'
+        end
     else
-      render :new, status: :unprocessable_entity
+      puts 'Erro'
     end
   end
 
