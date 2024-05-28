@@ -5,6 +5,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :notifications, as: :recipient, dependent: :destroy
   has_many :jobs, dependent: :destroy
   has_many :candidate_interest_areas, dependent: :destroy
   has_many :interest_areas, through: :candidate_interest_areas

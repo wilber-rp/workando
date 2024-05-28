@@ -59,6 +59,7 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
 gem "open-uri"
 gem "geocoder"
+gem "noticed", "~> 1.6"
 
 group :development, :test do
   gem "dotenv-rails"
